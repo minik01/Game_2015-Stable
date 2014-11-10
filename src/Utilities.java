@@ -2,7 +2,7 @@ public class Utilities {
 	public Utilities(){}
 	public String iErrorTosError(int iError)
 	{
-		char[] = new char['',';','!','@','#','$','%','^','&','*','(',')','-','+','=','`','~'];
+		//char[] bad_chars= new char['',';','!','@','#','$','%','^','&','*','(',')','-','+','=','`','~'];
 		switch(iError)
 		{
 			case 0:return "";

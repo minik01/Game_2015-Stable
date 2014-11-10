@@ -5,16 +5,45 @@
 #divPaused {
     visibility: hidden;
 }
-BODY
-{
-	font-size: x-small;
-	background-color: #aaaaaa;
+
+BODY {
+	font-size: 20px;
+	background: url(http://wallpaperscraft.com/image/range_multi-colored_lines_black_250_3840x2400.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
-table
-{
-	font-size: x-small;
+table {
+	font-size: 20px;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
-input
-{
-	font-size: x-small;
+input {
+	font-size: 20px;
+}
+a,p {
+	font-family: 'Oswald', sans-serif;
+	font-size: 25 px;
+	padding: 10px;
+	letter-spacing:1px;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#tab_log {
+	
+	position: fixed; 
+	top: 30%;
+	left: 40%;
+}
+#submit_cell {
+	text-align: right;
+	margin-top: 10px;
+	
+}
+#submit_button {
+	margin-right: 25px
+	padding: 5px;
+	shadow:2px;
 }

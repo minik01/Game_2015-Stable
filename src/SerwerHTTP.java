@@ -108,7 +108,7 @@ public class SerwerHTTP implements Runnable
 		}
 		catch(IOException e)
 		{
-			System.out.println("Server error ( may be connection) - SerwerHTTP - run()");
+			//System.out.println("Server error ( may be connection) - SerwerHTTP - run()");
 		}
 	}
 }
