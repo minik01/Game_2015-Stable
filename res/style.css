@@ -38,12 +38,22 @@ a,p {
 	left: 40%;
 }
 #submit_cell {
-	text-align: right;
+	text-align: -webkit-center;
 	margin-top: 10px;
-	
 }
-#submit_button {
-	margin-right: 25px
-	padding: 5px;
-	shadow:2px;
+.sub_btn {
+	background-color: Transparent;
+	padding: 5;
+	padding-left: 90px;
+	padding-right: 90px;
+	color: white;
+	margin-top: 10px;
+}
+.input_area{
+	background-color: Transparent;
+	color: white;
+}
+.input_area:focus{
+	background-color: Transparent;
+	color: yellow;
 }

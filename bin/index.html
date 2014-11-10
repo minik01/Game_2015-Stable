@@ -12,27 +12,28 @@
   <body>
   <script src="sha512.js"></script> 
   <script>
-        function ustawCookie(nazwa, wartosc, dni) {
-            if (dni) {
-                var data = new Date();
-                data.setTime(data.getTime()+(dni*24*60*60*1000));          
-                var expires = "expires="+data.toGMTString();
-            } else {
-                var expires = "";
-            }
-            document.cookie = nazwa+"=" + wartosc + expires + "; path=/";
-        }
-        function DoSubmit(){
-          var password = document.rejestracja.password.value;
-          document.rejestracja.password.value = "" ;
-          var hash = CryptoJS.SHA512(""+password);
-          document.rejestracja.nic.value = ""+hash;
+	function ustawCookie(nazwa, wartosc, dni) {
+	    if (dni) {
+		var data = new Date();
+		data.setTime(data.getTime()+(dni*24*60*60*1000));          
+		var expires = "; expires="+data.toGMTString();
+	    } else {
+		var expires = "";
+	    }
+	    document.cookie = nazwa+"=" + wartosc + expires + "; path=/";
+	}
+	function DoSubmit(){
+	  var password = document.rejestracja.password.value;
+	  document.rejestracja.password.value = "" ;
+	  var hash = CryptoJS.SHA512(""+password);
+	  document.rejestracja.nic.value = ""+hash;
 
-          ustawCookie("SpaceZobmie1",hash,1);
-          
-          return true;
-        }
+	  ustawCookie("SpaceZobmie1",hash,1);
+	  
+	  return true;
+	}
 </script>
+
   <br />
   <form name="Registration" action="game" method="get" onsubmit="DoSubmit();">
     
@@ -40,32 +41,35 @@
 	<tr>
 		<td colspan=2>
 			<div style="text-align: center; margin-bottom:10px"> 
-				<p>Sign in:</p>
+				<p>Sign in</p>
+				<br>
+				<p><!0Tresc></p>
 			</div>
 		</td>
       <tr>
         <td><p>Username</p></td>
         <td>
-          <input type="text" name="imie" />
+          <input class="input_area" type="text" name="imie" />
         </td>
       </tr>
       <tr>
         <td><p>Password</p></td>
         <td>
-          <input type="password" name="password" />
-          <input type="hidden" name="nic" />
+          <input class="input_area" type="password" name="password" />
+          <input class="input_area" type="hidden" name="nic" />
         </td>
       </tr>
       <tr>
 		<td></td>
 		<td id="submit_cell" >
-			<input id="submit_button" type="submit" value="Submit">
+			<input class="sub_btn" type="submit" value="Submit">
 		</td>
       </tr>
 	  <tr>
 		<td colspan=2>
 			<div style="text-align: center; margin-top: 20px;"> 
-				<p>Don't Have an Account yet? </p><a href="rejestracja.html">Sign up now!</a>
+				<p>Don't Have an Account yet? </p>
+				<a href="rejestracja.html">Sign up now!</a>
 			</div>
 		</td>
 	  </tr>
