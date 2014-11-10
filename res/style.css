@@ -41,6 +41,7 @@ a,p {
 	text-align: -webkit-center;
 	margin-top: 10px;
 }
+
 .sub_btn {
 	background-color: Transparent;
 	padding: 5;
@@ -49,9 +50,10 @@ a,p {
 	color: white;
 	margin-top: 10px;
 }
-.input_area{
+.input_area {
 	background-color: Transparent;
 	color: white;
+	padding: 6px;
 }
 .input_area:focus{
 	background-color: Transparent;

@@ -111,6 +111,8 @@ public class parserHTTP
 			System.out.println(temp);
 			if(temp.startsWith("index"))
 			{
+				
+				specjal[0] = "";
 				if(name!=null && password!=null) 				//towrzenie konta
 					if(player.findByName(name)==-1)
 					{
@@ -142,7 +144,7 @@ public class parserHTTP
 					//System.out.println("ID = " +Id);
 					if(Id==-1)
 					{
-						specjal[0] = "Niewlasciwy login lub haslo";
+						specjal[0] = "Wrong Username or Password";
 						return "index.html";
 					}
 				}
@@ -164,6 +166,11 @@ public class parserHTTP
 			{
 				return "icon.png";
 			}
+			if(temp.startsWith("bg.png"))
+			{
+				return "bg.png";
+			}
+			
 			if(temp.startsWith("setPos"))
 			{
 				if(Planet!=null && SS!=null && Cube!=null)
