@@ -1,0 +1,4 @@
+Wyczyszczono większość spacji
+Dodano logi przy błędach
+Poprawiono odczyt z pliku - wyjątek nie jest konieczny, ale zostaje na wszelki wypadek
+

@@ -1,0 +1,20 @@
+#divAcitive {
+    visibility: hidden;
+}
+ 
+#divPaused {
+    visibility: hidden;
+}
+BODY
+{
+	font-size: x-small;
+	background-color: #aaaaaa;
+}
+table
+{
+	font-size: x-small;
+}
+input
+{
+	font-size: x-small;
+}

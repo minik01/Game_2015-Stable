@@ -1,0 +1,47 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="icon" type="image/png" href="icon.png"/>
+	<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
+	<link rel="Stylesheet" type="text/css" href="style.css" />
+	<title>rejestracja</title>
+</head>
+<body>
+<script src="sha512.js"></script>
+<script>
+	function DoSubmit(){
+	  var password = document.rejestracja.password.value;
+	  document.rejestracja.password.value = "" ;
+	  var hash = CryptoJS.SHA512(""+password);
+	  //var hash = SHA512(""+document.rejestracja.password.value);
+	  document.rejestracja.nic.value = ""+hash;
+	  return true;
+	}
+</script>
+ Rejestracja
+ <br>
+ <form  name="rejestracja" action="index" method="get" onsubmit="DoSubmit();">
+  <table>
+	<tr>
+	  <td>
+		Login
+	  </td>
+	  <td>
+		<input type="text" name="imie">
+	  </td>
+	<tr>
+	  <td>
+		Haslo 
+	  </td>
+	  <td>
+		<input type="password" name="password"><input type="hidden" name="nic">
+	  </td>
+	</tr>
+  </table>  
+
+  <input type="submit" value="Submit">
+  <br>
+</form> 
+</body>
+</html>
