@@ -19,7 +19,8 @@ public class SerwerHTTP implements Runnable
 	{
 		try
 		{      
-			for(int i=0;i<10;i++)special[i]=" ";
+			//for(int i=0;i<10;i++)special[i]=" ";
+			special[0]=" ";
 			ServerSocket serv=new ServerSocket(80); 
 			while(true)
 			{

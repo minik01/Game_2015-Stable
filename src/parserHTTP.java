@@ -14,7 +14,7 @@ public class parserHTTP
 	
 	public parserHTTP(Player player, String input, String [] specjal)
 	{
-		this.specjal = specjal ;
+		this.specjal = specjal;
 		//specjal = " ";
 		this.player=player;
 	}
@@ -116,28 +116,28 @@ public class parserHTTP
 				
 				specjal[0] = "";
 				
-				/*if(name!=null && password!=null) 				//STARE
-					 
-				 	if(player.findByName(name)==-1)
-					{
-						//System.out.println("Tworzę postać");
-						
-						int err = player.newPlayer(name, password);
-						if(err==0) specjal[0]= "Your account has been created successfully";
-						else
-						{
-							Utilities util = new Utilities();
-							specjal[0] = util.iErrorTosError(err);
-							
-						}
-						
-					}
-					else
-					{
-						System.out.println("The same account already exist");
-						specjal[0] = "Account already exist";
-					}
-					*/
+							/*if(name!=null && password!=null) 				//STARE
+								 
+							 	if(player.findByName(name)==-1)
+								{
+									//System.out.println("Tworzę postać");
+									
+									int err = player.newPlayer(name, password);
+									if(err==0) specjal[0]= "Your account has been created successfully";
+									else
+									{
+										Utilities util = new Utilities();
+										specjal[0] = util.iErrorTosError(err);
+										
+									}
+									
+								}
+								else
+								{
+									System.out.println("The same account already exist");
+									specjal[0] = "Account already exist";
+								}
+								*/
 				if(name!=null && password!=null) {
 					// Create new Player and get result ( String)
 					specjal[0] = player.newPlayer(name, password);

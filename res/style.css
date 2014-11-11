@@ -40,9 +40,7 @@ a,p {
 	text-align: -webkit-center;
 	margin-top: 10px;
 }
-#marker{
-	color: yellow;
-}
+
 .sub_btn {
 	background-color: Transparent;
 	padding-left: 90px;
@@ -82,4 +80,7 @@ a:hover,.sub_btn:hover {
 .tlt_div{
 	text-align: center; 
 	margin-bottom:5px;
+}
+.marker{
+	color: yellow;
 }
