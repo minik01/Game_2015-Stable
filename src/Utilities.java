@@ -3,7 +3,6 @@
 	
 	public String iErrorTosError(int iError)
 	{
-		//char bad_chars[]= new char[' ',';','!','@','#','$','%','^','&','*','(',')','-','+','=','`','~',"//|",''];
 		
 		switch(iError)
 		{
@@ -49,7 +48,6 @@
 	}
 	public int CheckName(String TempName)//jezeli złe imię to true, jezeli dobre to false
 	  {
-		//String regex = "/^[A-Za-z][A-Za-z0-9_]{5,14}$/";
 		
 		if(TempName==null)return 1;
 		if(TempName.isEmpty())return 1;

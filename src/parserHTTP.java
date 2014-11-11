@@ -115,8 +115,9 @@ public class parserHTTP
 			{
 				
 				specjal[0] = "";
-				/*if(name!=null && password!=null) 				//towrzenie konta
-					 STARE
+				
+				/*if(name!=null && password!=null) 				//STARE
+					 
 				 	if(player.findByName(name)==-1)
 					{
 						//System.out.println("Tworzę postać");
@@ -137,7 +138,9 @@ public class parserHTTP
 						specjal[0] = "Account already exist";
 					}
 					*/
-					specjal[0] = player.newPlayer(name, password);
+				
+				// Create new Player and get result ( String)
+				specjal[0] = player.newPlayer(name, password);
 				
 				return "index.html";
 			}
