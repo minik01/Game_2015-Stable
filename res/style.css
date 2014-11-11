@@ -40,10 +40,11 @@ a,p {
 	text-align: -webkit-center;
 	margin-top: 10px;
 }
-
+#marker{
+	color: yellow;
+}
 .sub_btn {
 	background-color: Transparent;
-	padding: 5;
 	padding-left: 90px;
 	padding-right: 90px;
 	color: white;

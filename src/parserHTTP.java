@@ -138,11 +138,14 @@ public class parserHTTP
 						specjal[0] = "Account already exist";
 					}
 					*/
-				
-				// Create new Player and get result ( String)
-				specjal[0] = player.newPlayer(name, password);
-				
-				return "index.html";
+				if(name!=null && password!=null) {
+					// Create new Player and get result ( String)
+					specjal[0] = player.newPlayer(name, password);
+					
+					if(specjal[0]=="Your account has been created successfully") return "index.html";
+					else return "rejestracja.html";
+				}
+				else return "index.html";
 			}
 			if(temp.startsWith("rejestracja"))
 			{
