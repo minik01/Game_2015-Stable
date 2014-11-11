@@ -43,6 +43,7 @@ public class Player
 		//System.out.println("regex:" + regex + "\nerr:" + err + "\nname:" + name);
 		return err;
 	}
+	
 	public String newPlayer(String name, String password)
 	{
 		boolean err = CheckName(name);
@@ -59,7 +60,7 @@ public class Player
 		} 
 		else
 		{
-			return "You used illegal characters";
+			return "<b>You used illegal characters</b>. <br>Username should consist of alphanumeric values. <br>It may be also _ and -.<br>Length should be minimum 3 and maximum 15.";
 		}
 	}
 	/*public void clear()
