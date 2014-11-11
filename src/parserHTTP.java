@@ -1,3 +1,5 @@
+import java.util.regex.Pattern;
+
 public class parserHTTP 
 {
 	private Player player;
@@ -113,23 +115,30 @@ public class parserHTTP
 			{
 				
 				specjal[0] = "";
-				if(name!=null && password!=null) 				//towrzenie konta
-					if(player.findByName(name)==-1)
+				/*if(name!=null && password!=null) 				//towrzenie konta
+					 STARE
+				 	if(player.findByName(name)==-1)
 					{
 						//System.out.println("Tworzę postać");
+						
 						int err = player.newPlayer(name, password);
 						if(err==0) specjal[0]= "Your account has been created successfully";
 						else
 						{
 							Utilities util = new Utilities();
 							specjal[0] = util.iErrorTosError(err);
+							
 						}
+						
 					}
 					else
 					{
 						System.out.println("The same account already exist");
 						specjal[0] = "Account already exist";
 					}
+					*/
+					specjal[0] = player.newPlayer(name, password);
+				
 				return "index.html";
 			}
 			if(temp.startsWith("rejestracja"))

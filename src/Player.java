@@ -10,7 +10,7 @@ public class Player
 		printAll();
 		
 	}
-		
+	/*	
 	public int newPlayer(String name, String password)
 	{
 		Utilities util = new Utilities();
@@ -29,6 +29,25 @@ public class Player
 		{
 			
 			return err;
+		}
+	}*/
+	public String newPlayer(String name, String password)
+	{
+		String regex = "/^[A-Za-z][A-Za-z0-9_]{5,14}$/";
+		boolean err = Pattern.matches(regex, name)
+		if(err==true)
+		{
+			if(findByName(name)==-1)
+			{
+				dbm.update("insert into players values("+counterOfPlayers+",'"+name+"','"+password+"',0,0,0,0,0,0)");		
+				counterOfPlayers++;
+				return "Your account has been created successfully";
+			}
+			else return "This Username is already taken";
+		} 
+		else
+		{
+			return "You used illegal characters";
 		}
 	}
 	/*public void clear()
