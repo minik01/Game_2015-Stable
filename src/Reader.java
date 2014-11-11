@@ -47,7 +47,7 @@ public class Reader{
 		if(input.contains("<!0Tresc>"))
 		{
 			System.out.println("Found <!0Tresc> - will be changed to:" + special[0]);
-			return (special[0]+"<br>");
+			return (special[0]);
 		}
 		if(input.contains("<!1Tresc>"))
 		{
