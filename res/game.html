@@ -15,14 +15,14 @@
 	<script>
 		function pokazCookie(nazwa) {
 		    if (document.cookie!="") { //jeżeli document.cookie w ogóle istnieje
-			var cookies=document.cookie.split("; ");  //tworzymy z niego tablicę ciastek
-			for (i=0; i<cookies.length; i++) { //i robimy po niej pętlę
-			    var nazwaCookie=cookies[i].split("=")[0]; //nazwa ciastka
-			    var wartoscCookie=cookies[i].split("=")[1]; //wartość ciastka
-			    if (nazwaCookie===nazwa) {
-				return unescape(wartoscCookie) //jeżeli znaleźliśmy ciastko o danej nazwie, wtedy zwracamy jego wartość
-			    }
-			}
+				var cookies=document.cookie.split("; ");  //tworzymy z niego tablicę ciastek
+				for (i=0; i<cookies.length; i++) { //i robimy po niej pętlę
+					var nazwaCookie=cookies[i].split("=")[0]; //nazwa ciastka
+					var wartoscCookie=cookies[i].split("=")[1]; //wartość ciastka
+					if (nazwaCookie===nazwa) {
+					return unescape(wartoscCookie) //jeżeli znaleźliśmy ciastko o danej nazwie, wtedy zwracamy jego wartość
+					}
+				}
 		    }
 		}
 
