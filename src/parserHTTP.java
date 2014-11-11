@@ -118,7 +118,7 @@ public class parserHTTP
 					{
 						//System.out.println("Tworzę postać");
 						int err = player.newPlayer(name, password);
-						if(err==0) specjal[0]= "utworzono nowe konto";
+						if(err==0) specjal[0]= "Your account has been created successfully";
 						else
 						{
 							Utilities util = new Utilities();
@@ -127,8 +127,8 @@ public class parserHTTP
 					}
 					else
 					{
-						System.out.println("Nieudana próba stworzenia postaci - już istnieje");
-						specjal[0] = "Konto już istnieje";
+						System.out.println("The same account already exist");
+						specjal[0] = "Account already exist";
 					}
 				return "index.html";
 			}
