@@ -1,4 +1,7 @@
 import java.sql.ResultSet;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
 public class Player	
 {
 	Position pos,dest;
@@ -31,10 +34,19 @@ public class Player
 			return err;
 		}
 	}*/
+	// Name parser
+	public boolean CheckName(String name) {
+		String regex = "^[A-Za-z0-9_-]{3,15}$";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(name);
+		boolean err = matcher.matches();
+		//System.out.println("regex:" + regex + "\nerr:" + err + "\nname:" + name);
+		return err;
+	}
 	public String newPlayer(String name, String password)
 	{
-		String regex = "/^[A-Za-z][A-Za-z0-9_]{5,14}$/";
-		boolean err = Pattern.matches(regex, name)
+		boolean err = CheckName(name);
+		
 		if(err==true)
 		{
 			if(findByName(name)==-1)
