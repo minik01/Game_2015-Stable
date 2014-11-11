@@ -58,15 +58,30 @@ public class Reader{
 			return input;
 		}
 	}
+
 	public boolean existNextLine()
 	{
 		return in.hasNext();
 	}
 	public String nextLine()
 	{
-		//if (existNextLine())System.out.println("t");
-		//else System.out.println("n");
-		return parser(in.nextLine());
+		
+		String special_line=in.nextLine(); // get line to check
+		String string_out=special_line; // our new line
+	
+		int ile=2; // how many markers do we have
+		int i=0; // current marker
+		while(i<ile)
+		{
+			if(special_line.contains("<!"+i+"Tresc>"))
+			{
+				System.out.println("Found <!"+i+"Tresc> - will be changed to:" + special[i]);
+				int start=special_line.indexOf("<!"+i+"Tresc>");
+				string_out = special_line.substring(0,start)+special[i]+special_line.substring(start);
+			}
+			i++;
+		}
+		return string_out;
 		//else return -1;
 	}
 }
