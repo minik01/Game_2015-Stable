@@ -67,7 +67,7 @@ public class Reader{
 	{
 		
 		String special_line=in.nextLine(); // get line to check
-		String string_out=special_line; // our new line
+		String string_out=special_line; // new line on output
 	
 		int ile=2; // how many markers do we have
 		int i=0; // current marker
