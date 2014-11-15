@@ -3,7 +3,7 @@ class Position
 	private int cube;
 	private int SSystems;
 	private int planet;
-	//Lol
+	
 	public void setPosition(int cube,int SSystems,int planet)
 	{
 		this.cube = cube;
