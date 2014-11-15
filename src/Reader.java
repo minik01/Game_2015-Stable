@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.Scanner;
  
 public class Reader{
+	private Utilities log; //log
 	private File file; 
 	private Scanner in;
 	private boolean bin;
@@ -9,13 +10,14 @@ public class Reader{
 
 	public Reader(String[] special)
 	{
+		log = new Utilities();
 		this.special = special;
   	}
 	public void openFile(String Filename) throws FileNotFoundException
 	{
 		file = new File(Filename);
 		in = new Scanner(file);
-		bin=(Filename.endsWith(".ico") || Filename.endsWith(".png"));
+		bin=(Filename.endsWith(".ico") || Filename.endsWith(".png") );
 	}
 	public boolean bin()
 	{
@@ -46,19 +48,26 @@ public class Reader{
 	{
 		if(input.contains("<!0Tresc>"))
 		{
-			System.out.println("Found <!0Tresc> - will be changed to:" + special[0]);
-			return (special[0]);
+			if(log.logReader)
+				System.out.println("Found <!0Tresc> - will be changed to:" + special[0]);
+			return (special[0]+"<br>");
 		}
 		if(input.contains("<!1Tresc>"))
 		{
+			if(log.logReader)
+				System.out.println("Found <!1Tresc> - will be changed to:" + special[1]);
 			return (special[1]+"<br>");
 		}
+		if(input.contains("<!2Tresc>"))
+		{
+			if(log.logReader)
+				System.out.println("Found <!2Tresc> - will be changed to:" + special[2]);
+			return (special[2]+"<br>");
+		}
 		else{
-			//System.out.println("Zdanie "+input+" NIE zawiera <!1Tresc> , dodane zostanie ");
 			return input;
 		}
 	}
-
 	public boolean existNextLine()
 	{
 		return in.hasNext();

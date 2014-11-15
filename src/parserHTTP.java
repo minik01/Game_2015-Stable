@@ -1,9 +1,9 @@
-import java.util.regex.Pattern;
 
 public class parserHTTP 
 {
+	private Utilities log; //log
 	private Player player;
-	private String specjal[] = null;
+	private String special[] = null;
 	private String link[] = null;
 	private int Id;
 	private String name = null;
@@ -12,10 +12,11 @@ public class parserHTTP
 	private String SS = null;
 	private String Cube = null;
 	
-	public parserHTTP(Player player, String input, String [] specjal)
+	public parserHTTP(Player player, String input, String [] special)
 	{
-		this.specjal = specjal;
-		//specjal = " ";
+		log = new Utilities();
+		this.special = special;
+		//special = " ";
 		this.player=player;
 	}
 	public int getId()
@@ -24,7 +25,7 @@ public class parserHTTP
 	}
 	public String getSpecjal(int i)
 	{
-		return specjal[i];
+		return special[i];
 	};
 	public String parser(String input)
 	{
@@ -39,7 +40,8 @@ public class parserHTTP
 					if(input.startsWith("&", i))
 					{
 						name = input.substring(NameStart,i);
-						//System.out.println("imie="+name+" ([0]!)");
+						if(log.logForm)
+							System.out.println("imie="+name+" ([0]!)");
 						break;
 					}
 				}
@@ -52,8 +54,9 @@ public class parserHTTP
 				{
 					if(input.startsWith(" ", i))
 					{
-						password = input.substring(NameStart,i);			
-						//System.out.println("psswd="+password+" ([1]!)");
+						password = input.substring(NameStart,i);	
+						if(log.logForm)
+							System.out.println("psswd="+password+" ([1]!)");
 						break;
 					}
 				}
@@ -66,7 +69,8 @@ public class parserHTTP
 					if(input.startsWith("&", i))
 					{
 						Planet = input.substring(NameStart,i);
-						System.out.println("P="+Planet);
+						if(log.logForm)
+							System.out.println("P="+Planet);
 						break;
 					}
 				}
@@ -79,7 +83,8 @@ public class parserHTTP
 					if(input.startsWith("&", i))
 					{
 						SS = input.substring(NameStart,i);
-						System.out.println("SS="+SS);
+						if(log.logForm)
+							System.out.println("SS="+SS);
 						break;
 					}
 				}
@@ -92,7 +97,8 @@ public class parserHTTP
 					if(input.startsWith("&", i))
 					{
 						Cube = input.substring(NameStart,i);
-						System.out.println("Cube="+Cube);
+						if(log.logForm)
+							System.out.println("Cube="+Cube);
 						break;
 					}
 				}
@@ -110,11 +116,12 @@ public class parserHTTP
 		else
 		{
 			String temp = link[1].substring(1);
-			System.out.println(temp);
+			if(log.logConection)
+				System.out.println(temp);
 			if(temp.startsWith("index"))
 			{
 				
-				specjal[0] = "";
+				special[0] = "";
 				
 							/*if(name!=null && password!=null) 				//STARE
 								 
@@ -123,11 +130,11 @@ public class parserHTTP
 									//System.out.println("Tworzę postać");
 									
 									int err = player.newPlayer(name, password);
-									if(err==0) specjal[0]= "Your account has been created successfully";
+									if(err==0) special[0]= "Your account has been created successfully";
 									else
 									{
 										Utilities util = new Utilities();
-										specjal[0] = util.iErrorTosError(err);
+										special[0] = util.iErrorTosError(err);
 										
 									}
 									
@@ -135,14 +142,13 @@ public class parserHTTP
 								else
 								{
 									System.out.println("The same account already exist");
-									specjal[0] = "Account already exist";
+									special[0] = "Account already exist";
 								}
 								*/
 				if(name!=null && password!=null) {
 					// Create new Player and get result ( String)
-					specjal[0] = player.newPlayer(name, password);
-					
-					if(specjal[0]=="Your account has been created successfully") return "index.html";
+					special[0] = player.newPlayer(name, password);
+					if(special[0]=="Your account has been created successfully") return "index.html";
 					else return "rejestracja.html";
 				}
 				else return "index.html";
@@ -151,15 +157,24 @@ public class parserHTTP
 			{
 				return "rejestracja.html";
 			}
+			if(temp.startsWith("TechTree"))
+			{
+				special[2] = player.getTech().getTechTree().toHTML();
+				return "TechTree.html";
+			}
+			
 			if(temp.startsWith("game"))
 			{
 				if(name!=null && password!=null) 				//logowanie się
 				{
 					Id = player.find(name,password);
-					//System.out.println("ID = " +Id);
+					if(log.logForm)
+						System.out.println("Zalogował się gracz nr: " +Id);
 					if(Id==-1)
 					{
-						specjal[0] = "Wrong Username or Password";
+						if(log.logForm)
+							System.out.println("Nieudana próba logowania");
+						special[0] = "Wrong Username or Password";
 						return "index.html";
 					}
 				}
@@ -185,6 +200,11 @@ public class parserHTTP
 			{
 				return "bg.png";
 			}
+			if(temp.startsWith("techImg"))
+			{
+				return temp;
+			}
+
 			
 			if(temp.startsWith("setPos"))
 			{

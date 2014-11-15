@@ -1,10 +1,15 @@
 public class Server {
-private final static int MAXUSERS = 128;
-public static void main(String[] args) 
-{
+	private final static int MAXUSERS = 1;
+	public static void main(String[] args) 
+	{
 	//Galaxy galaxy= new Galaxy();
-	DBManager DBM = new DBManager();
-	Player player = new Player(DBM);
+	//DBManager DBM = new DBManager();
+	//TechTree tt = new TechTree();
+	//tt.newTech("tech2", "inny opis", 0, 0, 1);
+	//tt.printAll();
+	
+	
+	Player player = new Player();
 	//player.clear();
         Runnable[] runners = new Runnable[MAXUSERS];
         Thread[] threads = new Thread[MAXUSERS];

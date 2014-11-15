@@ -6,6 +6,7 @@ import java.sql.Statement;
 
 public class DBManager
 {
+	private Utilities log;
 	private Statement statement;
 	private Connection connection;
 	private ResultSet rs;
@@ -32,18 +33,7 @@ public class DBManager
 			System.err.println(e.getMessage());
 		}
     }
-    public Position getPos(int id)
-    {
-    	try
-	    {
-    		rs = statement.executeQuery("select * from players WHERE id="+id);
-    		return new Position(rs.getInt("posPlanet"),rs.getInt("posSS"),rs.getInt("posCube"));
-	    }
-	    catch(SQLException e)
-	    {
-	    	return new Position(-1,-1,-1);
-	    }
-    }
+
     public int select(String querry)
     {
     	try
@@ -51,6 +41,7 @@ public class DBManager
 	      rs = statement.executeQuery(querry);
 	      while(rs.next())
 	      {
+			if(log.logDB)
 	    	  System.out.println("Found id:"+rs.getInt("id"));
 	    	  return rs.getInt("id");
 	      }
@@ -60,6 +51,22 @@ public class DBManager
 			System.out.println("DB error - DBM - select()");
 		}
     	return -1;
+    }
+    public boolean check(String tab,int id, String toCheck)
+    {
+    	try
+	    {
+	      rs = statement.executeQuery("select * from "+tab+"WHERE id="+id);
+	      while(rs.next())
+	      {
+	    	  return rs.getBoolean(toCheck);
+	      }
+	    }
+	    catch(SQLException e)
+		{
+			System.out.println("DB error - DBM - check()");
+		}
+    	return false;
     }
     public ResultSet select2(String querry)
     {
@@ -74,8 +81,22 @@ public class DBManager
 	    }
     	return null;
     }
+    public ResultSet select3(String tab)
+    {
+    	try
+	    {
+	      rs = statement.executeQuery("select * from "+tab);
+	      return rs;
+	    }
+	    catch(SQLException e)
+	    {
+			System.out.println("DB error - DBM - select3()");
+	    }
+    	return null;
+    }
     public DBManager()
     {
+		log = new Utilities();
 		try{
 			Class.forName("org.sqlite.JDBC");
 		}

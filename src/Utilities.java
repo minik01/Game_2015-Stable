@@ -1,9 +1,16 @@
-/*public class Utilities {
+public class Utilities {
 	public Utilities(){}
+	public boolean logConection = true;
+	public boolean logReader = true;
+	public boolean logForm = true;
+	public boolean logDB = true;
+	public boolean logTechTree = true;
+
+
+	//private boolean logConection = true;
 	
 	public String iErrorTosError(int iError)
 	{
-		
 		switch(iError)
 		{
 			case 0:return "";
@@ -48,7 +55,6 @@
 	}
 	public int CheckName(String TempName)//jezeli złe imię to true, jezeli dobre to false
 	  {
-		
 		if(TempName==null)return 1;
 		if(TempName.isEmpty())return 1;
 		if(TempName.length()<3)
@@ -184,4 +190,3 @@
 	
 	
 }
-*/

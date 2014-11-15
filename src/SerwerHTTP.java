@@ -4,12 +4,14 @@ import java.util.*;
 
 public class SerwerHTTP implements Runnable
 {
+	private Utilities log;
 	private String special[] = null;
 	private int Id;
 	//String special;
 	Player player;
 	public SerwerHTTP(Player player,int Id)                
 	{    
+		log = new Utilities();
 		this.Id = Id;
 		this.player = player;  
 		special = new String[10];
@@ -25,9 +27,9 @@ public class SerwerHTTP implements Runnable
 			while(true)
 			{
 				//przyjecie polaczenia 
+				//System.out.println("Oczekiwanie na polaczenie...");
 				Socket sock=serv.accept();
-				//System.out.println("Oczekiwanie na polaczenie...");               
-				System.out.println("Connected - server no "+Id);               
+				if(log.logConection)System.out.println("Connected - server no "+Id);               
 	
 				//strumienie danych                                               
 				InputStream is=sock.getInputStream();                             
@@ -37,7 +39,8 @@ public class SerwerHTTP implements Runnable
 					                                                           
 				//przyjecie zadania (request)                                     
 				String request=inp.readLine();  
-		                                 
+				if(log.logConection)
+					System.out.println("Request = "+request + "\n");                     
 				//wyslanie odpowiedzi (response) 
 				try
 				{
