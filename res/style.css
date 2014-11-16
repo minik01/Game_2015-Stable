@@ -85,3 +85,83 @@ a:hover,.sub_btn:hover {
 	color: yellow;
 	font-size: 15px;
 }
+
+
+
+
+
+
+#game_index_div{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	width:100%;
+    height:100%;
+	
+	background-color: rgba(0,100,0,0.2);
+}
+.game_header_div {
+	position: inherit;
+	width: 100%;
+	height: 18.5%;
+	margin-left: 0.5%;
+	margin-top: 0.5%;
+	background-color: rgba(0,100,0,0.5);
+}
+.game_header_logo_p {
+	font-family: 'Oswald', sans-serif;
+	font-size: 35px;
+	padding: 0px;
+	letter-spacing: 3px;
+	margin-top: 0px;
+	margin-left: 20%;
+	word-spacing: 5px;
+	color: rgb(255, 60, 60);
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.game_list_div {
+	position: inherit;
+	width: 10%;
+	height: 100%;
+	margin-left: 0.5%;
+	margin-top: 10%;
+	background-color: rgba(0,100,0,0.5);
+}
+.game_content_div {
+	position: inherit;
+	width: 100%;
+	height: 100%;
+	margin-left: 11%;
+	margin-top: 10%;
+	background-color: rgba(240,240,240,0.5);
+}
+.game_list_button {
+	position: relative;
+	width: 90%;
+	height: 5%;
+	margin-left: 5%;
+	margin-top: 5%;
+	background-color: rgba(200,800,500,0.5);
+	border: none;
+	font-size: 7px;
+}
+.game_list_button:hover,.game_list_button:focus {
+	position: relative;
+	width: 90%;
+	height: 5%;
+	margin-left: 5%;
+	margin-top: 5%;
+	background-color: rgba(200,250,100,0.5);
+	border: none;
+	font-size: 8px;
+	color: white;
+}
+.game_content_title_div {
+	position: relative;
+	width: 100%;
+	height: 5%;
+	margin-top: 2.2;
+	background-color: rgba(0,100,0,0.5);
+}
