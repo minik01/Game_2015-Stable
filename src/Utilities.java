@@ -6,7 +6,7 @@ public class Utilities {
 	public boolean logDB = true;
 	public boolean logTechTree = true;
 
-
+	//czy doszło???
 	//private boolean logConection = true;
 	
 	public String iErrorTosError(int iError)
@@ -53,6 +53,7 @@ public class Utilities {
 		}
 		
 	}
+
 	public int CheckName(String TempName)//jezeli złe imię to true, jezeli dobre to false
 	  {
 		if(TempName==null)return 1;
