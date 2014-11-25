@@ -49,3 +49,8 @@ Temporary Items
 # Database
 
 *.db
+
+# folder
+
+bin
+
