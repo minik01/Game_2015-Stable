@@ -8,7 +8,7 @@
 
 BODY {
 	font-size: 20px;
-	background: url(http://wallpaperscraft.com/image/range_multi-colored_lines_black_250_3840x2400.jpg) no-repeat center center fixed; 
+	background: url("bg.png") no-repeat center center fixed; 
 	  -webkit-background-size: cover;
 	  -moz-background-size: cover;
 	  -o-background-size: cover;
@@ -108,17 +108,17 @@ a:hover,.sub_btn:hover {
 	height: 18.5%;
 	margin-left: 0.5%;
 	margin-top: 0.5%;
-	background-color: rgba(0,0,100,0.65);
+	background-color: rgba(0,0,100,0.85);
 }
 .game_header_logo_p {
 	font-family: 'Special Elite', cursive;
-	font-size: 35px;
+	font-size: 110px;
 	padding: 0px;
-	letter-spacing: 3px;
-	margin-top: 10px;
-	margin-left: 20%;
-	word-spacing: 5px;
-	color: rgb(255, 60, 60);
+	letter-spacing: 5px;
+	margin-top: 30px;
+	margin-left: 25%;
+	word-spacing: 30px;
+	color: rgb(220, 20, 80);
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 .game_list_div {
@@ -135,7 +135,7 @@ a:hover,.sub_btn:hover {
 	height: 100%;
 	margin-left: 11%;
 	margin-top: 10%;
-	background-color: rgba(240,240,240,0.5);
+	background-color: rgba(0,0,100,0.45);
 }
 .game_list_button {
 	position: relative;
@@ -143,9 +143,12 @@ a:hover,.sub_btn:hover {
 	height: 5%;
 	margin-left: 5%;
 	margin-top: 5%;
-	background-color: rgba(200,800,500,0.5);
+	background-color: rgba(60,60,100,0.5);
 	border: none;
-	font-size: 7px;
+	font-size: 18px;
+	color: beige;
+	font-family: fantasy;
+	letter-spacing: 2px;
 }
 .game_list_button:hover,.game_list_button:focus {
 	position: relative;
@@ -153,10 +156,12 @@ a:hover,.sub_btn:hover {
 	height: 5%;
 	margin-left: 5%;
 	margin-top: 5%;
-	background-color: rgba(200,250,100,0.5);
+	background-color: rgba(250,0,0,0.6);
 	border: none;
-	font-size: 8px;
-	color: white;
+	font-size: 18px;
+	color: beige;
+	font-family: fantasy;
+	letter-spacing: 2px;
 }
 .game_content_title_div {
 	position: relative;
@@ -164,4 +169,12 @@ a:hover,.sub_btn:hover {
 	height: 5%;
 	margin-top: 2.2;
 	background-color: rgba(0,0,100,0.65);
+}
+
+#world_map_div {
+	margin-left:20%;
+	margin-top:40%;
+	width:400px;
+	height:400px;
+
 }

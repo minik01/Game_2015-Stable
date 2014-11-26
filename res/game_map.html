@@ -31,8 +31,21 @@
 		    document.getElementById('output').innerHTML = ""+ pokazCookie("SpaceZobmie1");
 		    
 		}
+		
+		var c = document.getElementById("world_map_canvas");
+		var ctx = c.getContext("2d");
+		ctx.fillStyle = "#FF0000";
+		ctx.fillRect(0,0,150,75);
+		
 	</script>
 	
+	<div id="world_map_div">
+		<canvas id="world_map_canvas" width="200" height="100" style="border:1px solid #c3c3c3;">
+		Your browser does not support the HTML5 canvas tag.
+		</canvas>
+	</div>
+	
+<!-->	
 <form name="dest" action="setPos" method="get" onsubmit="DoSubmit();">
   <table>
 	<tr>
@@ -70,7 +83,8 @@
   <input type="submit" value="Submit">
   <br>
 	</form> 
-	Twoja pozycja: 
+	Twoja pozycja: <!-->
 	<!1Tresc>
+	
 </body>
 </html>
