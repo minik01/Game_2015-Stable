@@ -162,7 +162,10 @@ public class parserHTTP
 				special[2] = player.getTech().getTechTree().toHTML();
 				return "TechTree.html";
 			}
-			
+			if(temp.startsWith("game_map"))
+			{
+				return "game_map.html";
+			}
 			if(temp.startsWith("game"))
 			{
 				if(name!=null && password!=null) 				//logowanie się

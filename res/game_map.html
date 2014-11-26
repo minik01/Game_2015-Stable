@@ -6,13 +6,36 @@
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
 	<link rel="Stylesheet" type="text/css" href="style.css" />
 	<title>map</title>
-</head>
-<body>
-
-	<!--<a id="open">open</a> <br>
-	<a id="output"></a><br>-->
 	<script src="sha512.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script>
+		$(document).ready(function() { 
+			var map_width=500;
+			var map_height=500;
+			var c = document.getElementById("world_map_canvas");
+			var ctx = c.getContext('2d');
+			ctx.strokeStyle = "#FF0000";
+			
+			ctx.fillRect(0,0,map_width,map_height);
+			ctx.lineWidth = 0.5;
+			var i=0;
+			while( i<=map_height) {
+			
+				ctx.moveTo(i,0);
+				ctx.lineTo(i,map_height);
+				i+=map_height/10;
+                       }
+                       i =0
+                       while( i<=map_width) {
+			
+				ctx.moveTo(0,i);
+				ctx.lineTo(map_width,i);
+				i+=map_height/10;
+                       }
+
+		       ctx.stroke();
+			
+		});
 		function pokazCookie(nazwa) {
 		    if (document.cookie!="") { //jeżeli document.cookie w ogóle istnieje
 				var cookies=document.cookie.split("; ");  //tworzymy z niego tablicę ciastek
@@ -32,20 +55,55 @@
 		    
 		}
 		
-		var c = document.getElementById("world_map_canvas");
-		var ctx = c.getContext("2d");
-		ctx.fillStyle = "#FF0000";
-		ctx.fillRect(0,0,150,75);
 		
 	</script>
+</head>
+
+<body>
+
+	<!--<a id="open">open</a> <br>
+	<a id="output"></a><br>-->
 	
-	<div id="world_map_div">
-		<canvas id="world_map_canvas" width="200" height="100" style="border:1px solid #c3c3c3;">
-		Your browser does not support the HTML5 canvas tag.
-		</canvas>
+	<div id="game_index_div">
+	
+		<div id="game_index_header_div" class="game_header_div">
+			
+			<p id="game_index_header_logo_p" class="game_header_logo_p">SPACE ZOMBIE</p>
+		
+		
+		
+		</div>
+		<div id="game_index_list_div" class="game_list_div">
+			<button class="game_list_button">Overview</button>
+			<button id="game_list_button_map" onclick = "location.href='game_map.html'" class="game_list_button">Map</button>
+			<button class="game_list_button">Ships</button>
+			<button class="game_list_button">Science</button>
+			<button class="game_list_button">Alliance</button>
+		
+		
+		
+		</div>
+		<div id="game_index_content_div" class="game_content_div">
+		
+			<div id="game_map_content_title_div" class="game_content_title_div">
+			</div>
+			
+			<div id="world_map_div">
+				<canvas id="world_map_canvas">
+				Your browser does not support the HTML5 canvas tag.
+				</canvas>
+			</div>
+		
+		
+		
+		</div>
+	
+	
+	
 	</div>
 	
-<!-->	
+	
+<!--	
 <form name="dest" action="setPos" method="get" onsubmit="DoSubmit();">
   <table>
 	<tr>
@@ -83,7 +141,7 @@
   <input type="submit" value="Submit">
   <br>
 	</form> 
-	Twoja pozycja: <!-->
+	Twoja pozycja: -->
 	<!1Tresc>
 	
 </body>
