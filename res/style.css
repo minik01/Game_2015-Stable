@@ -178,6 +178,8 @@ a:hover,.sub_btn:hover {
 	font-size: 30;
 	font-family: monospace;
 	letter-spacing: 2px;
+	width: 360px;
+	position: relative;
 }
 #world_map_div {
 	position:relative;
@@ -194,13 +196,13 @@ a:hover,.sub_btn:hover {
 #world_map_sector_div {
 	position:relative;
 	margin-left: 10px;
-	margin-top: 10px;
+	margin-top: 10px; 
 
 }
 #world_map_sector_p {
 	position:relative;
 	color: red;
-	margin-left: 10px;
+	margin-left: 7%;
 	font-size: 20;
 	font-family: monospace;
 	letter-spacing: 2px;
