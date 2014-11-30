@@ -8,34 +8,10 @@
 	<title>map</title>
 	<script src="sha512.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="draw_map.js"></script>
 	<script>
-		$(document).ready(function() { 
-			var map_width=500;
-			var map_height=500;
-			var c = document.getElementById("world_map_canvas");
-			var ctx = c.getContext('2d');
-			ctx.strokeStyle = "#FF0000";
-			
-			ctx.fillRect(0,0,map_width,map_height);
-			ctx.lineWidth = 0.5;
-			var i=0;
-			while( i<=map_height) {
-			
-				ctx.moveTo(i,0);
-				ctx.lineTo(i,map_height);
-				i+=map_height/10;
-                       }
-                       i =0
-                       while( i<=map_width) {
-			
-				ctx.moveTo(0,i);
-				ctx.lineTo(map_width,i);
-				i+=map_height/10;
-                       }
-
-		       ctx.stroke();
-			
-		});
+	
+		
 		function pokazCookie(nazwa) {
 		    if (document.cookie!="") { //jeżeli document.cookie w ogóle istnieje
 				var cookies=document.cookie.split("; ");  //tworzymy z niego tablicę ciastek
@@ -49,12 +25,13 @@
 		    }
 		}
 
-		    document.getElementById('open').onclick = function(e) {
-		    e.preventDefault(); //nie chcemy wykonywać domyślnej akcji dla tego guzika - bo to może być np wysłanie formularza - czyli poniższy kod nigdy by się nie wywołał
-		    document.getElementById('output').innerHTML = ""+ pokazCookie("SpaceZobmie1");
-		    
+		if ($("#open").length>0){
+
+			document.getElementById('open').onclick = function(e) {
+				e.preventDefault(); //nie chcemy wykonywać domyślnej akcji dla tego guzika - bo to może być np wysłanie formularza - czyli poniższy kod nigdy by się nie wywołał
+				document.getElementById('output').innerHTML = ""+ pokazCookie("SpaceZobmie1");
+			}
 		}
-		
 		
 	</script>
 </head>
@@ -88,12 +65,16 @@
 			<div id="game_map_content_title_div" class="game_content_title_div">
 			</div>
 			
-			<div id="world_map_div">
-				<canvas id="world_map_canvas">
+			<div id="world_map_div" width=600px height=600px>
+				<p id="world_map_p">Select sector</p>
+				<canvas id="world_map_canvas" width=500px height=500px>
 				Your browser does not support the HTML5 canvas tag.
 				</canvas>
+				
 			</div>
-		
+			<div id="world_map_sector_div" width=600px height=70px>
+				<p id="world_map_sector_p">Selected sector:</p>
+			</div>
 		
 		
 		</div>

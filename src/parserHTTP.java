@@ -191,6 +191,10 @@ public class parserHTTP
 			{
 				return "sha512.js";
 			}
+			if(temp.startsWith("draw_map.js"))
+			{
+				return "draw_map.js";
+			}
 			if(temp.startsWith("favicon.ico"))
 			{
 				return "favicon.ico";

@@ -170,19 +170,39 @@ a:hover,.sub_btn:hover {
 	margin-top: 2.2;
 	background-color: rgba(0,0,100,0.65);
 }
-
+#world_map_p {
+	color: red;
+	margin-left: 7%;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-size: 30;
+	font-family: monospace;
+	letter-spacing: 2px;
+}
 #world_map_div {
+	position:relative;
 	margin-left: 10px;
 	margin-top: 10px;
-	width:600px;
-	height:600px;
 
 }
 #world_map_canvas {
+	position:relative;
 	margin-left: 10px;
 	margin-top: 10px;
 	border:1px solid #c3c3c3;
-	width:600px;
-	height:600px;
+}
+#world_map_sector_div {
+	position:relative;
+	margin-left: 10px;
+	margin-top: 10px;
+
+}
+#world_map_sector_p {
+	position:relative;
+	color: red;
+	margin-left: 10px;
+	font-size: 20;
+	font-family: monospace;
+	letter-spacing: 2px;
 
 }
