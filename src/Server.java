@@ -10,7 +10,7 @@ public class Server {
 	
 	
 	Player player = new Player();
-	//player.clear();
+	player.clear();
         Runnable[] runners = new Runnable[MAXUSERS];
         Thread[] threads = new Thread[MAXUSERS];
  

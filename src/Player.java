@@ -19,52 +19,34 @@ public class Player
 		tech = new PlayersTech(dbm);
 		printAll();
 	}
-/*
-	public String newPlayer(String name, String password)
-	{
-		Utilities util = new Utilities();
-		int err = util.CheckName(name);
-		if(err==0)
-		{
-			if(findByName(name)==-1)
-			{
-				dbm.update("insert into players values("+counterOfPlayers+",'"+name+"','"+password+")");	
-				position.setPos(counterOfPlayers, 1, 1, 2);
-				position.setDest(counterOfPlayers, 1, 1, 2);				counterOfPlayers++;
-				return "Your account has been created successfully";
-			}
-			else return "This Username is already taken";
-		} 
-		else
-		{			
-			return "<b>You used illegal characters</b>. <br>Username should consist of alphanumeric values. <br>It may be also _ and -.<br>Length should be minimum 3 and maximum 15.";
-		}
-	}
-*/
 	// Name parser
-	public boolean CheckName(String name) {
+	public boolean CheckName(String username) {
 		String regex = "^[A-Za-z0-9_-]{3,15}$";
 		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(name);
+		Matcher matcher = pattern.matcher(username);
 		boolean err = matcher.matches();
 		if(log.logForm)
-			System.out.println("regex:" + regex + "\nerr:" + err + "\nname:" + name);
+			System.out.println("regex:" + regex + "\nerr:" + err + "\nusername:" + username);
 		return err;
 	}
 	
-	public String newPlayer(String name, String password)
+	public String newPlayer(String username, String password, String mail)
 	{
 		boolean correct = true;
-		//correct = CheckName(name);
+		//correct = CheckName(username);
 		if(correct==true)
 		{
-			if(findByName(name)==-1)
+			if(findByName(username)==-1)
 			{
-				
-				dbm.update("insert into players values("+counterOfPlayers+",'"+name+"','"+password+"')");	
+				dbm.update("insert into players values("+counterOfPlayers+",'"+username+"','"+password+"','"+mail+"','0', false)");	
 				position.newPlayer(counterOfPlayers, new Position(1,1,2),new Position(2,3,2) );
 				tech.newPlayer(counterOfPlayers);
 				counterOfPlayers++;
+				if(log.logForm)
+				{
+					System.out.println("utworzono konto");
+					printAll();
+				}
 				return "Your account has been created successfully";
 			}
 			else return "This Username is already taken";
@@ -86,21 +68,20 @@ public class Player
 	public void initTable()
 	{	
 		counterOfPlayers = 0;
-		dbm.update( "CREATE TABLE IF NOT EXISTS players (id integer, name string, password string)");
+		dbm.update( "CREATE TABLE IF NOT EXISTS players (id integer, username string, password string, mail string, points int, banned boolean)");
 	}
-	public int findByName(String name)
+	public int findByName(String username)
 	{
-		int temp = dbm.select("select * from players WHERE name='"+name+"'");
+		int temp = dbm.select("select * from players WHERE username='"+username+"'");
 		//System.out.println("numer:" + temp);
 		return temp;
 	}
-	public int find(String name, String password)
+	public int find(String username, String password)
 	{
-		return dbm.select("select * from players WHERE name='"+name+"'AND password='"+password+"'");
+		return dbm.select("select * from players WHERE username='"+username+"'AND password='"+password+"'");
 	}
 	public Position getPos(int Id)
 	{
-		
 		pos = position.getPos(Id);
 		return pos;
 	}
@@ -119,8 +100,9 @@ public class Player
 				{
 					System.out.println("+");
 					System.out.println("+ id = " + rs.getInt("id"));
-					System.out.println("+ name = " + rs.getString("name"));
+					System.out.println("+ username = " + rs.getString("username"));
 					System.out.println("+ password = " + rs.getString("password"));
+					System.out.println("+ e-mail = " + rs.getString("mail"));
 				}
 				counterOfPlayers++;
 			}

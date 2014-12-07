@@ -8,6 +8,7 @@ public class parserHTTP
 	private int Id;
 	private String name = null;
 	private String password = null;
+	private String mail= null;
 	private String Planet = null;
 	private String SS = null;
 	private String Cube = null;
@@ -57,6 +58,20 @@ public class parserHTTP
 						password = input.substring(NameStart,i);	
 						if(log.logForm)
 							System.out.println("psswd="+password+" ([1]!)");
+						break;
+					}
+				}
+			}
+			if(input.startsWith("&mail=",i)) //szukanie w odpowiedzi pola 'mail'
+			{
+				int MailStart = i+6;
+				for(;i<input.length();i++)
+				{
+					if(input.startsWith(" ", i))
+					{
+						mail = input.substring(MailStart,i);	
+						if(log.logForm)
+							System.out.println("mail="+mail+" ([1]!)");
 						break;
 					}
 				}
@@ -122,32 +137,9 @@ public class parserHTTP
 			{
 				
 				special[0] = "";
-				
-							/*if(name!=null && password!=null) 				//STARE
-								 
-							 	if(player.findByName(name)==-1)
-								{
-									//System.out.println("Tworzę postać");
-									
-									int err = player.newPlayer(name, password);
-									if(err==0) special[0]= "Your account has been created successfully";
-									else
-									{
-										Utilities util = new Utilities();
-										special[0] = util.iErrorTosError(err);
-										
-									}
-									
-								}
-								else
-								{
-									System.out.println("The same account already exist");
-									special[0] = "Account already exist";
-								}
-								*/
-				if(name!=null && password!=null) {
+				if(name!=null && password!=null && mail!= null) {
 					// Create new Player and get result ( String)
-					special[0] = player.newPlayer(name, password);
+					special[0] = player.newPlayer(name, password, mail);
 					if(special[0]=="Your account has been created successfully") return "index.html";
 					else return "rejestracja.html";
 				}
