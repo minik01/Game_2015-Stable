@@ -8,11 +8,7 @@
 
 BODY {
 	font-size: 20px;
-<<<<<<< HEAD
-	background: url(bg.png) no-repeat center center fixed; 
-=======
 	background: url("bg.png") no-repeat center center fixed; 
->>>>>>> 546b766782f7c9c9b9249863b1745a3f706275ff
 	  -webkit-background-size: cover;
 	  -moz-background-size: cover;
 	  -o-background-size: cover;
