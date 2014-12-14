@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 
 public class Player	
 {
+	private static String templateForQuerry = "players (id, username, password, mail, points, banned)";
 	private Utilities log; //log
 	Position pos,dest;
 	private int counterOfPlayers;
@@ -38,11 +39,13 @@ public class Player
 		{
 			if(findByName(username)==-1)
 			{
-				dbm.update("insert into players values("+counterOfPlayers+",'"+username+"','"+password+"','"+mail+"','0', false)");	
+				if(log.logDB)
+					System.out.println("insert into "+ templateForQuerry +" values("+counterOfPlayers+",'"+username+"','"+password+"','"+mail+"',0, 'false')");
+				dbm.update("insert into "+ templateForQuerry +" values("+counterOfPlayers+",'"+username+"','"+password+"','"+mail+"',0, 'false')");	
 				position.newPlayer(counterOfPlayers, new Position(1,1,2),new Position(2,3,2) );
 				tech.newPlayer(counterOfPlayers);
 				counterOfPlayers++;
-				if(log.logForm)
+				if(log.logForm || log.logDB)
 				{
 					System.out.println("utworzono konto");
 					printAll();

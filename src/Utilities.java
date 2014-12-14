@@ -1,13 +1,54 @@
 public class Utilities {
 	public Utilities(){}
 	public boolean logConection = true;
-	public boolean logReader = true;
+	public boolean logReader = false;
 	public boolean logForm = true;
 	public boolean logDB = true;
-	public boolean logTechTree = true;
+	public boolean logTechTree = false;
 
-	//czy doszło???
-	//private boolean logConection = true;
+	
+	public void print(char type,String text) //pomyślałem, że mechanizm logów jest trochę słaby
+	{
+		switch(type)
+		{
+			case 'C':
+				if(logConection)
+					System.out.println("log:Conection> "+ text);break;
+			case 'c':
+				if(logConection)
+					System.out.println("log:Conection> "+ text);break;
+			
+			case 'R':
+				if(logReader)
+					System.out.println("log:Reader> "+ text);break;
+			case 'r':
+				if(logReader)
+					System.out.println("log:Reader> "+ text);break;
+			
+			case 'F':
+				if(logForm)
+					System.out.println("log:Form> "+ text);break;
+			case 'f':
+				if(logForm)
+					System.out.println("log:Form> "+ text);break;
+			
+			case 'D':
+				if(logDB)
+					System.out.println("log:DB> "+ text);break;
+			case 'd':
+				if(logDB)
+					System.out.println("log:DB> "+ text);break;
+			
+			case 'T':
+				if(logTechTree)
+					System.out.println("log:TechTree> "+ text);break;
+			case 't':
+				if(logTechTree)
+					System.out.println("log:TechTree> "+ text);break;
+
+			default: System.out.println("log> "+ text);
+		}
+	}
 	
 	public String iErrorTosError(int iError)
 	{

@@ -36,9 +36,10 @@ public class parserHTTP
 			if(input.startsWith("?imie=", i)) //szukanie w odpowiedzi pola 'imie'
 			{
 				int NameStart = i+6;
+				i=i+6;
 				for(;i<input.length();i++)
 				{
-					if(input.startsWith("&", i))
+					if(input.charAt(i) == '&')
 					{
 						name = input.substring(NameStart,i);
 						if(log.logForm)
@@ -51,9 +52,10 @@ public class parserHTTP
 			if(input.startsWith("&nic=",i)) //szukanie w odpowiedzi pola 'nic'
 			{
 				int NameStart = i+5;
+				i=i+5;
 				for(;i<input.length();i++)
 				{
-					if(input.startsWith(" ", i))
+					if(input.charAt(i) == '&')
 					{
 						password = input.substring(NameStart,i);	
 						if(log.logForm)
@@ -65,13 +67,14 @@ public class parserHTTP
 			if(input.startsWith("&mail=",i)) //szukanie w odpowiedzi pola 'mail'
 			{
 				int MailStart = i+6;
+				i=i+6;
 				for(;i<input.length();i++)
 				{
 					if(input.startsWith(" ", i))
 					{
 						mail = input.substring(MailStart,i);	
 						if(log.logForm)
-							System.out.println("mail="+mail+" ([1]!)");
+							System.out.println("mail="+mail+" ([2]!)");
 						break;
 					}
 				}
@@ -134,10 +137,10 @@ public class parserHTTP
 			if(log.logConection)
 				System.out.println(temp);
 			if(temp.startsWith("index"))
-			{
-				
+			{	
 				special[0] = "";
-				if(name!=null && password!=null && mail!= null) {
+				if(name!=null && password!=null && mail!= null) 
+				{
 					// Create new Player and get result ( String)
 					special[0] = player.newPlayer(name, password, mail);
 					if(special[0]=="Your account has been created successfully") return "index.html";
