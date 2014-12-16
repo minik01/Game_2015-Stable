@@ -190,6 +190,10 @@ public class parserHTTP
 			{
 				return "draw_map.js";
 			}
+			if(temp.startsWith("draw_radar.js"))
+			{
+				return "draw_radar.js";
+			}
 			if(temp.startsWith("favicon.ico"))
 			{
 				return "favicon.ico";

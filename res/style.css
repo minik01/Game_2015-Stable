@@ -170,6 +170,9 @@ a:hover,.sub_btn:hover {
 	margin-top: 2.2;
 	background-color: rgba(0,0,100,0.65);
 }
+#game_index_content_div {
+	position:relative;
+}
 <<<<<<< HEAD
 =======
 #world_map_p {
@@ -187,6 +190,7 @@ a:hover,.sub_btn:hover {
 	position:relative;
 	margin-left: 10px;
 	margin-top: 10px;
+	float: left;
 
 }
 #world_map_canvas {
@@ -199,15 +203,36 @@ a:hover,.sub_btn:hover {
 	position:relative;
 	margin-left: 10px;
 	margin-top: 10px; 
+	float:left;
 
 }
 #world_map_sector_p {
-	position:relative;
+	position: fixed;
 	color: red;
-	margin-left: 7%;
+	margin-top: 30%;
+	margin-left: -900px;
 	font-size: 20;
 	font-family: monospace;
 	letter-spacing: 2px;
+}
+#radar_div {
+	position:relative;
+	margin-left: 10px;
+	margin-top: 10px;
+	float: left;
 
 }
+#radar_canvas {
+	position:relative;
+	margin-left: 10px;
+	margin-top: 10px;
+	border:none;
+}
+#radar_div {
+	position:relative;
+	margin-left: 10px;
+	margin-top: 10px; 
+
+}
+
 >>>>>>> 546b766782f7c9c9b9249863b1745a3f706275ff
