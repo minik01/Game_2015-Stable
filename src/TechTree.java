@@ -1,6 +1,6 @@
 import java.sql.ResultSet;
 
-public class TechTree 
+public class TechTree //klasa powinna tylko odczytywać bazę danych - powinien być osobny program do generowania bazy danych.
 {
 	private int numberOfTech;
 	private Utilities log; //log
@@ -10,9 +10,9 @@ public class TechTree
 		log = new Utilities();
 		dbm = new DBManager();
 		initTable();
-		newTech("tech1","opis",0,0,0);
-		newTech("tech2","opis2",0,0,0);
-		newTech("tech3","opis3",0,0,1);
+		//newTech("tech1","opis",0,0,0);
+		//newTech("tech2","opis2",0,0,0);
+		//newTech("tech3","opis3",0,0,1);
 
 		printAll();
 	}
@@ -110,4 +110,3 @@ public class TechTree
 		}
 	}
 }
-

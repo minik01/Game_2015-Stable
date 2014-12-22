@@ -10,6 +10,7 @@ public class Player
 	private int counterOfPlayers;
 	PlayersPosition position;
 	PlayersTech tech;
+	PlayersShip ship;
 	DBManager dbm;
 	public Player()
 	{
@@ -17,6 +18,7 @@ public class Player
 		dbm = new DBManager();
 		initTable();
 		position = new PlayersPosition(dbm);
+		ship = new PlayersShip(dbm);
 		tech = new PlayersTech(dbm);
 		printAll();
 	}
