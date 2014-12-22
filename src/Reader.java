@@ -48,20 +48,17 @@ public class Reader{
 	{
 		if(input.contains("<!0Tresc>"))
 		{
-			if(log.logReader)
-				System.out.println("Found <!0Tresc> - will be changed to:" + special[0]);
+			log.print('r',"Found <!0Tresc> - will be changed to:" + special[0]);
 			return (special[0]+"<br>");
 		}
 		if(input.contains("<!1Tresc>"))
 		{
-			if(log.logReader)
-				System.out.println("Found <!1Tresc> - will be changed to:" + special[1]);
+			log.print('r',"Found <!1Tresc> - will be changed to:" + special[1]);
 			return (special[1]+"<br>");
 		}
 		if(input.contains("<!2Tresc>"))
 		{
-			if(log.logReader)
-				System.out.println("Found <!2Tresc> - will be changed to:" + special[2]);
+			log.print('r',"Found <!2Tresc> - will be changed to:" + special[2]);
 			return (special[2]+"<br>");
 		}
 		else{
@@ -84,7 +81,7 @@ public class Reader{
 		{
 			if(special_line.contains("<!"+i+"Tresc>"))
 			{
-				System.out.println("Found <!"+i+"Tresc> - will be changed to:" + special[i]);
+				log.print('r',"Found <!"+i+"Tresc> - will be changed to:" + special[i]);
 				int start=special_line.indexOf("<!"+i+"Tresc>");
 				string_out = special_line.substring(0,start)+special[i]+special_line.substring(start);
 			}

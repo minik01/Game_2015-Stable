@@ -83,11 +83,11 @@ public class DBManager
 	    }
     	return null;
     }
-    public ResultSet select3(String tab)
+    public ResultSet select3(String tab, int id)
     {
     	try
 	    {
-	      rs = statement.executeQuery("select * from "+tab);
+	      rs = statement.executeQuery("select * from "+tab + "where id="+id);
 	      return rs;
 	    }
 	    catch(SQLException e)

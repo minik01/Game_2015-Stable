@@ -83,26 +83,19 @@ public class TechTree //klasa powinna tylko odczytywać bazę danych - powinien
 	public void printAll()
 	{
 		numberOfTech = 0;
-		if(log.logDB)
-			System.out.println("===========================Drzewo Technologiczne==========================");
+		log.print('t',"===========================Drzewo Technologiczne==========================");
 		try{
 			ResultSet rs = dbm.select2("select * from techTree");
 			while(rs.next())
 			{
-				if(log.logDB)
-				{
-					// read the result set
-					System.out.println("+");
-					System.out.println("+ id = " + rs.getInt("id"));
-					System.out.println("+ name = " + rs.getString("name"));
-					System.out.println("+ descripion = " + rs.getString("descripion"));
-				}
+				log.print('t',"+");
+				log.print('t',"+ id = " + rs.getInt("id"));
+				log.print('t',"+ name = " + rs.getString("name"));
+				log.print('t',"+ descripion = " + rs.getString("descripion"));
 				numberOfTech++;
 			}
-			if(log.logDB)
-				System.out.println("==========================================================================");
-			if(log.logDB || log.logTechTree)
-				System.out.println("Tech in base: "+numberOfTech);
+			log.print('t',"==========================================================================");
+			log.print('t',"Tech in base: "+numberOfTech);
 		}
 		catch(java.sql.SQLException e)
 		{

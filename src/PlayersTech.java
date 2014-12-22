@@ -33,8 +33,7 @@ public class PlayersTech
 			temp += ", tech"+i+" boolean";
 		}
 		temp += ")";
-		if(log.logTechTree)
-			System.out.println("Creating table PlayersTech: "+temp);
+		log.print('t',"Creating table PlayersTech: "+temp);
 		dbm.update(temp);
 	}
 	public void newPlayer(int id)
@@ -51,8 +50,7 @@ public class PlayersTech
 			else temp += ", 'true'";
 		}
 		temp += ")";
-		if(log.logTechTree || log.logDB)
-			System.out.println("Adding players Tech: "+temp);
+		log.print('t',"Adding players Tech: "+temp);
 		dbm.update(temp);
 	}
 }

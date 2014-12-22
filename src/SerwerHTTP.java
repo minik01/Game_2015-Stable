@@ -29,7 +29,7 @@ public class SerwerHTTP implements Runnable
 				//przyjecie polaczenia 
 				//System.out.println("Oczekiwanie na polaczenie...");
 				Socket sock=serv.accept();
-				if(log.logConection)System.out.println("Connected - server no "+Id);               
+				log.print('c',"Connected - server no "+Id);               
 	
 				//strumienie danych                                               
 				InputStream is=sock.getInputStream();                             
@@ -39,8 +39,7 @@ public class SerwerHTTP implements Runnable
 					                                                           
 				//przyjecie zadania (request)                                     
 				String request=inp.readLine();  
-				if(log.logConection)
-					System.out.println("Request = "+request + "\n");                     
+				log.print('c',"Request = "+request + "\n");                     
 				//wyslanie odpowiedzi (response) 
 				try
 				{
@@ -51,8 +50,8 @@ public class SerwerHTTP implements Runnable
 						Reader reader = new Reader(special);
 						reader.openFile(site);
 						
-						if(site.equals("game.html"))
-							special[1]=player.getPos(HTTPP.getId()).toString();
+						//if(site.equals("game.html"))
+							//special[1]=player.getPos(HTTPP.getId()).toString();
 									
 						//reader.setspecial(HTTPP.getspecial(0), 0);
 						//response header    

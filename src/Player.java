@@ -8,7 +8,7 @@ public class Player
 	private Utilities log; //log
 	Position pos,dest;
 	private int counterOfPlayers;
-	PlayersPosition position;
+	//PlayersPosition position;
 	PlayersTech tech;
 	PlayersShip ship;
 	DBManager dbm;
@@ -17,7 +17,7 @@ public class Player
 		log = new Utilities();
 		dbm = new DBManager();
 		initTable();
-		position = new PlayersPosition(dbm);
+		//position = new PlayersPosition(dbm);
 		ship = new PlayersShip(dbm);
 		tech = new PlayersTech(dbm);
 		printAll();
@@ -28,8 +28,7 @@ public class Player
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(username);
 		boolean err = matcher.matches();
-		if(log.logForm)
-			System.out.println("regex:" + regex + "\nerr:" + err + "\nusername:" + username);
+		log.print('f',"regex:" + regex + "\nerr:" + err + "\nusername:" + username);
 		return err;
 	}
 	
@@ -41,10 +40,9 @@ public class Player
 		{
 			if(findByName(username)==-1)
 			{
-				if(log.logDB)
-					System.out.println("insert into "+ templateForQuerry +" values("+counterOfPlayers+",'"+username+"','"+password+"','"+mail+"',0, 'false')");
+				log.print('d',"insert into "+ templateForQuerry +" values("+counterOfPlayers+",'"+username+"','"+password+"','"+mail+"',0, 'false')");
 				dbm.update("insert into "+ templateForQuerry +" values("+counterOfPlayers+",'"+username+"','"+password+"','"+mail+"',0, 'false')");	
-				position.newPlayer(counterOfPlayers, new Position(1,1,2),new Position(2,3,2) );
+				//position.newPlayer(counterOfPlayers, new Position(1,1,2),new Position(2,3,2) );
 				tech.newPlayer(counterOfPlayers);
 				counterOfPlayers++;
 				if(log.logForm || log.logDB)
@@ -85,12 +83,12 @@ public class Player
 	{
 		return dbm.select("select * from players WHERE username='"+username+"'AND password='"+password+"'");
 	}
-	public Position getPos(int Id)
+/*	public Position getPos(int Id)
 	{
 		pos = position.getPos(Id);
 		return pos;
 	}
-	
+	*/
 	public void printAll()
 	{
 		if(log.logDB)

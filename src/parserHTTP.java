@@ -42,8 +42,7 @@ public class parserHTTP
 					if(input.charAt(i) == '&')
 					{
 						name = input.substring(NameStart,i);
-						if(log.logForm)
-							System.out.println("imie="+name+" ([0]!)");
+						log.print('f',"imie="+name+" ([0]!)");
 						break;
 					}
 				}
@@ -58,8 +57,7 @@ public class parserHTTP
 					if(input.charAt(i) == '&')
 					{
 						password = input.substring(NameStart,i);	
-						if(log.logForm)
-							System.out.println("psswd="+password+" ([1]!)");
+						log.print('f',"psswd="+password+" ([1]!)");
 						break;
 					}
 				}
@@ -73,8 +71,7 @@ public class parserHTTP
 					if(input.startsWith(" ", i))
 					{
 						mail = input.substring(MailStart,i);	
-						if(log.logForm)
-							System.out.println("mail="+mail+" ([2]!)");
+						log.print('f',"mail="+mail+" ([2]!)");
 						break;
 					}
 				}
@@ -87,8 +84,7 @@ public class parserHTTP
 					if(input.startsWith("&", i))
 					{
 						Planet = input.substring(NameStart,i);
-						if(log.logForm)
-							System.out.println("P="+Planet);
+						log.print('f',"P="+Planet);
 						break;
 					}
 				}
@@ -101,8 +97,7 @@ public class parserHTTP
 					if(input.startsWith("&", i))
 					{
 						SS = input.substring(NameStart,i);
-						if(log.logForm)
-							System.out.println("SS="+SS);
+						log.print('f',"SS="+SS);
 						break;
 					}
 				}
@@ -115,8 +110,7 @@ public class parserHTTP
 					if(input.startsWith("&", i))
 					{
 						Cube = input.substring(NameStart,i);
-						if(log.logForm)
-							System.out.println("Cube="+Cube);
+						log.print('f',"Cube="+Cube);
 						break;
 					}
 				}
@@ -134,8 +128,7 @@ public class parserHTTP
 		else
 		{
 			String temp = link[1].substring(1);
-			if(log.logConection)
-				System.out.println(temp);
+			log.print('s',temp);
 			if(temp.startsWith("index"))
 			{	
 				special[0] = "";
@@ -166,12 +159,10 @@ public class parserHTTP
 				if(name!=null && password!=null) 				//logowanie się
 				{
 					Id = player.find(name,password);
-					if(log.logForm)
-						System.out.println("Zalogował się gracz nr: " +Id);
+					log.print('f',"Zalogował się gracz nr: " +Id);
 					if(Id==-1)
 					{
-						if(log.logForm)
-							System.out.println("Nieudana próba logowania");
+						log.print('f',"Nieudana próba logowania");
 						special[0] = "Wrong Username or Password";
 						return "index.html";
 					}

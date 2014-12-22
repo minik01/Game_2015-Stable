@@ -1,10 +1,12 @@
 public class Utilities {
 	public Utilities(){}
 	public boolean logConection = true;
-	public boolean logReader = false;
+	public boolean logReader = true;
 	public boolean logForm = true;
 	public boolean logDB = true;
-	public boolean logTechTree = false;
+	public boolean logTechTree = true;
+	public boolean logSend = true;
+	
 
 	
 	public void print(char type,String text) //pomyślałem, że mechanizm logów jest trochę słaby
@@ -45,6 +47,13 @@ public class Utilities {
 			case 't':
 				if(logTechTree)
 					System.out.println("log:TechTree> "+ text);break;
+					
+			case 'S':
+				if(logSend)
+					System.out.println("log:Send> "+ text);break;
+			case 's':
+				if(logSend)
+					System.out.println("log:Send> "+ text);break;
 
 			default: System.out.println("log> "+ text);
 		}
