@@ -8,8 +8,8 @@ public class SerwerHTTP implements Runnable
 	private String special[] = null;
 	private int Id;
 	//String special;
-	Player player;
-	public SerwerHTTP(Player player,int Id)                
+	WrapperPlayer player;
+	public SerwerHTTP(WrapperPlayer player,int Id)                
 	{    
 		log = new Utilities();
 		this.Id = Id;

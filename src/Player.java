@@ -6,11 +6,10 @@ public class Player
 {
 	private static String templateForQuerry = "players (id, username, password, mail, points, banned)";
 	private Utilities log; //log
-	Position pos,dest;
 	private int counterOfPlayers;
 	//PlayersPosition position;
 	PlayersTech tech;
-	PlayersShip ship;
+	WrapperShip ship;
 	DBManager dbm;
 	public Player()
 	{
@@ -18,7 +17,7 @@ public class Player
 		dbm = new DBManager();
 		initTable();
 		//position = new PlayersPosition(dbm);
-		ship = new PlayersShip(dbm);
+		ship = new WrapperShip(dbm);
 		tech = new PlayersTech(dbm);
 		printAll();
 	}

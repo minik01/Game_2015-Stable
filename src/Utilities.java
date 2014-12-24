@@ -7,8 +7,6 @@ public class Utilities {
 	public boolean logTechTree = true;
 	public boolean logSend = true;
 	
-
-	
 	public void print(char type,String text) //pomyślałem, że mechanizm logów jest trochę słaby
 	{
 		switch(type)

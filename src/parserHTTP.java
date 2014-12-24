@@ -2,18 +2,15 @@
 public class parserHTTP 
 {
 	private Utilities log; //log
-	private Player player;
+	private WrapperPlayer player;
 	private String special[] = null;
 	private String link[] = null;
 	private int Id;
 	private String name = null;
 	private String password = null;
 	private String mail= null;
-	private String Planet = null;
-	private String SS = null;
-	private String Cube = null;
 	
-	public parserHTTP(Player player, String input, String [] special)
+	public parserHTTP(WrapperPlayer player, String input, String [] special)
 	{
 		log = new Utilities();
 		this.special = special;
@@ -75,47 +72,7 @@ public class parserHTTP
 						break;
 					}
 				}
-			}
-			if(input.startsWith("?P=", i)) //szukanie w odpowiedzi pola 'P'
-			{
-				int NameStart = i+4;
-				for(;i<input.length();i++)
-				{
-					if(input.startsWith("&", i))
-					{
-						Planet = input.substring(NameStart,i);
-						log.print('f',"P="+Planet);
-						break;
-					}
-				}
-			}
-			if(input.startsWith("&SS=", i)) //szukanie w odpowiedzi pola 'SS'
-			{
-				int NameStart = i+5;
-				for(;i<input.length();i++)
-				{
-					if(input.startsWith("&", i))
-					{
-						SS = input.substring(NameStart,i);
-						log.print('f',"SS="+SS);
-						break;
-					}
-				}
-			}
-			if(input.startsWith("&C=", i)) //szukanie w odpowiedzi pola 'C'
-			{
-				int NameStart = i+4;
-				for(;i<input.length();i++)
-				{
-					if(input.startsWith("&", i))
-					{
-						Cube = input.substring(NameStart,i);
-						log.print('f',"Cube="+Cube);
-						break;
-					}
-				}
-			}
-			
+			}			
 		}
 		return getAddres(input);
 	}
@@ -135,7 +92,7 @@ public class parserHTTP
 				if(name!=null && password!=null && mail!= null) 
 				{
 					// Create new Player and get result ( String)
-					special[0] = player.newPlayer(name, password, mail);
+					special[0] = player.create(name, password, mail);
 					if(special[0]=="Your account has been created successfully") return "index.html";
 					else return "rejestracja.html";
 				}
@@ -147,7 +104,7 @@ public class parserHTTP
 			}
 			if(temp.startsWith("TechTree"))
 			{
-				special[2] = player.getTech().getTechTree().toHTML();
+				//special[2] = player.getTech().getTechTree().toHTML();
 				return "TechTree.html";
 			}
 			if(temp.startsWith("game_map"))
@@ -202,13 +159,6 @@ public class parserHTTP
 				return temp;
 			}
 
-			
-			if(temp.startsWith("setPos"))
-			{
-				if(Planet!=null && SS!=null && Cube!=null)
-					return "setPos.html";
-				else return "setPosFailed.html";
-			}
 			/*  //tu wpisywać nazwy innych stron 
 			if(link[1].equals("index.html"))
 			{

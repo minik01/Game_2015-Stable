@@ -8,15 +8,16 @@ public class Server {
 	//tt.newTech("tech2", "inny opis", 0, 0, 1);
 	//tt.printAll();
 	
-	
-	Player player = new Player();
-	player.clear();
+	WrapperPlayer wPlayer = new WrapperPlayer();
+	wPlayer.clear();
+	//Player player = new Player();
+	//player.clear();
         Runnable[] runners = new Runnable[MAXUSERS];
         Thread[] threads = new Thread[MAXUSERS];
  
         for(int i=0; i<MAXUSERS; i++) 
         {
-        	runners[i] = new SerwerHTTP(player, i);
+        	runners[i] = new SerwerHTTP(wPlayer, i);
         }
  
         for(int i=0; i<MAXUSERS; i++) {

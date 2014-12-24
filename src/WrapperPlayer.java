@@ -5,12 +5,29 @@ import java.util.regex.Matcher;
 public class WrapperPlayer {
 	private Utilities log; //log
 	private int counterOfPlayers;
+	private VarPlayer vPlayer;
 	DBManager dbm;
-	
+	WrapperPlayer() // dla nowych graczy
+	{
+		vPlayer = new VarPlayer(dbm);
+		log = new Utilities();
+		dbm = new DBManager();
+		initTable();
+
+		printAll();
+	}
+	public boolean CheckName(String username) {
+		String regex = "^[A-Za-z0-9_-]{3,15}$";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(username);
+		boolean err = matcher.matches();
+		log.print('f',"regex:" + regex + "\nerr:" + err + "\nusername:" + username);
+		return err;
+	}
 	public String create(String username, String password, String mail)
 	{
 		boolean correct = true;
-		//correct = CheckName(username);
+		correct = CheckName(username);
 		if(correct==true)
 		{
 			if(findByName(username)==-1)
@@ -23,6 +40,7 @@ public class WrapperPlayer {
 					System.out.println("utworzono konto");
 					printAll();
 				}
+				vPlayer.create();
 				return "Your account has been created successfully";
 			}
 			else return "This Username is already taken";
@@ -34,6 +52,7 @@ public class WrapperPlayer {
 	}
 	public void clear()
 	{
+		log.print('a', "table players will be DELETED!");
 	 	dbm.update("drop table if exists players");
 		initTable();
 	}
@@ -45,7 +64,6 @@ public class WrapperPlayer {
 	public int findByName(String username)
 	{
 		int temp = dbm.select("select * from players WHERE username='"+username+"'");
-		//System.out.println("numer:" + temp);
 		return temp;
 	}
 	public int find(String username, String password)
