@@ -5,7 +5,7 @@ public class VarPlayer {
 	
 	private PlayersTech tech;
 	private VarShip ship;		
-	private Utilities log;
+	private Utilities log = new Utilities();
 	private int id;
 	private DBManager dbm;
 	private String name, psswd, mail;
