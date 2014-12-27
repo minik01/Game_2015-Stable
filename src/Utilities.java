@@ -61,7 +61,7 @@ public class Utilities {
 			default: System.out.println("log> "+ text);
 		}
 	}
-	
+	/*
 	public String iErrorTosError(int iError)
 	{
 		switch(iError)
@@ -240,7 +240,7 @@ public class Utilities {
 		}
 
 		return 0;
-	  }
+	  }*/
 	
 	
 }
