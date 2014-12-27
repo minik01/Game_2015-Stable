@@ -51,7 +51,7 @@ public class WrapperShip
 			while(rs.next())
 			{
 				// read the result set
-				if(log.logDB)
+				//if(log.logDB)
 				{
 					log.print('d',"+");
 					log.print('d',"+ id = " + rs.getInt("id"));

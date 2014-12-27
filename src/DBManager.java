@@ -12,10 +12,30 @@ public class DBManager
 	private Statement statement;
 	private Connection connection;
 	private ResultSet rs;
-	public void init_test()
-	{
-		log.print('t', "Zainicjowane DBM!");
-	}
+	
+    public DBManager()
+    {
+		log = new Utilities();
+		try{
+			Class.forName("org.sqlite.JDBC");
+		}
+		catch(ClassNotFoundException e)
+		{
+			System.out.println("DB error - cannot find org.sqlite.JDBC");
+		}
+		connection = null;
+		try
+		{
+			connection = DriverManager.getConnection("jdbc:sqlite:players.db");
+			statement = connection.createStatement();
+			statement.setQueryTimeout(5);  // set timeout to 5 sec
+		 }
+		 catch(SQLException e)
+		 {
+				System.out.println("DB error - constructor ");
+		 }
+    }
+	
 	public void close()
 	{
 		try
@@ -47,8 +67,7 @@ public class DBManager
 	      rs = statement.executeQuery(querry);
 	      while(rs.next())
 	      {
-			if(log.logDB)
-	    	  System.out.println("Found id:"+rs.getInt("id"));
+	    	  log.print('d', "Found id:"+rs.getInt("id") );
 	    	  return rs.getInt("id");
 	      }
 	    }
@@ -58,7 +77,7 @@ public class DBManager
 		}
     	return -1;
     }
-    public boolean check(String tab,int id, String toCheck)
+    public boolean check(String tab,int id, String toCheck)					//	sprawdzić, czy jest to konieczne
     {
     	try
 	    {
@@ -99,27 +118,5 @@ public class DBManager
 			System.out.println("DB error - DBM - select3()");
 	    }
     	return null;
-    }
-    public DBManager()
-    {
-		log = new Utilities();
-		try{
-			Class.forName("org.sqlite.JDBC");
-		}
-		catch(ClassNotFoundException e)
-		{
-			System.out.println("DB error - cannot find org.sqlite.JDBC");
-		}
-		connection = null;
-		try
-		{
-			connection = DriverManager.getConnection("jdbc:sqlite:players.db");
-			statement = connection.createStatement();
-			statement.setQueryTimeout(5);  // set timeout to 5 sec
-		 }
-		 catch(SQLException e)
-		 {
-				System.out.println("DB error - constructor ");
-		 }
     }
 }

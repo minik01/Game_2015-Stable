@@ -7,13 +7,12 @@ public class SerwerHTTP implements Runnable
 	private Utilities log;
 	private String special[] = null;
 	private int Id;
-	//String special;
-	WrapperPlayer player;
-	public SerwerHTTP(WrapperPlayer player,int Id)                
+	DBManager2 dbm2;
+	public SerwerHTTP(DBManager2 dbm2,int Id)                
 	{    
 		log = new Utilities();
 		this.Id = Id;
-		this.player = player;  
+		this.dbm2 = dbm2;  
 		special = new String[10];
 	}
 	@Override
@@ -27,7 +26,7 @@ public class SerwerHTTP implements Runnable
 			while(true)
 			{
 				//przyjecie polaczenia 
-				//System.out.println("Oczekiwanie na polaczenie...");
+				log.print('c',"Waiting for clients...");
 				Socket sock=serv.accept();
 				log.print('c',"Connected - server no "+Id);               
 	
@@ -45,7 +44,7 @@ public class SerwerHTTP implements Runnable
 				{
 					if(request.startsWith("GET"))                                     
 					{
-						parserHTTP HTTPP = new parserHTTP(player,request,special);
+						parserHTTP HTTPP = new parserHTTP(dbm2,request,special);
 						String site = HTTPP.parser(request);
 						Reader reader = new Reader(special);
 						reader.openFile(site);

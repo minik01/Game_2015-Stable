@@ -13,7 +13,7 @@
 
 	<script type="text/javascript">
 	var r;
-
+	var xmlDoc;	
 	function getXMLHttpRequest()
 	{
 	  var request = false;
@@ -40,11 +40,11 @@
 	    if (r.status == 200) {
 
 		var parser = new DOMParser();
-		var xmlDoc = parser.parseFromString(r.responseText, "application/xml");
+		xmlDoc = parser.parseFromString(r.responseText, "application/xml");
 	
 	      alert(
 		'XML z serwera: ' + 
-		xmlDoc.getElementsByTagName('player')[0]//.getElementsByTagName('tekst')[0].childNodes[0].nodeValue		
+		xmlDoc.getElementsByTagName('player').text//.getElementsByTagName('tekst')[0].childNodes[0].nodeValue		
 		//xmlDoc.getElementsByTagName('tekst')[0].childNodes[0].nodeValue
 	      );
 	    };
@@ -56,30 +56,7 @@
 		r.open('GET', 'dane.xml', true);
 		r.onreadystatechange = processResponse;
 		r.send(null);
-	}
-	
-		
-		function pokazCookie(nazwa) {
-		    if (document.cookie!="") { //jeżeli document.cookie w ogóle istnieje
-				var cookies=document.cookie.split("; ");  //tworzymy z niego tablicę ciastek
-				for (i=0; i<cookies.length; i++) { //i robimy po niej pętlę
-					var nazwaCookie=cookies[i].split("=")[0]; //nazwa ciastka
-					var wartoscCookie=cookies[i].split("=")[1]; //wartość ciastka
-					if (nazwaCookie===nazwa) {
-					return unescape(wartoscCookie) //jeżeli znaleźliśmy ciastko o danej nazwie, wtedy zwracamy jego wartość
-					}
-				}
-		    }
-		}
-
-		if ($("#open").length>0){
-
-			document.getElementById('open').onclick = function(e) {
-				e.preventDefault(); //nie chcemy wykonywać domyślnej akcji dla tego guzika - bo to może być np wysłanie formularza - czyli poniższy kod nigdy by się nie wywołał
-				document.getElementById('output').innerHTML = ""+ pokazCookie("SpaceZobmie1");
-			}
-		}
-		
+	}		
 	</script>
 </head>
 
@@ -138,48 +115,6 @@
 	
 	
 	</div>
-	
-	
-<!--	
-<form name="dest" action="setPos" method="get" onsubmit="DoSubmit();">
-  <table>
-	<tr>
-	  <td>
-		Planeta
-	  </td>
-	  <td>
-		<input type="text" name="P">
-	  </td>
-	<tr>
-	  <td>
-		System Solarny 
-	  </td>
-	  <td>
-		<input type="text" name="SS">
-	  </td>
-	</tr>
-	<tr>
-	  <td>
-		 Sześcian galaktyki
-	  </td>
-	  <td>
-		<input type="texr" name="C">
-	  </td>
-	</tr>
-	<tr>
-	  <td>
-		 <a href="TechTree.html">Drzewo technologii</a>
-	  </td>
-	  <td>
-		<input type="texr" name="C">
-	  </td>
-	</tr>
-  </table>  
-  <input type="submit" value="Submit">
-  <br>
-	</form> 
-	Twoja pozycja: -->
-	<!1Tresc>
 	
 </body>
 </html>

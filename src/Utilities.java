@@ -1,11 +1,11 @@
 public class Utilities {
 	public Utilities(){}
-	public boolean logConection = true;
-	public boolean logReader = true;
-	public boolean logForm = true;
-	public boolean logDB = true;
-	public boolean logTechTree = true;
-	public boolean logSend = true;
+	private boolean logConection = true;
+	private boolean logReader = true;
+	private boolean logForm = true;
+	private boolean logDB = true;
+	private boolean logTechTree = true;
+	private boolean logSend = true;
 	
 	public int start_x = 100;
 	public int start_y = 100;

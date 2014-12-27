@@ -2,24 +2,18 @@
 public class parserHTTP 
 {
 	private Utilities log; //log
-	private WrapperPlayer player;
+	private DBManager2 dbm2;
 	private String special[] = null;
 	private String link[] = null;
-	private int Id;
 	private String name = null;
 	private String password = null;
 	private String mail= null;
 	
-	public parserHTTP(WrapperPlayer player, String input, String [] special)
+	public parserHTTP(DBManager2 dbm2, String input, String [] special)
 	{
 		log = new Utilities();
 		this.special = special;
-		//special = " ";
-		this.player=player;
-	}
-	public int getId()
-	{
-		return Id;
+		this.dbm2=dbm2;
 	}
 	public String getSpecjal(int i)
 	{
@@ -89,10 +83,10 @@ public class parserHTTP
 			if(temp.startsWith("index"))
 			{	
 				special[0] = "";
-				if(name!=null && password!=null && mail!= null) 
+				if(name!=null && password!=null && mail!= null) 					// Create new Player and get result (String)
 				{
-					// Create new Player and get result ( String)
-					special[0] = player.create(name, password, mail);
+					VarPlayer player = new VarPlayer(name, password, mail);
+					special[0] = dbm2.addPlayer(player);
 					if(special[0]=="Your account has been created successfully") return "index.html";
 					else return "rejestracja.html";
 				}
@@ -115,16 +109,14 @@ public class parserHTTP
 			{
 				if(name!=null && password!=null) 				//logowanie się
 				{
-					Id = player.find(name,password);
-					log.print('f',"Zalogował się gracz nr: " +Id);
-					if(Id==-1)
+					if(dbm2.allowLogin(name,password))
 					{
-						log.print('f',"Nieudana próba logowania");
-						special[0] = "Wrong Username or Password";
-						return "index.html";
+						return "game.html";
 					}
 				}
-				return "game.html";
+				log.print('f',"Nieudana próba logowania");
+				special[0] = "Wrong Username or Password";
+				return "index.html";
 			}
 			if(temp.startsWith("style.css"))
 			{

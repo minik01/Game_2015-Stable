@@ -10,7 +10,7 @@ public class WrapperPlayer {
 	WrapperPlayer()
 	{
 		dbm = new DBManager();
-		vPlayer = new VarPlayer(dbm);
+		//vPlayer = new VarPlayer(dbm);
 		log = new Utilities();
 		initTable();
 
@@ -78,14 +78,11 @@ public class WrapperPlayer {
 			while(rs.next())
 			{
 				// read the result set
-				if(log.logDB)
-				{
-					log.print('d',"+");
-					log.print('d',"+ id = " + rs.getInt("id"));
-					log.print('d',"+ username = " + rs.getString("username"));
-					log.print('d',"+ password = " + rs.getString("password"));
-					log.print('d',"+ e-mail = " + rs.getString("mail"));
-				}
+				log.print('d',"+");
+				log.print('d',"+ id = " + rs.getInt("id"));
+				log.print('d',"+ username = " + rs.getString("username"));
+				log.print('d',"+ password = " + rs.getString("password"));
+				log.print('d',"+ e-mail = " + rs.getString("mail"));
 				counterOfPlayers++;
 			}
 			log.print('d',"==========================================================================");

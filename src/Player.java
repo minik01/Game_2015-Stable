@@ -44,7 +44,7 @@ public class Player
 				//position.newPlayer(counterOfPlayers, new Position(1,1,2),new Position(2,3,2) );
 				tech.newPlayer(counterOfPlayers);
 				counterOfPlayers++;
-				if(log.logForm || log.logDB)
+				//if(log.logForm || log.logDB)
 				{
 					System.out.println("utworzono konto");
 					printAll();
@@ -90,7 +90,7 @@ public class Player
 	*/
 	public void printAll()
 	{
-		if(log.logDB)
+		//if(log.logDB)
 			System.out.println("====================================Gracze================================");
 		counterOfPlayers = 0;
 		try{
@@ -98,7 +98,7 @@ public class Player
 			while(rs.next())
 			{
 				// read the result set
-				if(log.logDB)
+				//if(log.logDB)
 				{
 					System.out.println("+");
 					System.out.println("+ id = " + rs.getInt("id"));
@@ -108,14 +108,14 @@ public class Player
 				}
 				counterOfPlayers++;
 			}
-			if(log.logDB)
+			//if(log.logDB)
 				System.out.println("==========================================================================");
 		}
 		catch(java.sql.SQLException e)
 		{
 			System.out.println("java.sql.SQLException in Player.printAll()");
 		}
-		if(log.logDB)
+		//if(log.logDB)
 			System.out.println("Players in DB:"+ counterOfPlayers);
     }
 }
