@@ -7,11 +7,11 @@ public class WrapperPlayer {
 	private int counterOfPlayers;
 	private VarPlayer vPlayer;
 	DBManager dbm;
-	WrapperPlayer() // dla nowych graczy
+	WrapperPlayer()
 	{
+		dbm = new DBManager();
 		vPlayer = new VarPlayer(dbm);
 		log = new Utilities();
-		dbm = new DBManager();
 		initTable();
 
 		printAll();
@@ -34,13 +34,9 @@ public class WrapperPlayer {
 			{
 				log.print('d',"insert into players (id, username, password, mail, points, banned) values("+counterOfPlayers+",'"+username+"','"+password+"','"+mail+"',0, 'false')");	
 				dbm.update("insert into players (id, username, password, mail, points, banned) values("+counterOfPlayers+",'"+username+"','"+password+"','"+mail+"',0, 'false')");	
+				printAll();
 				counterOfPlayers++;
-				if(log.logForm || log.logDB)
-				{
-					System.out.println("utworzono konto");
-					printAll();
-				}
-				vPlayer.create();
+				vPlayer.create(counterOfPlayers);
 				return "Your account has been created successfully";
 			}
 			else return "This Username is already taken";
@@ -52,6 +48,9 @@ public class WrapperPlayer {
 	}
 	public void clear()
 	{
+		WrapperShip wp = new WrapperShip(dbm);
+		wp.clear();
+		
 		log.print('a', "table players will be DELETED!");
 	 	dbm.update("drop table if exists players");
 		initTable();

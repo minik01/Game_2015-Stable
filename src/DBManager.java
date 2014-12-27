@@ -12,6 +12,10 @@ public class DBManager
 	private Statement statement;
 	private Connection connection;
 	private ResultSet rs;
+	public void init_test()
+	{
+		log.print('t', "Zainicjowane DBM!");
+	}
 	public void close()
 	{
 		try

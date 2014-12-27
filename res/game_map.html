@@ -10,7 +10,53 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="draw_map.js"></script>
 	<script src="draw_radar.js"></script>
-	<script>
+
+	<script type="text/javascript">
+	var r;
+
+	function getXMLHttpRequest()
+	{
+	  var request = false;
+	    
+	  try {
+	    request = new XMLHttpRequest();
+	  } catch(err1) {
+	    try {
+	      request = new ActiveXObject('Msxml2.XMLHTTP');
+	    } catch(err2) {
+	      try {
+		request = new ActiveXObject('Microsoft.XMLHTTP');                
+	      } catch(err3) {
+		request = false;
+	      }
+	    }
+	  }
+	  return request;
+	} 
+
+	function processResponse()
+	{
+	  if (r.readyState == 4) {
+	    if (r.status == 200) {
+
+		var parser = new DOMParser();
+		var xmlDoc = parser.parseFromString(r.responseText, "application/xml");
+	
+	      alert(
+		'XML z serwera: ' + 
+		xmlDoc.getElementsByTagName('player')[0]//.getElementsByTagName('tekst')[0].childNodes[0].nodeValue		
+		//xmlDoc.getElementsByTagName('tekst')[0].childNodes[0].nodeValue
+	      );
+	    };
+	  };
+	}
+	function getNewDate() 
+	{
+		r = getXMLHttpRequest();
+		r.open('GET', 'dane.xml', true);
+		r.onreadystatechange = processResponse;
+		r.send(null);
+	}
 	
 		
 		function pokazCookie(nazwa) {
@@ -52,7 +98,7 @@
 		
 		</div>
 		<div id="game_index_list_div" class="game_list_div">
-			<button class="game_list_button">Overview</button>
+			<button class="game_list_button" onclick = "getNewDate()">Overview</button>
 			<button id="game_list_button_map" onclick = "location.href='game_map.html'" class="game_list_button">Map</button>
 			<button class="game_list_button">Ships</button>
 			<button class="game_list_button">Science</button>

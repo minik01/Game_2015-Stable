@@ -154,6 +154,10 @@ public class parserHTTP
 			{
 				return "bg.png";
 			}
+			if(temp.startsWith("dane.xml")) //			+
+			{
+				return "dane.xml";
+			}
 			if(temp.startsWith("techImg"))
 			{
 				return temp;

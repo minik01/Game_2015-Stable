@@ -94,7 +94,9 @@ public class SerwerHTTP implements Runnable
 				}
 				catch(NullPointerException e)
 				{
+					
 					System.out.println("Demand error - SerwerHTTP - run()");
+					e.printStackTrace();
 					break;
 				}
 			
@@ -111,7 +113,7 @@ public class SerwerHTTP implements Runnable
 		}
 		catch(IOException e)
 		{
-			//System.out.println("Server error ( may be connection) - SerwerHTTP - run()");
+			System.out.println("Server error ( may be connection) - SerwerHTTP - run()");
 		}
 	}
 }
