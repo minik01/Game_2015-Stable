@@ -16,28 +16,31 @@ import java.util.*;
 
 public class XmlManagement {
 
-	private File fXmlFile;
-	private DocumentBuilderFactory docBuilderFactory;
-	private DocumentBuilder docBuilder;
-	private Document doc;
-	private NodeList nodeList;
+	private static  File fXmlFile;
+	private static  DocumentBuilderFactory docBuilderFactory;
+	private static  DocumentBuilder docBuilder;
+	private static  Document doc;
+	private static  NodeList nodeList;
 	private static String docName="ships_data.xml";
 	
 	// always call it before using file
-	private void openXML() {
-		// open file, prepare document and normalize it
-		fXmlFile = new File(docName);
-		docBuilderFactory = DocumentBuilderFactory.newInstance();
-		docBuilder = docBuilderFactory.newDocumentBuilder();
-		doc = docBuilder.parse(fXmlFile);
-
-		doc.getDocumentElement().normalize();
-		
-		nodeList = doc.getElementsByTagName("ship"); // ship for this case
-
+	private static void openXML() {
+		try {
+			// open file, prepare document and normalize it
+			fXmlFile = new File(docName);
+			docBuilderFactory = DocumentBuilderFactory.newInstance();
+			docBuilder = docBuilderFactory.newDocumentBuilder();
+			doc = docBuilder.parse(fXmlFile);
+	
+			doc.getDocumentElement().normalize();
+			
+			nodeList = doc.getElementsByTagName("ship"); // ship for this case
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	// constructor to prevent NullException
-	public XmlMaanagement() {
+	public XmlManagement() {
 		
 		openXML();
 	}
@@ -56,8 +59,8 @@ public class XmlManagement {
 		
 		openXML();
 		
-		String id = object_id.toString();
-		String value;
+		String id = Integer.toString(object_id);
+		String value = null;
 		
 		// find object among the all of them
 		for (int temp = 0; temp < nodeList.getLength(); temp++) {
@@ -96,7 +99,7 @@ public class XmlManagement {
 		try {
 			openXML();
 			
-			String id = object_id.toString();
+			String id = Integer.toString(object_id);
 			
 			// find object among the all of them
 			for (int temp = 0; temp < nodeList.getLength(); temp++) {
@@ -183,11 +186,11 @@ public class XmlManagement {
 			BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 			String id = bufferRead.readLine();
 			System.out.println("---------------\nGive me param:	");
-			BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
-			String param = bufferRead.readLine();
+			BufferedReader bufferRead2 = new BufferedReader(new InputStreamReader(System.in));
+			String param = bufferRead2.readLine();
 			System.out.println("---------------\nGive me value:	");
-			BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
-			String value = bufferRead.readLine();
+			BufferedReader bufferRead3 = new BufferedReader(new InputStreamReader(System.in));
+			String value = bufferRead3.readLine();
 			
 			// find object among the all of them
 			for (int temp = 0; temp < nodeList.getLength(); temp++) {
@@ -222,10 +225,12 @@ public class XmlManagement {
 	
 			OutputFormat format = new OutputFormat(doc);
 			format.setIndenting(true);
-			String filename = "staff"+System.currentTimeMillis()+".xml";
+			String filename = docName;
 			XMLSerializer serializer = new XMLSerializer(
 				new FileOutputStream(new File(filename)), format);
 			serializer.serialize(doc);
+			
+			System.out.println("Value changed successfully");
 
 		} catch (Exception e) {
 			e.printStackTrace();

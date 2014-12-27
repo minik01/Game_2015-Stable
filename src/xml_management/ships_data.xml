@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects>
+    <ship id="1">
+        <owner_id>14</owner_id>
+        <x>110</x>
+        <y>205</y>
+        <sector>22</sector>
+    </ship>
+    <ship id="2">
+        <owner_id>31</owner_id>
+        <x>180</x>
+        <y>250</y>
+        <sector>22</sector>
+    </ship>
+</objects>
