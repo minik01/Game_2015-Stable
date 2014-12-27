@@ -50,6 +50,7 @@ public class DBManager
 	}
 	public void update(String querry)
 	{
+		
 		try
 		{
 			statement.executeUpdate(querry);
@@ -77,7 +78,7 @@ public class DBManager
 		}
     	return -1;
     }
-    public boolean check(String tab,int id, String toCheck)					//	sprawdzić, czy jest to konieczne
+    public boolean check(String tab,int id, String toCheck)	
     {
     	try
 	    {
@@ -110,7 +111,7 @@ public class DBManager
     {
     	try
 	    {
-	      rs = statement.executeQuery("select * from "+tab + "where id="+id);
+	      rs = statement.executeQuery("select * from "+tab + " where id="+id);
 	      return rs;
 	    }
 	    catch(SQLException e)

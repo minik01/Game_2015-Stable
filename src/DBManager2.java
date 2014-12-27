@@ -33,7 +33,8 @@ public class DBManager2 {
 	// Statek
 	public void addShip(VarShip ship)
 	{
-		dbm.update("insert into ship values("+ship.getId()+","+ship.getOvnerId()+",'"+ship.getLvl()+"','"+ship.getX()+"','"+ship.getY()+",'"+ship.getBusy()+"')");
+		dbm.update("insert into ship values("+ship.getId()+","+ship.getOvnerId()+","+ship.getLvl()+","+ship.getX()+","+ship.getY()+",'"+ship.getBusy()+"')");	//nie zapisuje do bazy danych
+		printAllShip();
 		//przydałoby się sprawdzić, Id nie jest zajęte...
 	}
 	public VarShip getShipById(int id)
@@ -65,15 +66,39 @@ public class DBManager2 {
 	}
 	public void setShip(VarShip ship)
 	{
-		dbm.update("update ship set lvl = "+ship.getLvl()+",current_x = "+ship.getX()+",current_y = "+ship.getY()+",busy = "+ship.getBusy()+" where id="+ship.getId()+ ";");
+		dbm.update("update ship set lvl = "+ship.getLvl()+",current_x = "+ship.getX()+",current_y = "+ship.getY()+",busy = '"+ship.getBusy()+"' where id="+ship.getId()+ ";");
 	}
-	
+	public int printAllShip()
+	{
+		log.print('d',"====================================Ships=================================");
+		int counterOfShips = 0;
+		try{
+			ResultSet rs = dbm.select2("select * from ship");
+			while(rs.next())
+			{
+				log.print('d',"+");
+				log.print('d',"+ id = \t" + rs.getInt("id"));
+				log.print('d',"+ ownerId = \t" + rs.getString("ovnerId"));
+				log.print('d',"+ current_x = \t" + rs.getInt("current_x"));
+				log.print('d',"+ current_y = \t" + rs.getInt("current_y"));
+				log.print('d',"+ busy = \t" + rs.getBoolean("busy"));
+				counterOfShips++;
+			}
+			log.print('d',"==========================================================================");
+		}
+		catch(java.sql.SQLException e)
+		{
+			System.out.println("java.sql.SQLException in Player.printAll()");
+		}
+		log.print('d',"Ships in DB:"+ counterOfShips);
+		return counterOfShips;
+	}
+
 	// Gracz
 	public String addPlayer(VarPlayer player)
 	{
 		boolean correct = false;
-		log.print('f', "check name: "+player.getName());	// tu widzi player
-		player.initTest();									// tu już nie
+		log.print('f', "check name: "+player.getName());
 		correct = player.CheckName(player.getName());
 		log.print('f', "ok");
 
@@ -81,10 +106,12 @@ public class DBManager2 {
 		{
 			if(getPlayerByName(player.getName())==null)
 			{
+				Constant constant = new Constant();
 				int counter =printAllPlayers();
 				log.print('d',"insert into players (id, username, password, mail, points, banned) values("+counter+",'"+player.getName()+"','"+player.getPassword()+"','"+player.getMail()+"',0, 'false')");	
 				dbm.update("insert into players (id, username, password, mail, points, banned) values("+counter+",'"+player.getName()+"','"+player.getPassword()+"','"+player.getMail()+"',0, 'false')");	
 				player.setID(counter);
+				addShip(new VarShip(printAllShip(), counter, 1, constant.default_start_x, constant.default_start_y, false));
 				return "Your account has been created successfully";
 			}
 			else return "This Username is already taken";
@@ -116,7 +143,7 @@ public class DBManager2 {
 	}
 	public boolean allowLogin(String login,String psswd)
 	{
-		if( getPlayerByName(login).getPassword() == psswd )	
+		if( getPlayerByName(login).getPassword().equals(psswd) )	
 		{
 			return true;
 		}

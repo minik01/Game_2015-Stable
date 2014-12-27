@@ -23,11 +23,6 @@ public class VarPlayer {
 		this.mail = mail;
 	}
 	
-	public void initTest()
-	{
-		log.print('t', "zadeklarowano.");
-	}
-	
 	public boolean CheckName(String username) {
 		log.print('f', "check name");
 		String regex = "^[A-Za-z0-9_-]{3,15}$";

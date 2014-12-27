@@ -45,7 +45,7 @@ public class parserHTTP
 				i=i+5;
 				for(;i<input.length();i++)
 				{
-					if(input.charAt(i) == '&')
+					if(input.charAt(i) == '&' || input.charAt(i) == ' ')
 					{
 						password = input.substring(NameStart,i);	
 						log.print('f',"psswd="+password+" ([1]!)");
