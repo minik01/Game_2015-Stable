@@ -12,7 +12,7 @@ public class Utilities {
 	
 	
 	
-	public void print(char type,String text) //pomyślałem, że mechanizm logów jest trochę słaby
+	public void print(char type,String text) //pomyslalem, ze mechanizm logow jest troche slaby
 	{
 		switch(type)
 		{

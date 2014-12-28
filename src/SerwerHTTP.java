@@ -114,7 +114,7 @@ public class SerwerHTTP implements Runnable
 				}
 			
 				//TODO
-				//if(client kończy połączenie) break;
+				//if(client konczy polaczenie) break;
 				
 				//zamykanie strumieni
 				inp.close();
