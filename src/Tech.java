@@ -32,6 +32,10 @@ public class Tech {
 	public String getName()
 	{
 		return name;
+	}	
+	public boolean getObtained()
+	{
+		return obtained;
 	}
 	public String getDescripiton()
 	{

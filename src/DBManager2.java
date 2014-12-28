@@ -149,11 +149,14 @@ public class DBManager2 {
 	}
 	public boolean allowLogin(String login,String psswd)
 	{
-		if( getPlayerByName(login).getPassword().equals(psswd) )	
-		{
-			return true;
-		}
+		if(login == null || psswd == null) return false;
+		if(getPlayerByName(login)!=null)
+			if( getPlayerByName(login).getPassword().equals(psswd) )	
+			{
+				return true;
+			}
 		else return false;
+		return false;
 	}
 	public int printAllPlayers()
 	{

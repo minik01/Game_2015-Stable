@@ -1,6 +1,6 @@
 public class ParserAjax 
 {
-	public ParserAjax()
+	public ParserAjax(String adres)
 	{
 		
 	}

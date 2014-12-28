@@ -72,7 +72,7 @@ public class SerwerHTTP implements Runnable
 									{
 										if(!reader.existNextLine())
 											break;
-											ParserAjax pAjax = new ParserAjax();
+											ParserAjax pAjax = new ParserAjax(site);
 											
 									}
 								else 
