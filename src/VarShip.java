@@ -19,11 +19,11 @@ public class VarShip {
 	}
 	public String toString()
 	{
-		return "Statek: "+id+" należy do gracza: "+ovnerId+" \npozycja: ("+x+";"+y+") \npoziom statku: "+lvl+"\n zajety: "+busy;
+		return "Statek: "+id+" nalezy do gracza: "+ovnerId+" \npozycja: ("+x+";"+y+") \npoziom statku: "+lvl+"\n zajety: "+busy;
 	}
 	public String toStringDeluxe(VarPlayer player)
 	{
-		return "Statek: "+id+" należy do gracza: "+player.getName()+" \n\tpozycja: ("+x+";"+y+")\n\tpoziom statku: "+lvl+"\n\t zajety: "+busy;
+		return "Statek: "+id+" nalezy do gracza: "+player.getName()+" \n\tpozycja: ("+x+";"+y+")\n\tpoziom statku: "+lvl+"\n\t zajety: "+busy;
 	}
 	public int getId()
 	{

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class ParserAjax 
 {
-	private Utilities log; //obowiązuje w tej klasie log 'r' przy odebranym i 's' przy wysyłanym 
+	private Utilities log; //obowiazuje w tej klasie log 'r' przy odebranym i 's' przy wysylanym 
 	ArrayList<String> response;
 	String request;
 	DBManager2 dbm2;
@@ -20,7 +20,7 @@ public class ParserAjax
 
 	private void setResponse()
 	{
-		int id = 0; //id też trzeba będzie wysyłać w zapytaniu.
+		int id = 0; //id tez trzeba bedzie wysylac�w zapytaniu.
 		//ArrayList<String> lista = 
 		//tu dodaj zapytanie dp bazy danych
 		VarShip ship = dbm2.getShipById(id);
@@ -35,7 +35,7 @@ public class ParserAjax
 		response.add("    <busy>false</busy>");
 		response.add("  </ship>");
 		response.add("</baza>");
-		// możesz zrobić metodę w VarShip toXML zwracającą ArrayList i tylko przepisywać kolejne linijki
+		// mozesz zrobic�metode w VarShip toXML zwracajaca�ArrayList i tylko przepisywac kolejne linijki
 		// tak samo z VarPlayer
 		
 	} 
