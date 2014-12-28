@@ -17,17 +17,23 @@ public class Reader{
   	}
 	public void openFile(String Filename) throws FileNotFoundException
 	{
-		file = new File(Filename);
-		in = new Scanner(file);
-		bin = (Filename.endsWith(".ico") || Filename.endsWith(".png") );
 		ajax = Filename.startsWith("ajax");
+		if(!ajax)
+		{
+			file = new File(Filename);
+			in = new Scanner(file);
+			log.print('r',"open file: "+Filename);
+			bin = (Filename.endsWith(".ico") || Filename.endsWith(".png") );
+		}	
 	}
 	public boolean bin()
 	{
+		if(bin)		log.print('r',"binary request");
 		return bin;
 	}
 	public boolean isAjax()
 	{
+		if(ajax)	log.print('r',"ajax request");
 		return ajax;
 	}
 	public void copy(DataOutputStream to) 

@@ -79,7 +79,6 @@ public class parserHTTP
 		else
 		{
 			String temp = link[1].substring(1);
-			log.print('s',temp);
 			if(temp.startsWith("index"))
 			{	
 				special[0] = "";
@@ -146,9 +145,9 @@ public class parserHTTP
 			{
 				return "bg.png";
 			}
-			if(temp.startsWith("dane.xml")) //			+
+			if(temp.startsWith("ajax")) //			+
 			{
-				return "dane.xml";
+				return temp;
 			}
 			if(temp.startsWith("techImg"))
 			{

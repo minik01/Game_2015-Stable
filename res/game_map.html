@@ -53,7 +53,7 @@
 	function getNewDate() 
 	{
 		r = getXMLHttpRequest();
-		r.open('GET', 'dane.xml', true);
+		r.open('GET', 'ajax_example_request', true);
 		r.onreadystatechange = processResponse;
 		r.send(null);
 	}		

@@ -47,13 +47,13 @@ public class SerwerHTTP implements Runnable
 						if(request.startsWith("GET"))                                     
 						{
 							parserHTTP HTTPP = new parserHTTP(dbm2,request,special);
+							
 							String site = HTTPP.parser(request);
+
 							Reader reader = new Reader(special);
+
 							reader.openFile(site);
-							log.print('r', "Open file: "+site );
-							//if(site.equals("game.html"))
-								//special[1]=player.getPos(HTTPP.getId()).toString();
-										
+
 							//reader.setspecial(HTTPP.getspecial(0), 0);
 							//response header    
 							if(reader.bin())
@@ -68,13 +68,15 @@ public class SerwerHTTP implements Runnable
 								outp.writeBytes("\r\n");
 								//response body                                                
 								if(reader.isAjax())
+								{
+									ParserAjax pAjax = new ParserAjax(dbm2,site);
 									while(true)
 									{
-										if(!reader.existNextLine())
-											break;
-											ParserAjax pAjax = new ParserAjax(site);
-											
+											outp.writeBytes(pAjax.nextLine()+"\n"); 
+											if(!pAjax.existNextLine())
+												break;
 									}
+								}
 								else 
 									while(true)
 									{
