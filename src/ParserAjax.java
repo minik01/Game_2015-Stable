@@ -24,7 +24,7 @@ public class ParserAjax
 		//ArrayList<String> lista = 
 		//tu dodaj zapytanie dp bazy danych
 		VarShip ship = dbm2.getShipById(id);
-		dbm2.getShipsBySector(ship.getX(), ship.getY(), 150);
+		//dbm2.getShipsBySector(ship.getX(), ship.getY(), 150);
 		
 		response = new ArrayList<String>();
 		response.add("<baza>");				//dodawanie statyczne

@@ -1,5 +1,6 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 public class DBManager2 {
@@ -48,9 +49,9 @@ public class DBManager2 {
 		}
 		return new VarShip(-1,-1,-1, -1, -1, true);
 	}
-	public VarShip[] getShipsBySector(int x, int y, int r)		//?
+	public ArrayList<VarShip> getShipsBySector(int x, int y, int r)		//?
 	{
-		VarShip[] ships = new VarShip[128];
+		ArrayList<VarShip> ships =new ArrayList<VarShip>();
 		int xMinusR = x-r;
 		int xPlusR = x+r;
 		int yMinusR = y-r;
@@ -61,7 +62,8 @@ public class DBManager2 {
 		try {
 			while(rs.next())
 			{
-				ships[i] = new VarShip(rs.getInt("id"),rs.getInt("ovnerId"),rs.getInt("lvl"), rs.getInt("current_x"), rs.getInt("current_y"), rs.getBoolean("busy"));
+				VarShip ship = new VarShip(rs.getInt("id"),rs.getInt("ovnerId"),rs.getInt("lvl"), rs.getInt("current_x"), rs.getInt("current_y"), rs.getBoolean("busy"));
+				ships.add(ship);
 			}
 			return ships;
 		} catch (SQLException e) 
