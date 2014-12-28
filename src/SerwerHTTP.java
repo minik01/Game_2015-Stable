@@ -42,54 +42,66 @@ public class SerwerHTTP implements Runnable
 				//wyslanie odpowiedzi (response) 
 				try
 				{
-					if(request.startsWith("GET"))                                     
+					if(request != null)
 					{
-						parserHTTP HTTPP = new parserHTTP(dbm2,request,special);
-						String site = HTTPP.parser(request);
-						Reader reader = new Reader(special);
-						reader.openFile(site);
-						
-						//if(site.equals("game.html"))
-							//special[1]=player.getPos(HTTPP.getId()).toString();
-									
-						//reader.setspecial(HTTPP.getspecial(0), 0);
-						//response header    
-						if(reader.bin())
+						if(request.startsWith("GET"))                                     
 						{
-							reader.copy(outp);
-						}
-						else                                           
-						{
-							outp.writeBytes("HTTP/1.0 200 OK\r\n");                        
-							outp.writeBytes("Content-Type: text/html\r\n");                
-							outp.writeBytes("Content-Length: \r\n");                       
-							outp.writeBytes("\r\n");
-							//response body                                                
-							while(true)
+							parserHTTP HTTPP = new parserHTTP(dbm2,request,special);
+							String site = HTTPP.parser(request);
+							Reader reader = new Reader(special);
+							reader.openFile(site);
+							log.print('r', "Open file: "+site );
+							//if(site.equals("game.html"))
+								//special[1]=player.getPos(HTTPP.getId()).toString();
+										
+							//reader.setspecial(HTTPP.getspecial(0), 0);
+							//response header    
+							if(reader.bin())
 							{
-								if(!reader.existNextLine())break;
-								try 
-								{
-									outp.writeBytes(reader.nextLine()+"\n"); 
-								}
-								catch (IOException ex) 
-								{
-									System.out.println("Reading file error - SerwerHTTP - run()");
-									break;
-								}
-								catch (NoSuchElementException e) 
-								{
-									System.out.println("Unexpected end of file - SerwerHTTP - run()");
-									break;
-								}
-								
-							} 
+								reader.copy(outp);
+							}
+							else                                           
+							{
+								outp.writeBytes("HTTP/1.0 200 OK\r\n");                        
+								outp.writeBytes("Content-Type: text/html\r\n");                
+								outp.writeBytes("Content-Length: \r\n");                       
+								outp.writeBytes("\r\n");
+								//response body                                                
+								if(reader.isAjax())
+									while(true)
+									{
+										if(!reader.existNextLine())
+											break;
+											ParserAjax pAjax = new ParserAjax();
+											
+									}
+								else 
+									while(true)
+									{
+										if(!reader.existNextLine())
+											break;
+										try 
+										{
+											outp.writeBytes(reader.nextLine()+"\n"); 
+										}
+										catch (IOException ex) 
+										{
+											System.out.println("Reading file error - SerwerHTTP - run()");
+											break;
+										}
+										catch (NoSuchElementException e) 
+										{
+											System.out.println("Unexpected end of file - SerwerHTTP - run()");
+											break;
+										}
+									} 
+							}
 						}
+						else
+						{
+							outp.writeBytes("HTTP/1.1 501 Not supported.\r\n");
+						}  
 					}
-					else
-					{
-						outp.writeBytes("HTTP/1.1 501 Not supported.\r\n");
-					}  
 				}
 				catch(NullPointerException e)
 				{

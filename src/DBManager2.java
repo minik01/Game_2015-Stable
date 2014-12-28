@@ -48,21 +48,27 @@ public class DBManager2 {
 		}
 		return new VarShip(-1,-1,-1, -1, -1, true);
 	}
-	public VarShip getShipBySector(int x, int y, int r)
+	public VarShip[] getShipsBySector(int x, int y, int r)		//?
 	{
+		VarShip[] ships = new VarShip[128];
 		int xMinusR = x-r;
 		int xPlusR = x+r;
 		int yMinusR = y-r;
 		int yPlusR = y+r;
+		int i =0;
 		log.print('d', "select * from ship WHERE current_x >"+xMinusR+" and current_x <"+xPlusR+" and current_y >"+yMinusR+" and current_y <"+yPlusR+" )");
 		ResultSet rs = dbm.select2("select * from ship WHERE current_x >"+xMinusR+" and current_x <"+xPlusR+" and current_y >"+yMinusR+" and current_y <"+yPlusR+" )");
 		try {
-			return new VarShip(rs.getInt("id"),rs.getInt("ovnerId"),rs.getInt("lvl"), rs.getInt("current_x"), rs.getInt("current_y"), rs.getBoolean("busy"));
+			while(rs.next())
+			{
+				ships[i] = new VarShip(rs.getInt("id"),rs.getInt("ovnerId"),rs.getInt("lvl"), rs.getInt("current_x"), rs.getInt("current_y"), rs.getBoolean("busy"));
+			}
+			return ships;
 		} catch (SQLException e) 
 		{
-			System.out.println("ERROR - PlayersShip - getShip()");
+			System.out.println("ERROR - PlayersShip - getShipsBySector()");
 		}
-		return new VarShip(-1,-1,-1, -1, -1, true);
+		return null;
 	}
 	public void setShip(VarShip ship)
 	{

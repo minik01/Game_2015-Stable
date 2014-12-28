@@ -45,13 +45,6 @@ public class VarPlayer {
 		return mail;
 	}
 	
-	public void create(int id)
-	{
-		WrapperShip wp = new WrapperShip(dbm);
-		this.id = id;
-		int shipId = wp.getCounterOfShip();
-		ship = new VarShip(shipId, id,1, log.start_x, log.start_y, false);
-	}
 	public void setID(int counter) {
 		id = counter;
 	}

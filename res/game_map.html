@@ -40,11 +40,11 @@
 	    if (r.status == 200) {
 
 		var parser = new DOMParser();
-		xmlDoc = parser.parseFromString(r.responseText, "application/xml");
-	
+		xmlDoc	=	parser.parseFromString(r.responseText				, "application/xml");
+		xmlDoc2	=	parser.parseFromString(xmlDoc.getElementsByTagName('player')	, "application/xml");
 	      alert(
 		'XML z serwera: ' + 
-		xmlDoc.getElementsByTagName('player').text//.getElementsByTagName('tekst')[0].childNodes[0].nodeValue		
+		xmlDoc.firstChild.children[0].children//.text//.getElementsByTagName('tekst')[0].childNodes[0].nodeValue		
 		//xmlDoc.getElementsByTagName('tekst')[0].childNodes[0].nodeValue
 	      );
 	    };

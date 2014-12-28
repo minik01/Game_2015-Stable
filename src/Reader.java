@@ -5,8 +5,10 @@ public class Reader{
 	private Utilities log; //log
 	private File file; 
 	private Scanner in;
-	private boolean bin;
+	private boolean bin,ajax;
 	private String[] special;
+	//private char type;
+
 
 	public Reader(String[] special)
 	{
@@ -17,11 +19,16 @@ public class Reader{
 	{
 		file = new File(Filename);
 		in = new Scanner(file);
-		bin=(Filename.endsWith(".ico") || Filename.endsWith(".png") );
+		bin = (Filename.endsWith(".ico") || Filename.endsWith(".png") );
+		ajax = Filename.startsWith("ajax");
 	}
 	public boolean bin()
 	{
 		return bin;
+	}
+	public boolean isAjax()
+	{
+		return ajax;
 	}
 	public void copy(DataOutputStream to) 
 	{
@@ -43,7 +50,6 @@ public class Reader{
 			System.out.println("Reading file error - Reader - copy()");
 		}
 	}
-
 	private String parser(String input)
 	{
 		if(input.contains("<!0Tresc>"))
@@ -71,13 +77,12 @@ public class Reader{
 	}
 	public String nextLine()
 	{
-		
-		String special_line=in.nextLine(); // get line to check
-		String string_out=special_line; // new line on output
+		String special_line = in.nextLine(); // get line to check
+		String string_out = special_line; // new line on output
 	
-		int ile=2; // how many markers do we have
+		int markers=2; // how many markers do we have
 		int i=0; // current marker
-		while(i<ile)
+		while(i<markers)
 		{
 			if(special_line.contains("<!"+i+"Tresc>"))
 			{
