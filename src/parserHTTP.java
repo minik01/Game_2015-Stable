@@ -35,7 +35,7 @@ public class parserHTTP
 						name = input.substring(NameStart,i);
 						log.print('f',"imie="+name+" ([0]!)");
 						break;
-					}
+					} 
 				}
 			}
 
