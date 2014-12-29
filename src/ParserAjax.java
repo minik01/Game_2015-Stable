@@ -22,7 +22,7 @@ public class ParserAjax
 	{
 		int id = 0; //id tez trzeba bedzie wysylac w zapytaniu.
 		//ArrayList<String> lista = 
-		//tu dodaj zapytanie dp bazy danych
+		//tu dodaj zapytanie do bazy danych
 		VarShip ship = dbm2.getShipById(id);
 		//dbm2.getShipsBySector(ship.getX(), ship.getY(), 150);
 		
