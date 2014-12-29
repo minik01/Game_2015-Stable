@@ -3,12 +3,14 @@ import java.util.Timer;
 
 public class Timers extends TimerTask {{
 	
-	private Utilities log; 
-	public DBManager2 dbm2;
+	private Utilities log;
 	public XmlShipsManagement xmlman;
 	
+	public Timers(){
+		log = new Utilities();
+	}
 	
-	public boolean ResetTurn(){
+	public boolean ResetTurn(DBManager2 dbm2){
 		
 		try{
 			
@@ -20,6 +22,8 @@ public class Timers extends TimerTask {{
 	                
 	                // TODO tutaj trzeba pobrac tabele ships z bazy danych i wyciagnac wartosci
 	                
+			    	
+			    	
 	                // TODO tutaj trzeba zapisac to do pliku xml 
 	                xmlman = new XmlShipsManagement("ships_data.xml","ship");
 			    }
