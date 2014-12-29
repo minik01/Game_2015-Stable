@@ -9,7 +9,7 @@
     </ship>
     <ship id="2">
         <owner_id>69</owner_id>
-        <x>180</x>
+        <x>160</x>
         <y>250</y>
         <sector>22</sector>
 		<busy>0</busy>
@@ -17,8 +17,8 @@
 	<ship id="3">
         <owner_id>33</owner_id>
         <x>180</x>
-        <y>250</y>
-        <sector>22</sector>
+        <y>255</y>
+        <sector>225</sector>
 		<busy>1</busy>
     </ship>
 </objects>

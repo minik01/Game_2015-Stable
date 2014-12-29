@@ -14,7 +14,7 @@ import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 import java.lang.*;
 import java.util.*;
 
-public class XmlManagement {
+public class XmlShipsManagement {
 
 	private static  File fXmlFile;
 	private static  DocumentBuilderFactory docBuilderFactory;
@@ -22,6 +22,7 @@ public class XmlManagement {
 	private static  Document doc;
 	private static  NodeList nodeList;
 	private static String docName="ships_data.xml";
+	private static String nodeName="ship";
 	
 	// always call it before using file
 	private static void openXML() {
@@ -34,14 +35,15 @@ public class XmlManagement {
 	
 			doc.getDocumentElement().normalize();
 			
-			nodeList = doc.getElementsByTagName("ship"); // ship for this case
+			nodeList = doc.getElementsByTagName(nodeName); // ship for this case
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	// constructor to prevent NullException
-	public XmlManagement() {
-		
+	public XmlManagement(String fileName,String nodesName) {
+		docName = filename;
+		nodeName = nodesName;
 		openXML();
 	}
 	
