@@ -22,12 +22,12 @@ public class Timers extends TimerTask {{
 			    	
 			    	log.print("Turn reset now!")
 	                
-	                // TODO tutaj trzeba pobrac tabele ships z bazy danych i wyciagnac wartosci
-	                int numberOfShips = dbm2.numberOfShips();
+	                
+	                xmlman = new XmlShipsManagement("ships_data.xml","ship",dbm2);
 			    	
+			    	if(xmlman.copyToXML()) log.print("New turn !");
 			    	
-	                // TODO tutaj trzeba zapisac to do pliku xml 
-	                xmlman = new XmlShipsManagement("ships_data.xml","ship");
+			    	else log.print("Error in transfer from db to xml!!!!!!!");
 			    }
 			};
 	

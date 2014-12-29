@@ -16,6 +16,7 @@ import java.util.*;
 
 public class XmlShipsManagement {
 
+	private DBManager2 dbm2;
 	private static  File fXmlFile;
 	private static  DocumentBuilderFactory docBuilderFactory;
 	private static  DocumentBuilder docBuilder;
@@ -41,7 +42,8 @@ public class XmlShipsManagement {
 		}
 	}
 	// constructor to prevent NullException
-	public XmlManagement(String fileName,String nodesName) {
+	public XmlManagement(String fileName,String nodesName, DBManager2 db) {
+		dbm2 = db;
 		docName = filename;
 		nodeName = nodesName;
 		openXML();
@@ -55,6 +57,48 @@ public class XmlShipsManagement {
 		return nodeList.getLength();
 	}
 	
+	// get ships table by sql and save to ships_data.xml
+	
+	public boolean copyToXML() {
+		
+		openXML();
+		
+		try {
+			Connection con = dbm2.getConnection();
+			
+			ResultSet rs = con.createStatement().executeQuery("select * from ships");
+
+		    ResultSetMetaData rsmd = rs.getMetaData();
+		    int colCount = rsmd.getColumnCount();
+
+		    while (rs.next()) {
+		      Element row = doc.createElement("Row");
+		      results.appendChild(row);
+		      for (int i = 1; i <= colCount; i++) {
+		        String columnName = rsmd.getColumnName(i);
+		        Object value = rs.getObject(i);
+		        Element node = doc.createElement(columnName);
+		        node.appendChild(doc.createTextNode(value.toString()));
+		        row.appendChild(node);
+		      }
+		      
+		   // Write updated XML
+				
+			OutputFormat format = new OutputFormat(doc);
+			format.setIndenting(true);
+			String filename = docName;
+			XMLSerializer serializer = new XMLSerializer(
+				new FileOutputStream(new File(filename)), format);
+			serializer.serialize(doc);
+			
+			return true;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	      
+	      
+	}
 	// Read value from ship parameter
 	
 	public String readNodeValue(int object_id, String param) {
@@ -148,7 +192,7 @@ public class XmlShipsManagement {
 	
 	
 	
-	
+	/*
 	public static void main(String argv[]) {
  
 		try {
@@ -239,4 +283,4 @@ public class XmlShipsManagement {
 		}
 		}
  
-}
+}*/

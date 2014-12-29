@@ -10,7 +10,7 @@ public class DBManager
 
 	private Utilities log;
 	private Statement statement;
-	private Connection connection;
+	public Connection connection;
 	private ResultSet rs;
 	
     public DBManager()
@@ -35,7 +35,9 @@ public class DBManager
 				System.out.println("DB error - constructor ");
 		 }
     }
-	
+	public Connection getConnection() {
+		return connection;
+	}
 	public void close()
 	{
 		try
