@@ -70,10 +70,10 @@ public class XmlShipsManagement {
 
 		    ResultSetMetaData rsmd = rs.getMetaData();
 		    int colCount = rsmd.getColumnCount();
-
+		    
 		    while (rs.next()) {
 		      Element row = doc.createElement("Row");
-		      results.appendChild(row);
+		      ship.appendChild(row);
 		      for (int i = 1; i <= colCount; i++) {
 		        String columnName = rsmd.getColumnName(i);
 		        Object value = rs.getObject(i);

@@ -10,7 +10,7 @@ public class DBManager
 
 	private Utilities log;
 	private Statement statement;
-	public Connection connection;
+	private Connection connection;
 	private ResultSet rs;
 	
     public DBManager()
