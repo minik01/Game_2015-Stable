@@ -25,7 +25,7 @@ public class DBManager2 {
 		log.print('d', "CREATE TABLE IF NOT EXISTS players (id integer, username string, password string, mail string, points int, banned boolean)");
 		dbm.update( "CREATE TABLE IF NOT EXISTS players (id integer, username string, password string, mail string, points int, banned boolean)");
 		
-		log.print('d', "Tworzenie tabeli statków:");
+		log.print('d', "Tworzenie tabeli statkow:");
 		log.print('d', "CREATE TABLE IF NOT EXISTS ship (id integer,ovnerId integer, lvl int, current_x int, current_y int, busy boolean)");
 		dbm.update( "CREATE TABLE IF NOT EXISTS ship (id integer,ovnerId integer, lvl int, current_x int, current_y int, busy boolean)");
 	}
@@ -36,7 +36,7 @@ public class DBManager2 {
 	{
 		dbm.update("insert into ship values("+ship.getId()+","+ship.getOvnerId()+","+ship.getLvl()+","+ship.getX()+","+ship.getY()+",'"+ship.getBusy()+"')");	//nie zapisuje do bazy danych
 		printAllShip();
-		//przydałoby się sprawdzić, Id nie jest zajęte...
+		//przydaloby sie�sprawdzic, Id nie jest zajete...
 	}
 	public VarShip getShipById(int id)
 	{
@@ -75,6 +75,22 @@ public class DBManager2 {
 	public void setShip(VarShip ship)
 	{
 		dbm.update("update ship set lvl = "+ship.getLvl()+",current_x = "+ship.getX()+",current_y = "+ship.getY()+",busy = '"+ship.getBusy()+"' where id="+ship.getId()+ ";");
+	}
+	public int numberOfShips()
+	{
+		int counterOfShips = 0;
+		try{
+			ResultSet rs = dbm.select2("select * from ship");
+			while(rs.next())
+				{ 
+					counterOfShips++;
+				}
+			}
+		catch(java.sql.SQLException e)
+		{
+			System.out.println("java.sql.SQLException in Player.numberOfShips()");
+		}
+		return counterOfShips;
 	}
 	public int printAllShip()
 	{
@@ -160,6 +176,7 @@ public class DBManager2 {
 		else return false;
 		return false;
 	}
+	
 	public int printAllPlayers()
 	{
 		log.print('d',"====================================Gracze================================");

@@ -5,12 +5,14 @@ public class Timers extends TimerTask {{
 	
 	private Utilities log;
 	public XmlShipsManagement xmlman;
+	public DBManager2 dbm2;
 	
-	public Timers(){
+	public Timers(DBManager2 db){
 		log = new Utilities();
+		dbm2 = db;
 	}
 	
-	public boolean ResetTurn(DBManager2 dbm2){
+	public boolean ResetTurn(){
 		
 		try{
 			
@@ -21,7 +23,7 @@ public class Timers extends TimerTask {{
 			    	log.print("Turn reset now!")
 	                
 	                // TODO tutaj trzeba pobrac tabele ships z bazy danych i wyciagnac wartosci
-	                
+	                int numberOfShips = dbm2.numberOfShips();
 			    	
 			    	
 	                // TODO tutaj trzeba zapisac to do pliku xml 
