@@ -1,7 +1,11 @@
-import java.util.Timer;
+import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.ScheduledExecutorService;
 
-
-public class Timers extends TimerTask {{
+public class Timers extends TimerTask {
 	
 	private Utilities log;
 	public XmlShipsManagement xmlman;
@@ -20,14 +24,14 @@ public class Timers extends TimerTask {{
 			Runnable reset = new Runnable() {
 			    public void run() {
 			    	
-			    	log.print("Turn reset now!")
+			    	System.out.println("Turn reset now!");
 	                
 	                
 	                xmlman = new XmlShipsManagement("ships_data.xml","ship",dbm2);
 			    	
-			    	if(xmlman.copyToXML()) log.print("New turn !");
+			    	if(xmlman.copyToXML()) System.out.println("New turn !");
 			    	
-			    	else log.print("Error in transfer from db to xml!!!!!!!");
+			    	else System.out.println("Error in transfer from db to xml!!!!!!!");
 			    }
 			};
 	
@@ -35,8 +39,8 @@ public class Timers extends TimerTask {{
 			executor.scheduleAtFixedRate(reset, 0, 30, TimeUnit.SECONDS);
 		
 			return true; // true when calculations are over
-		}catch(ExecutionException ex) {
-		    log.print("Exception caught while reseting turn");
+		}catch(Exception ex) {
+			System.out.println("Exception caught while reseting turn");
 		    return false;
 
 		}	

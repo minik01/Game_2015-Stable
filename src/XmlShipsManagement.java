@@ -13,6 +13,7 @@ import com.sun.org.apache.xml.internal.serialize.OutputFormat;
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 import java.lang.*;
 import java.util.*;
+import java.sql.*;
 
 public class XmlShipsManagement {
 
@@ -42,9 +43,9 @@ public class XmlShipsManagement {
 		}
 	}
 	// constructor to prevent NullException
-	public XmlManagement(String fileName,String nodesName, DBManager2 db) {
+	public XmlShipsManagement(String fileName,String nodesName, DBManager2 db) {
 		dbm2 = db;
-		docName = filename;
+		docName = fileName;
 		nodeName = nodesName;
 		openXML();
 	}
@@ -63,6 +64,12 @@ public class XmlShipsManagement {
 		
 		openXML();
 		
+		removeAll(doc, Node.ELEMENT_NODE, "ships");
+
+	    removeAll(doc, Node.COMMENT_NODE, null);
+
+	    doc.normalize();
+	    
 		try {
 			Connection con = dbm2.getConnection();
 			
@@ -71,17 +78,20 @@ public class XmlShipsManagement {
 		    ResultSetMetaData rsmd = rs.getMetaData();
 		    int colCount = rsmd.getColumnCount();
 		    
+		    Element ships = doc.createElement("ship");
+		    doc.appendChild(ships);
+		    
 		    while (rs.next()) {
-		      Element row = doc.createElement("Row");
-		      ship.appendChild(row);
+		      Element ship = doc.createElement("ship");
+		      ships.appendChild(ship);
 		      for (int i = 1; i <= colCount; i++) {
 		        String columnName = rsmd.getColumnName(i);
 		        Object value = rs.getObject(i);
 		        Element node = doc.createElement(columnName);
 		        node.appendChild(doc.createTextNode(value.toString()));
-		        row.appendChild(node);
+		        ship.appendChild(node);
 		      }
-		      
+		   }
 		   // Write updated XML
 				
 			OutputFormat format = new OutputFormat(doc);
@@ -99,6 +109,18 @@ public class XmlShipsManagement {
 	      
 	      
 	}
+	
+	// Remove all nodes from xml
+	public static void removeAll(Node node, short nodeType, String name) {
+	    if (node.getNodeType() == nodeType && (name == null || node.getNodeName().equals(name))) {
+	      node.getParentNode().removeChild(node);
+	    } else {
+	      NodeList list = node.getChildNodes();
+	      for (int i = 0; i < list.getLength(); i++) {
+	        removeAll(list.item(i), nodeType, name);
+	      }
+	    }
+	  }
 	// Read value from ship parameter
 	
 	public String readNodeValue(int object_id, String param) {
@@ -281,6 +303,6 @@ public class XmlShipsManagement {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		}
+		}*/
  
-}*/
+}

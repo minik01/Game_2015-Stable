@@ -1,7 +1,7 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import java.sql.Connection;
 
 public class DBManager2 {
 	private Utilities log; //log

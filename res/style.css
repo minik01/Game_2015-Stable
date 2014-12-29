@@ -121,6 +121,15 @@ a:hover,.sub_btn:hover {
 	color: rgb(220, 20, 80);
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
+#game_clock {
+	font-family: 'Special Elite', cursive;
+	font-size: 10px;
+	padding: 0px;
+	letter-spacing: 5px;
+	margin-top: 10px;
+	margin-left: 85%;
+	color: rgb(220, 20, 80);
+}
 .game_list_div {
 	position: inherit;
 	width: 10%;

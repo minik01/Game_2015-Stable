@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects>
+<ships>
     <ship id="1">
         <owner_id>99</owner_id>
         <x>110</x>
@@ -21,4 +21,4 @@
         <sector>225</sector>
 		<busy>1</busy>
     </ship>
-</objects>
+</ships>

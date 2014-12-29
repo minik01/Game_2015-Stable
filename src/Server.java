@@ -9,11 +9,14 @@ public class Server {
         Runnable[] runners = new Runnable[MAXUSERS];
         Thread[] threads = new Thread[MAXUSERS];
  
+        Timers timer = new Timers(dbm2);
+        timer.ResetTurn();
+        
         for(int i=0; i<MAXUSERS; i++) 
         {
         	runners[i] = new SerwerHTTP(dbm2, i);
         }
- 
+        
         for(int i=0; i<MAXUSERS; i++) {
             threads[i] = new Thread(runners[i]);
         }

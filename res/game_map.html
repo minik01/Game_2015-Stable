@@ -12,6 +12,8 @@
 	<script src="draw_radar.js"></script>
 
 	<script type="text/javascript">
+	var reset = false;
+	
 	var r;
 	var xmlDoc;	
 	function getXMLHttpRequest()
@@ -33,7 +35,18 @@
 	  }
 	  return request;
 	} 
-
+	if(reset) {
+		var secLeft = 30;
+		var myVar = setInterval(function(){myTimer()},30000);
+		function myTimer() {
+		
+		document.getElementById("demo").innerHTML = --30;
+}
+	
+	
+	
+	
+	}
 	function processResponse()
 	{
 	  if (r.readyState == 4) {
@@ -70,7 +83,7 @@
 		<div id="game_index_header_div" class="game_header_div">
 			
 			<p id="game_index_header_logo_p" class="game_header_logo_p">SPACE ZOMBIE</p>
-		
+			<p id="game_clock">TIME</p>
 		
 		
 		</div>
