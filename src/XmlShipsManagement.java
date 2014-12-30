@@ -80,10 +80,8 @@ public class XmlShipsManagement {
 		    doc = docBuilder.newDocument();
 	    
 		
-			Connection con = dbm2.getConnection();
 			
-			ResultSet rs = con.createStatement().executeQuery("select * from ship");
-			
+			ResultSet rs = dbm2.getDbm().select2("select * from ship");
 		    ResultSetMetaData rsmd = rs.getMetaData();
 		    int colCount = rsmd.getColumnCount();
 		    

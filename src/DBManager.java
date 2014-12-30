@@ -35,9 +35,7 @@ public class DBManager
 				System.out.println("DB error - constructor ");
 		 }
     }
-	public Connection getConnection() {
-		return connection;
-	}
+	
 	public void close()
 	{
 		try

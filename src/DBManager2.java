@@ -11,12 +11,9 @@ public class DBManager2 {
 		dbm = new DBManager();
 		log = new Utilities();
 	}
-	public Connection getConnection() {
-		
-		return dbm.getConnection();
-	}
-	public void closeConnection() {
-		dbm.close();
+	
+	public DBManager getDbm() {
+		return dbm;
 	}
 	public void clear()
 	{
