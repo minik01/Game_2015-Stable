@@ -74,19 +74,16 @@ public class XmlShipsManagement {
 	
 	public boolean copyToXML() {
 		
-		openXML();
-		
-		removeAll(doc, Node.ELEMENT_NODE, "ships");
-
-	    removeAll(doc, Node.COMMENT_NODE, null);
-
-	    doc.normalize();
-	    
 		try {
+			docBuilderFactory = DocumentBuilderFactory.newInstance();
+			docBuilder = docBuilderFactory.newDocumentBuilder();
+		    doc = docBuilder.newDocument();
+	    
+		
 			Connection con = dbm2.getConnection();
 			
 			ResultSet rs = con.createStatement().executeQuery("select * from ship");
-
+			
 		    ResultSetMetaData rsmd = rs.getMetaData();
 		    int colCount = rsmd.getColumnCount();
 		    
@@ -104,36 +101,31 @@ public class XmlShipsManagement {
 		        ship.appendChild(node);
 		      }
 		   }
-		   // Write updated XML
-				/*
-			OutputFormat format = new OutputFormat(doc);
-			format.setIndenting(true);
-			String filename = docName;
-			XMLSerializer serializer = new XMLSerializer(
-				new FileOutputStream(new File(filename)), format);
-			serializer.serialize(doc);
-			*/
+		   
 		    
 		    // write the content into xml file
+		    
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
 			StreamResult result = new StreamResult(new File(docName));
+			transformer.transform(source, result); // execute to file
 			
 			// print in console
-			StreamResult result = new StreamResult(System.out);
+			StreamResult result2 = new StreamResult(System.out);
 			
-			transformer.transform(source, result);
+			transformer.transform(source, result2); // execute to console
 			 
 			System.out.println("File saved!");
 		    
-			return true;
-		}catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	      
-	      
+		  }catch (ParserConfigurationException pce) {
+			pce.printStackTrace();
+		  }catch (TransformerException tfe) {
+			tfe.printStackTrace();
+		  }catch(SQLException e){
+			  e.printStackTrace();
+		 }
+	      return true;
 	}
 	
 	// Remove all nodes from xml
