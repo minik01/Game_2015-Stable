@@ -22,6 +22,7 @@ public class Timers extends TimerTask {
 			
 		
 			Runnable reset = new Runnable() {
+				
 			    public void run() {
 			    	
 			    	System.out.println("Turn reset now!");
@@ -46,6 +47,10 @@ public class Timers extends TimerTask {
 		}	
 		
 	}
-	
+	@Override
+	 public void run() {
+    	
+    	
+    }
 	
 }
