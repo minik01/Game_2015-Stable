@@ -21,6 +21,13 @@ public class DBManager2 {
 	 	dbm.update("drop table if exists players");
 	 	dbm.update("drop table if exists ship");
 		initTables();
+		
+		// dodane na sztywno tworzenie statkow dla admina
+		
+		addShip(new VarShip(99,69,1,200,340,false));
+		addShip(new VarShip(100,99,1,250,320,false));
+		
+
 	}
 	public void initTables()
 	{

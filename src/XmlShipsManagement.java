@@ -82,6 +82,7 @@ public class XmlShipsManagement {
 		
 			
 			ResultSet rs = dbm2.getDbm().select2("select * from ship");
+			
 		    ResultSetMetaData rsmd = rs.getMetaData();
 		    int colCount = rsmd.getColumnCount();
 		    
