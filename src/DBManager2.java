@@ -42,7 +42,7 @@ public class DBManager2 {
 	{
 		dbm.update("insert into ship values("+ship.getId()+","+ship.getOvnerId()+","+ship.getLvl()+","+ship.getX()+","+ship.getY()+",'"+ship.getBusy()+"')");	//nie zapisuje do bazy danych
 		printAllShip();
-		//przydaloby sie sprawdzic, Id nie jest zajete...
+		//przydaloby sie sprawdzic, Id nie jest zajete...
 	}
 	public VarShip getShipById(int id)
 	{
