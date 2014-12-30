@@ -73,12 +73,12 @@ public class XmlShipsManagement {
 		try {
 			Connection con = dbm2.getConnection();
 			
-			ResultSet rs = con.createStatement().executeQuery("select * from ships");
+			ResultSet rs = con.createStatement().executeQuery("select * from ship");
 
 		    ResultSetMetaData rsmd = rs.getMetaData();
 		    int colCount = rsmd.getColumnCount();
 		    
-		    Element ships = doc.createElement("ship");
+		    Element ships = doc.createElement("ships");
 		    doc.appendChild(ships);
 		    
 		    while (rs.next()) {
