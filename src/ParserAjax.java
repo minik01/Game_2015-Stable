@@ -20,7 +20,7 @@ public class ParserAjax
 
 	private void setResponse()
 	{
-		int id = 0; //id tez trzeba bedzie wysylac w zapytaniu.
+		int id = 0; //id tez trzeba bedzie wysylac w zapytaniu.
 		//ArrayList<String> lista = 
 		//tu dodaj zapytanie do bazy danych
 		VarShip ship = dbm2.getShipById(id);
@@ -35,7 +35,7 @@ public class ParserAjax
 		response.add("    <busy>false</busy>");
 		response.add("  </ship>");
 		response.add("</baza>");
-		// mozesz zrobic metode w VarShip toXML zwracajaca ArrayList i tylko przepisywac kolejne linijki
+		// mozesz zrobic metode w VarShip toXML zwracajaca ArrayList i tylko przepisywac kolejne linijki
 		// tak samo z VarPlayer
 		
 	} 
