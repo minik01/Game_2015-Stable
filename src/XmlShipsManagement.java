@@ -9,11 +9,23 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.FileOutputStream;
-import com.sun.org.apache.xml.internal.serialize.OutputFormat;
-import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
+//import com.sun.org.apache.xml.internal.serialize.OutputFormat;
+//import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 import java.lang.*;
 import java.util.*;
 import java.sql.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+ 
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 public class XmlShipsManagement {
 
@@ -93,14 +105,28 @@ public class XmlShipsManagement {
 		      }
 		   }
 		   // Write updated XML
-				
+				/*
 			OutputFormat format = new OutputFormat(doc);
 			format.setIndenting(true);
 			String filename = docName;
 			XMLSerializer serializer = new XMLSerializer(
 				new FileOutputStream(new File(filename)), format);
 			serializer.serialize(doc);
+			*/
+		    
+		    // write the content into xml file
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(doc);
+			StreamResult result = new StreamResult(new File(docName));
 			
+			// print in console
+			StreamResult result = new StreamResult(System.out);
+			
+			transformer.transform(source, result);
+			 
+			System.out.println("File saved!");
+		    
 			return true;
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -198,13 +224,19 @@ public class XmlShipsManagement {
 			}
 			
 			// Write updated XML
-			
+			/*
 			OutputFormat format = new OutputFormat(doc);
 			format.setIndenting(true);
 			String filename = docName;
 			XMLSerializer serializer = new XMLSerializer(
 				new FileOutputStream(new File(filename)), format);
-			serializer.serialize(doc);
+			serializer.serialize(doc);*/
+			
+			// write the content into xml file
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(doc);
+			StreamResult result = new StreamResult(new File(docName));
 
 		} catch (Exception e) {
 			e.printStackTrace();
