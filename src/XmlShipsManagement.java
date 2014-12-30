@@ -110,12 +110,12 @@ public class XmlShipsManagement {
 			StreamResult result = new StreamResult(new File(docName));
 			transformer.transform(source, result); // execute to file
 			
-			// print in console
-			StreamResult result2 = new StreamResult(System.out);
-			
-			transformer.transform(source, result2); // execute to console
+//			print in console
+//			StreamResult result2 = new StreamResult(System.out);
+//			
+//			transformer.transform(source, result2); // execute to console
 			 
-			System.out.println("File saved!");
+			System.out.println("File "+docName+" saved!");
 		    
 		  }catch (ParserConfigurationException pce) {
 			pce.printStackTrace();
