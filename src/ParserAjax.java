@@ -24,6 +24,8 @@ public class ParserAjax
 	private void getTime()
 	{
 		System.out.println("ACK for time!!!");
+		response = new ArrayList<String>();
+		response.add("ajax_time_from_server_reset");	
 	}
 	private void setResponse()
 	{
