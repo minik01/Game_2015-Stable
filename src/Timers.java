@@ -11,6 +11,7 @@ public class Timers extends TimerTask {
 	public XmlShipsManagement xmlman;
 	public DBManager2 dbm2;
 	
+	
 	public Timers(DBManager2 db){
 		log = new Utilities();
 		dbm2 = db;

@@ -3,11 +3,12 @@ import java.util.ArrayList;
 public class ParserAjax 
 {
 	private Utilities log; //obowiazuje w tej klasie log 'r' przy odebranym i 's' przy wysylanym 
-	ArrayList<String> response;
-	String request;
-	DBManager2 dbm2;
+	public ArrayList<String> response;
+	public String request;
+	public DBManager2 dbm2;
+	private Timers timer;
 	int count;
-	public ParserAjax(DBManager2 dbm2,String request)
+	public ParserAjax(DBManager2 dbm2,String request,Timers timer)
 	{
 		count = 0;
 		log = new Utilities();
@@ -15,9 +16,15 @@ public class ParserAjax
 		log.print('r', "ajax request: "+request);
 		this.request = request;
 		this.dbm2 = dbm2;
-		setResponse();
+		this.timer = timer;
+		//setResponse();
+		if(request.startsWith("ajax_time_from_server"))
+			getTime();
 	}
-
+	private void getTime()
+	{
+		System.out.println("ACK for time!!!");
+	}
 	private void setResponse()
 	{
 		int id = 0; //id tez trzeba bedzie wysylac w zapytaniu.
@@ -35,8 +42,6 @@ public class ParserAjax
 		response.add("    <busy>false</busy>");
 		response.add("  </ship>");
 		response.add("</baza>");
-		// mozesz zrobic metode w VarShip toXML zwracajaca ArrayList i tylko przepisywac kolejne linijki
-		// tak samo z VarPlayer
 		
 	} 
 	public String nextLine()

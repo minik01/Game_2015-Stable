@@ -14,7 +14,7 @@ public class Server {
         
         for(int i=0; i<MAXUSERS; i++) 
         {
-        	runners[i] = new SerwerHTTP(dbm2, i);
+        	runners[i] = new SerwerHTTP(i, dbm2, timer);
         }
         
         for(int i=0; i<MAXUSERS; i++) {
