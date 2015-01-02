@@ -13,7 +13,7 @@
 
 	<script type="text/javascript">
 	
-	var data_sync;
+	var data_sync=0;
 	var r;
 	var xmlDoc;	
 	function getXMLHttpRequest()
@@ -91,9 +91,14 @@
 	////////////////////////
 	window.onload = function() {
 		
-		if(true) {
+		//ask_for_time();
+		var here = new Date().getMilliseconds();
+		if(data_sync!=0) {
+			
+			console.log(ask_for_time-(here/1000));
 			
 			// TODO : synchro handling USE data_sync;
+			
 		}
 		countdown();
 	

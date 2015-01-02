@@ -27,8 +27,8 @@ public class ParserAjax
 		response = new ArrayList<String>();
 		int time = timer.getStartTime();
 		String stime = Integer.toString(time);
-		System.out.println(time);
-		response.add("startTime is : "+ stime);	
+		System.out.println("startTime is : "+ time);
+		response.add(stime);	
 	}
 	private void setResponse()
 	{
