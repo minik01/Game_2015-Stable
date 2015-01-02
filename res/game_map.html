@@ -66,9 +66,10 @@
 	
 	
 	var count
+	var turn_time = 30;
 	function countdown() {
 		// your code goes here
-		count = 30;
+		count = turn_time;
 		UpdateTimer();
 		var timerId = setInterval(function() {
 			count--;
@@ -76,7 +77,7 @@
 			UpdateTimer();
 			if(count == 0) {
 				// your code goes here
-				count = 30;
+				count = turn_time+1;
 			}
 		}, 1000);
 	}
