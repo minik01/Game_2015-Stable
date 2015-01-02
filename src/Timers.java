@@ -26,7 +26,11 @@ public class Timers extends TimerTask {
 			
 		
 			Runnable reset = new Runnable() {
-				
+				private int tmp;
+				public void setTemp(int temp)
+				{
+					tmp = temp;
+				}
 			    public void run() {
 			    	
 			    	System.out.println("Turn reset now!");
