@@ -12,8 +12,8 @@
 	<script src="draw_radar.js"></script>
 
 	<script type="text/javascript">
-	var reset = false;
 	
+	var data_sync;
 	var r;
 	var xmlDoc;	
 	function getXMLHttpRequest()
@@ -34,18 +34,6 @@
 	    }
 	  }
 	  return request;
-	} 
-	if(reset) {
-		var secLeft = 30;
-		var myVar = setInterval(function(){myTimer()},30000);
-		function myTimer() {
-		
-		document.getElementById("demo").innerHTML = --30;
-}
-	
-	
-	
-	
 	}
 	function processResponse()
 	{
@@ -63,13 +51,52 @@
 	    };
 	  };
 	}
-	function getNewDate() 
-	{
-		r = getXMLHttpRequest();
-		r.open('GET', 'ajax_example_request', true);
-		r.onreadystatechange = processResponse;
-		r.send(null);
-	}		
+	function ask_for_time() {
+		
+		xmlhttp=getXMLHttpRequest();
+		xmlhttp.open("GET","ajax_time_request",false);
+		xmlhttp.send();
+		data_sync=xmlhttp.responseText;
+		console.log(data_sync);
+	}
+
+	
+	
+	///////////////////////// timer
+	
+	
+	var count
+	function countdown() {
+		// your code goes here
+		count = 30;
+		UpdateTimer();
+		var timerId = setInterval(function() {
+			count--;
+			console.log(count);
+			UpdateTimer();
+			if(count == 0) {
+				// your code goes here
+				count = 30;
+			}
+		}, 1000);
+	}
+	
+	function UpdateTimer() {
+		document.getElementById('game_clock').style.fontSize="large";
+		document.getElementById('game_clock').innerHTML = "Turn ends in " + count + "s";
+		
+	}
+	
+	////////////////////////
+	window.onload = function() {
+		
+		if(true) {
+			
+			// TODO : synchro handling USE data_sync;
+		}
+		countdown();
+	
+	}
 	</script>
 </head>
 
@@ -78,7 +105,7 @@
 	<!--<a id="open">open</a> <br>
 	<a id="output"></a><br>-->
 	
-	<div id="game_index_div">
+	<div id="game_index_div" >
 	
 		<div id="game_index_header_div" class="game_header_div">
 			
