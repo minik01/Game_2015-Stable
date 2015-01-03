@@ -83,6 +83,7 @@
 			if(count == 0) {
 				// your code goes here
 				count = turn_time+1;
+				count = turn_time;
 				//setTimeout(function() {  }, 4000)
 
 			}
@@ -101,19 +102,10 @@
 		count = Math.ceil(delayVal);
 		//count = delayVal;
 		console.log("Synchro waits for.." +count+" ms.");
-		var preTimerId = setInterval(function() {
-			count--;
-			console.log("Synchro waits for.." +count+" s.");
-			
-			if(count == 0) {
-				// your code goes here
-				window.clearInterval(preTimerId);
-				countdown();
-				
-			}
-		}, 1000);
+		var del = setTimeout(function() { countdown(); }, count)
+		
+		
 	}
-	
 	////////////////////////
 	window.onload = function() {
 		
@@ -136,8 +128,8 @@
 				if(msecDiff%30000==0)
 					countdown(turn_time);
 				else
-					//startTimerAfter(30000-(msecDiff%30000));
-					startTimerAfter(30 - tmp/1000);
+					
+					startTimerAfter(30000 - tmp);
 			
 		}
 	
