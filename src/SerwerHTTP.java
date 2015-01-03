@@ -24,7 +24,7 @@ public class SerwerHTTP implements Runnable
 		{      
 			//for(int i=0;i<10;i++)special[i]=" ";
 			special[0]=" ";
-			ServerSocket serv=new ServerSocket(80); 
+			ServerSocket serv=new ServerSocket(8000+Id); 
 			while(true)
 			{
 				//przyjecie polaczenia 

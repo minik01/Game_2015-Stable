@@ -51,10 +51,8 @@ public class Timers extends TimerTask {
 			    	tmp++;
 			    }
 			};
-	
 			ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 			executor.scheduleAtFixedRate(reset, 0, 30, TimeUnit.SECONDS);
-		
 			return true; // true when calculations are over
 		}catch(Exception ex) {
 			System.out.println("Exception caught while reseting turn");
