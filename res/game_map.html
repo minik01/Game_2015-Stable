@@ -13,7 +13,7 @@
 
 	<script type="text/javascript">
 	
-	var data_sync=0;
+	var msecStartTimeFromServer=0;
 	var r;
 	var xmlDoc;	
 	function getXMLHttpRequest()
@@ -35,6 +35,7 @@
 	  }
 	  return request;
 	}
+	/*
 	function processResponse()
 	{
 	  if (r.readyState == 4) {
@@ -50,16 +51,16 @@
 	      );
 	    };
 	  };
-	}
+	}*/
 	function ask_for_time() {
 		
 		xmlhttp=getXMLHttpRequest();
-		xmlhttp.open("GET","ajax_time_request",false);
+		xmlhttp.open("GET","ajax_time_request.txt",false);
 		xmlhttp.send();
-		data_sync=xmlhttp.responseText;
-		console.log(data_sync);
+		msecStartTimeFromServer=parseInt(xmlhttp.responseText);
+		console.log("Received startTime from server: "+ msecStartTimeFromServer);
 	}
-
+	
 	
 	
 	///////////////////////// timer
@@ -67,8 +68,12 @@
 	
 	var count
 	var turn_time = 30;
+	var msec_turn_time = 25000;
+	var timer_started = false;
+	
 	function countdown() {
 		// your code goes here
+		timer_started= true;
 		count = turn_time;
 		UpdateTimer();
 		var timerId = setInterval(function() {
@@ -78,6 +83,8 @@
 			if(count == 0) {
 				// your code goes here
 				count = turn_time+1;
+				//setTimeout(function() {  }, 4000)
+
 			}
 		}, 1000);
 	}
@@ -87,20 +94,52 @@
 		document.getElementById('game_clock').innerHTML = "Turn ends in " + count + "s";
 		
 	}
+	///////////////////////// timer for synchro
+	
+	function startTimerAfter(delayVal) {
+		// your code goes here
+		count = Math.ceil(delayVal);
+		//count = delayVal;
+		console.log("Synchro waits for.." +count+" ms.");
+		var preTimerId = setInterval(function() {
+			count--;
+			console.log("Synchro waits for.." +count+" s.");
+			
+			if(count == 0) {
+				// your code goes here
+				window.clearInterval(preTimerId);
+				countdown();
+				
+			}
+		}, 1000);
+	}
 	
 	////////////////////////
 	window.onload = function() {
 		
-		//ask_for_time();
-		var here = new Date().getMilliseconds();
-		if(data_sync!=0) {
-			
-			console.log(ask_for_time-(here/1000));
-			
-			// TODO : synchro handling USE data_sync;
+		ask_for_time();
+		var msecTimeHere;
+		
+		if(msecStartTimeFromServer!=0 && timer_started==false) {
+				
+				msecTimeHere = new Date().getTime();
+				var msecDiff = msecTimeHere-msecStartTimeFromServer;
+				console.log("Time here: "+msecTimeHere+" ms");
+				console.log("Server Start Time: "+msecStartTimeFromServer+" ms");
+				console.log("Server started "+msecDiff+" ms ago ( difference )");
+				console.log("Diff in seconds "+(msecDiff/1000));
+				//console.log("diff%30000ms "+(msecDiff%30000));
+				//console.log("30000ms - diff%30000 "+(30000-(msecDiff%30000)));
+				var tmp = msecDiff%30000;
+				tmp+=1;
+				console.log("tmp in seconds "+(tmp/1000));
+				if(msecDiff%30000==0)
+					countdown(turn_time);
+				else
+					//startTimerAfter(30000-(msecDiff%30000));
+					startTimerAfter(30 - tmp/1000);
 			
 		}
-		countdown();
 	
 	}
 	</script>

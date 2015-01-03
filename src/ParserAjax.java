@@ -18,16 +18,19 @@ public class ParserAjax
 		this.dbm2 = dbm2;
 		this.timer = timer;
 		//setResponse();
-		if(request.startsWith("ajax_time_request"))
+		System.out.println("REQUEST AJAX: "+request);
+		if(request.startsWith("time_request.txt"))
 			getTime();
 	}
 	private void getTime()
 	{
 		System.out.println("ACK for time!!!");
 		response = new ArrayList<String>();
-		int time = timer.getStartTime();
-		String stime = Integer.toString(time);
+		long time = timer.getStartTime();
+		String stime = Long.toString(time);
 		System.out.println("startTime is : "+ time);
+		
+		response = new ArrayList<String>();
 		response.add(stime);	
 	}
 	private void setResponse()

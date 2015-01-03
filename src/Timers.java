@@ -10,13 +10,13 @@ public class Timers extends TimerTask {
 	private Utilities log;
 	public XmlShipsManagement xmlman;
 	public DBManager2 dbm2;
-	public int startTime;
+	public long startTime;
 	
 	public Timers(DBManager2 db){
 		log = new Utilities();
 		dbm2 = db;
 	}
-	public int getStartTime(){
+	public long getStartTime(){
 		return startTime;
 	}
 	public boolean ResetTurn(){
@@ -32,8 +32,8 @@ public class Timers extends TimerTask {
 			    	System.out.println("Turn reset now!");
 	                
 			    	
-			    	startTime = (int)TimeUnit.SECONDS.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS);
-			    	
+			    	//startTime = TimeUnit.SECONDS.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS);
+			    	startTime = System.currentTimeMillis();
 			    	
 	                xmlman = new XmlShipsManagement("ships_data.xml","ship",dbm2);
 			    	
