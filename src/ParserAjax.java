@@ -19,7 +19,7 @@ public class ParserAjax
 		this.timer = timer;
 		//setResponse();
 		System.out.println("REQUEST AJAX: "+request);
-		if(request.startsWith("time_request.txt"))
+		if(request.startsWith("time_request"))
 			getTime();
 	}
 	private void getTime()
