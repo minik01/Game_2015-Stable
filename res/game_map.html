@@ -10,94 +10,10 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="draw_map.js"></script>
 	<script src="draw_radar.js"></script>
-
+	<script src="timer.js"></script>
 	<script type="text/javascript">
 	
-	var data_sync;
-	var r;
-	var xmlDoc;	
-	function getXMLHttpRequest()
-	{
-	  var request = false;
-	    
-	  try {
-	    request = new XMLHttpRequest();
-	  } catch(err1) {
-	    try {
-	      request = new ActiveXObject('Msxml2.XMLHTTP');
-	    } catch(err2) {
-	      try {
-		request = new ActiveXObject('Microsoft.XMLHTTP');                
-	      } catch(err3) {
-		request = false;
-	      }
-	    }
-	  }
-	  return request;
-	}
-	function processResponse()
-	{
-	  if (r.readyState == 4) {
-	    if (r.status == 200) {
-
-		var parser = new DOMParser();
-		xmlDoc	=	parser.parseFromString(r.responseText				, "application/xml");
-		xmlDoc2	=	parser.parseFromString(xmlDoc.getElementsByTagName('player')	, "application/xml");
-	      alert(
-		'XML z serwera: ' + 
-		xmlDoc.firstChild.children[0].children//.text//.getElementsByTagName('tekst')[0].childNodes[0].nodeValue		
-		//xmlDoc.getElementsByTagName('tekst')[0].childNodes[0].nodeValue
-	      );
-	    };
-	  };
-	}
-	function ask_for_time() {
-		
-		xmlhttp=getXMLHttpRequest();
-		xmlhttp.open("GET","ajax_time_request",false);
-		xmlhttp.send();
-		data_sync=xmlhttp.responseText;
-		console.log(data_sync);
-	}
-
 	
-	
-	///////////////////////// timer
-	
-	
-	var count
-	var turn_time = 30;
-	function countdown() {
-		// your code goes here
-		count = turn_time;
-		UpdateTimer();
-		var timerId = setInterval(function() {
-			count--;
-			console.log(count);
-			UpdateTimer();
-			if(count == 0) {
-				// your code goes here
-				count = turn_time+1;
-			}
-		}, 1000);
-	}
-	
-	function UpdateTimer() {
-		document.getElementById('game_clock').style.fontSize="large";
-		document.getElementById('game_clock').innerHTML = "Turn ends in " + count + "s";
-		
-	}
-	
-	////////////////////////
-	window.onload = function() {
-		
-		if(true) {
-			
-			// TODO : synchro handling USE data_sync;
-		}
-		countdown();
-	
-	}
 	</script>
 </head>
 

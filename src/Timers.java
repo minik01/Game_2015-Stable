@@ -10,45 +10,36 @@ public class Timers extends TimerTask {
 	private Utilities log;
 	public XmlShipsManagement xmlman;
 	public DBManager2 dbm2;
-	public int startTime;
+	public long startTime;
 	
 	public Timers(DBManager2 db){
 		log = new Utilities();
 		dbm2 = db;
 	}
-	public int getStartTime(){
+	public long getStartTime(){
 		return startTime;
 	}
 	public boolean ResetTurn(){
 		
-		int tmp=0;
+		
 		try{
 			
 		
 			Runnable reset = new Runnable() {
-				private int tmp;
-				public void setTemp(int temp)
-				{
-					tmp = temp;
-				}
+				
 			    public void run() {
 			    	
 			    	System.out.println("Turn reset now!");
 	                
-			    	if(tmp==0) {
-			    		
-			    		startTime = (int)TimeUnit.SECONDS.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS);
-			    		
-			    	}
-			    	if(tmp==30) tmp=0;
-	                
+			    	
+			    	//startTime = TimeUnit.SECONDS.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS);
+			    	startTime = System.currentTimeMillis();
+			    	
 	                xmlman = new XmlShipsManagement("ships_data.xml","ship",dbm2);
 			    	
 			    	if(xmlman.copyToXML()) System.out.println("New turn !");
 			    	
 			    	else System.out.println("Error in transfer from db to xml!!!!!!!");
-			    	
-			    	tmp++;
 			    }
 			};
 			ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);

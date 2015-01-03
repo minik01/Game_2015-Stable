@@ -40,10 +40,10 @@ public class Reader{
 	{
 		try{
 			BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
-			//Tworzymy buforowany strumień do zapisu
+			//Tworzymy buforowany strumien do zapisu
 			BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new DataOutputStream(to));
 			int read = bufferedInputStream.read();
-			while (read != -1)		// read() zwróci -1 jeśli plik się skończył
+			while (read != -1)		// read() zwroci -1 jezeli plik sie skonczyl�
 			{ 
 				bufferedOutputStream.write(read);
 				read = bufferedInputStream.read();
