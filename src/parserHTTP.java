@@ -133,6 +133,10 @@ public class parserHTTP
 			{
 				return "draw_radar.js";
 			}
+			if(temp.startsWith("timer.js"))
+			{
+				return "timer.js";
+			}
 			if(temp.startsWith("favicon.ico"))
 			{
 				return "favicon.ico";
