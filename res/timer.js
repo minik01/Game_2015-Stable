@@ -51,13 +51,32 @@ var msecStartTimeFromServer=0;
 	///////////////////////// timer
 	
 	
-	var count
+	var count,count2
 	var turn_time = 30;
 	var msec_turn_time = 25000;
 	var timer_started = false;
 	
+	function timeToStart(time2) {
+		console.log("timeToStart: "+time2);
+		if(time2 % 1 != 0) count2=Math.round( time2 );
+		else count2 = time2;
+		ToStartUpdate(count2);
+		console.log("count2.0: "+count2);
+		var timerId2 = setInterval(function() {
+			count2--;
+			console.log(count2);
+			ToStartUpdate(count2);
+			if(count2 == 0) {
+				
+				clearInterval(timerId2);
+				countdown();
+
+			}
+		}, 1000);
+	}
+	
 	function countdown() {
-		// your code goes here
+		
 		timer_started= true;
 		count = turn_time;
 		UpdateTimer();
@@ -69,7 +88,8 @@ var msecStartTimeFromServer=0;
 				// your code goes here
 				count = turn_time+1;
 				count = turn_time;
-				//setTimeout(function() {  }, 4000)
+				clearInterval(timerId);
+				timeToStart(10);
 
 			}
 		}, 1000);
@@ -80,20 +100,28 @@ var msecStartTimeFromServer=0;
 		document.getElementById('game_clock').innerHTML = "Turn ends in " + count + "s";
 		
 	}
+	function ToStartUpdate(a) {
+		document.getElementById('game_clock').style.fontSize="large";
+		document.getElementById('game_clock').innerHTML = "Turn starts in " + a + "s";
+		
+	}
 	///////////////////////// timer for synchro
 	
 	function startTimerAfter(delayVal) {
 		
 		count = delayVal;
 		console.log("Synchro waits for.." +count+" ms.");
-		var del = setTimeout(function() { countdown(); }, count)
+		var del = setTimeout(function() { countdown(); }, count);
 		
 		
 	}
 	////////////////////////
 	window.onload = function() {
-		
-		ask_for_time();
+		try {
+			ask_for_time();
+		} catch(err){
+			location.reload();
+		}
 		var msecTimeHere;
 		
 		if(msecStartTimeFromServer!=0 && timer_started==false) {
@@ -110,10 +138,11 @@ var msecStartTimeFromServer=0;
 				tmp+=1;
 				console.log("tmp in seconds "+(tmp/1000));
 				if(msecDiff%30000==0)
-					countdown(turn_time);
+					countdown();
 				else
 					
-					startTimerAfter(30000 - tmp);
+					//startTimerAfter(30000 - tmp);
+					timeToStart(40 - tmp/1000);
 			
 		}
 		setInterval(function() { location.reload() }, 30000*6)

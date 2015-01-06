@@ -11,6 +11,7 @@ public class Timers extends TimerTask {
 	public XmlShipsManagement xmlman;
 	public DBManager2 dbm2;
 	public long startTime;
+	public static int turnTime = 40;
 	
 	public Timers(DBManager2 db){
 		log = new Utilities();
@@ -43,7 +44,7 @@ public class Timers extends TimerTask {
 			    }
 			};
 			ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-			executor.scheduleAtFixedRate(reset, 0, 30, TimeUnit.SECONDS);
+			executor.scheduleAtFixedRate(reset, 0, turnTime, TimeUnit.SECONDS);
 			return true; // true when calculations are over
 		}catch(Exception ex) {
 			System.out.println("Exception caught while reseting turn");
