@@ -91,22 +91,22 @@ public class parserHTTP
 				}
 				else return "index.html";
 			}
-			if(temp.startsWith("rejestracja"))
+			else if(temp.startsWith("rejestracja"))
 			{
 				return "rejestracja.html";
 			}
-			if(temp.startsWith("TechTree"))
+			else if(temp.startsWith("TechTree"))
 			{
 				//special[2] = player.getTech().getTechTree().toHTML();
 				return "TechTree.html";
 			}
-			if(temp.startsWith("game_map"))
+			else if(temp.startsWith("game_map"))
 			{
 				return "game_map.html";
 			}
-			if(temp.startsWith("game"))
+			else if(temp.startsWith("game"))
 			{
-				if(name!=null && password!=null) 				//logowanie się
+				if(name!=null && password!=null) 				// signing in
 				{
 					if(dbm2.allowLogin(name,password))
 					{
@@ -117,43 +117,51 @@ public class parserHTTP
 				special[0] = "Wrong Username or Password";
 				return "index.html";
 			}
-			if(temp.startsWith("style.css"))
+			else if(temp.startsWith("style.css"))
 			{
 				return "style.css";
 			}
-			if(temp.startsWith("sha512.js"))
+			else if(temp.startsWith("sha512.js"))
 			{
 				return "sha512.js";
 			}
-			if(temp.startsWith("draw_map.js"))
+			else if(temp.startsWith("draw_map.js"))
 			{
 				return "draw_map.js";
 			}
-			if(temp.startsWith("draw_radar.js"))
+			else if(temp.startsWith("draw_radar.js"))
 			{
 				return "draw_radar.js";
 			}
-			if(temp.startsWith("timer.js"))
+			else if(temp.startsWith("timer.js"))
 			{
 				return "timer.js";
 			}
-			if(temp.startsWith("favicon.ico"))
+			else if(temp.startsWith("xml_management.js"))
+			{
+				return "xml_management.js";
+			}
+			else if(temp.startsWith("ships_data.xml"))
+			{
+				return "ships_data.xml";
+			}
+			else if(temp.startsWith("favicon.ico"))
 			{
 				return "favicon.ico";
 			}
-			if(temp.startsWith("icon.png"))
+			else if(temp.startsWith("icon.png"))
 			{
 				return "icon.png";
 			}
-			if(temp.startsWith("bg.png"))
+			else if(temp.startsWith("bg.png"))
 			{
 				return "bg.png";
 			}
-			if(temp.startsWith("ajax")) //			+
+			else if(temp.startsWith("ajax")) //			+
 			{
 				return temp;
 			}
-			if(temp.startsWith("techImg"))
+			else if(temp.startsWith("techImg"))
 			{
 				return temp;
 			}

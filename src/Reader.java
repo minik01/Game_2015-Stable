@@ -23,7 +23,7 @@ public class Reader{
 			file = new File(Filename);
 			in = new Scanner(file);
 			log.print('r',"open file: "+Filename);
-			bin = (Filename.endsWith(".ico") || Filename.endsWith(".png") );
+			bin = (Filename.endsWith(".ico") || Filename.endsWith(".png") || Filename.endsWith(".xml"));
 		}	
 	}
 	public boolean bin()

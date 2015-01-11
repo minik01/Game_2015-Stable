@@ -2,16 +2,16 @@
 public class VarShip {
 	private Utilities log; //log
 	private boolean busy;
-	private int x, y,lvl, id, ovnerId;
+	private int x, y,lvl, id, owner_id;
 	public VarShip()
 	{
 		log = new Utilities();
 	}
-	public VarShip(int id,int ovnerId,int lvl, int x, int y, boolean busy)
+	public VarShip(int id,int owner_id,int lvl, int x, int y, boolean busy)
 	{
 		log = new Utilities();
 		this.id = id;
-		this.ovnerId = ovnerId;
+		this.owner_id = owner_id;
 		this.x = x;
 		this.y = y;
 		this.lvl = lvl;
@@ -19,7 +19,7 @@ public class VarShip {
 	}
 	public String toString()
 	{
-		return "Statek: "+id+" nalezy do gracza: "+ovnerId+" \npozycja: ("+x+";"+y+") \npoziom statku: "+lvl+"\n zajety: "+busy;
+		return "Statek: "+id+" nalezy do gracza: "+owner_id+" \npozycja: ("+x+";"+y+") \npoziom statku: "+lvl+"\n zajety: "+busy;
 	}
 	public String toStringDeluxe(VarPlayer player)
 	{
@@ -45,7 +45,7 @@ public class VarShip {
 	{
 		return busy;
 	}
-	public int getOvnerId() {
-		return ovnerId;
+	public int getOwnerId() {
+		return owner_id;
 	}
 }

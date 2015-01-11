@@ -22,11 +22,10 @@ public class DBManager2 {
 	 	dbm.update("drop table if exists ship");
 		initTables();
 		
-		// dodane na sztywno tworzenie statkow dla admina
+		// temporary added for testing
 		
 		addShip(new VarShip(99,69,1,200,340,false));
 		addShip(new VarShip(100,99,1,250,320,false));
-		
 
 	}
 	public void initTables()
@@ -36,15 +35,15 @@ public class DBManager2 {
 		dbm.update( "CREATE TABLE IF NOT EXISTS players (id integer, username string, password string, mail string, points int, banned boolean)");
 		
 		log.print('d', "Tworzenie tabeli statkow:");
-		log.print('d', "CREATE TABLE IF NOT EXISTS ship (id integer,ovnerId integer, lvl int, current_x int, current_y int, busy boolean)");
-		dbm.update( "CREATE TABLE IF NOT EXISTS ship (id integer,ovnerId integer, lvl int, current_x int, current_y int, busy boolean)");
+		log.print('d', "CREATE TABLE IF NOT EXISTS ship (id integer,owner_id integer, lvl int, current_x int, current_y int, busy boolean)");
+		dbm.update( "CREATE TABLE IF NOT EXISTS ship (id integer,owner_id integer, lvl int, current_x int, current_y int, busy boolean)");
 	}
 	
 	
 	// Statek
 	public void addShip(VarShip ship)
 	{
-		dbm.update("insert into ship values("+ship.getId()+","+ship.getOvnerId()+","+ship.getLvl()+","+ship.getX()+","+ship.getY()+",'"+ship.getBusy()+"')");	//nie zapisuje do bazy danych
+		dbm.update("insert into ship values("+ship.getId()+","+ship.getOwnerId()+","+ship.getLvl()+","+ship.getX()+","+ship.getY()+",'"+ship.getBusy()+"')");	//nie zapisuje do bazy danych
 		printAllShip();
 		//przydaloby sie sprawdzic, Id nie jest zajete...
 	}
@@ -52,7 +51,7 @@ public class DBManager2 {
 	{
 		ResultSet rs = dbm.select3("ship", id);
 		try {
-			return new VarShip(id,rs.getInt("ovnerId"),rs.getInt("lvl"), rs.getInt("current_x"), rs.getInt("current_y"), rs.getBoolean("busy"));
+			return new VarShip(id,rs.getInt("owner_id"),rs.getInt("lvl"), rs.getInt("current_x"), rs.getInt("current_y"), rs.getBoolean("busy"));
 		} catch (SQLException e) 
 		{
 			System.out.println("ERROR - PlayersShip - getShip()");
@@ -72,7 +71,7 @@ public class DBManager2 {
 		try {
 			while(rs.next())
 			{
-				VarShip ship = new VarShip(rs.getInt("id"),rs.getInt("ovnerId"),rs.getInt("lvl"), rs.getInt("current_x"), rs.getInt("current_y"), rs.getBoolean("busy"));
+				VarShip ship = new VarShip(rs.getInt("id"),rs.getInt("owner_id"),rs.getInt("lvl"), rs.getInt("current_x"), rs.getInt("current_y"), rs.getBoolean("busy"));
 				ships.add(ship);
 			}
 			return ships;
@@ -112,7 +111,7 @@ public class DBManager2 {
 			{
 				log.print('d',"+");
 				log.print('d',"+ id = \t" + rs.getInt("id"));
-				log.print('d',"+ ownerId = \t" + rs.getString("ovnerId"));
+				log.print('d',"+ owner_id = \t" + rs.getString("owner_id"));
 				log.print('d',"+ current_x = \t" + rs.getInt("current_x"));
 				log.print('d',"+ current_y = \t" + rs.getInt("current_y"));
 				log.print('d',"+ busy = \t" + rs.getBoolean("busy"));
