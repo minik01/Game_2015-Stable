@@ -27,6 +27,10 @@ function get_scaled_pos(in_x, in_y) {
 	console.log("scaled_pos_x: "+scaled_pos_x);
 	console.log("scaled_pos_y: "+scaled_pos_y);
 }
+function parseWorldX(world_x,world_y) {
+	this.x = world_x/ratio;
+	this.y = world_y/ratio;
+}
 function mark_active_sector() {
 	
 	ctx.fillStyle = "white";

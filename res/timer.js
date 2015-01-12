@@ -20,23 +20,7 @@ var msecStartTimeFromServer=0;
 	  }
 	  return request;
 	}
-	/*
-	function processResponse()
-	{
-	  if (r.readyState == 4) {
-	    if (r.status == 200) {
-
-		var parser = new DOMParser();
-		xmlDoc	=	parser.parseFromString(r.responseText				, "application/xml");
-		xmlDoc2	=	parser.parseFromString(xmlDoc.getElementsByTagName('player')	, "application/xml");
-	      alert(
-		'XML z serwera: ' + 
-		xmlDoc.firstChild.children[0].children//.text//.getElementsByTagName('tekst')[0].childNodes[0].nodeValue		
-		//xmlDoc.getElementsByTagName('tekst')[0].childNodes[0].nodeValue
-	      );
-	    };
-	  };
-	}*/
+	
 	function ask_for_time() {
 		
 		xmlhttp=getXMLHttpRequest();
@@ -49,6 +33,13 @@ var msecStartTimeFromServer=0;
 	
 	/////////////////////////XML
 	var shipObject = [];
+	
+	function drawShips() {
+	
+		shipObject = loadXMLDoc("ships_data.xml"); // get and read xml with ships
+		console.log("shipObject.id = "+shipObject[1].id);
+		drawOtherShips(shipObject); // mark ships on the radar
+	}
 	///////////////////////// timer
 	
 	
@@ -70,10 +61,12 @@ var msecStartTimeFromServer=0;
 			count2--;
 			console.log(count2);
 			ToStartUpdate(count2);
-			
+			if(count2<0) {
+				location.reload();
+			}
 			if(count2 == 5) {
 				// 5 sec to new turn
-				shipObject = loadXMLDoc("ships_data.xml"); // get and read xml with ships
+				drawShips();
 			}
 			if(count2 == 0) {
 				// real end of turn
@@ -142,10 +135,14 @@ var msecStartTimeFromServer=0;
 				var tmp = msecDiff%msec_turn_time;
 				tmp+=1;
 				console.log("tmp in seconds "+(tmp/1000));
-				if(msecDiff%msec_turn_time==0)
+				if(msecDiff%msec_turn_time==0) {
 					// if its the time for new turn start it now
+					drawShips();
 					countdown();
+				}
+					
 				else {
+					drawShips();
 					// do countdown between turns
 					if((server_turn_time - tmp/1000)<30)
 						timeToStart(server_turn_time - tmp/1000);
