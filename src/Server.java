@@ -40,6 +40,7 @@ public class Server {
 	ArrayList<Runnable> runners2 =new ArrayList<Runnable>();
 	ArrayList<Thread> threads2 =new ArrayList<Thread>();
 	
+	dbm2.initTables();
 	Timers timer = new Timers(dbm2);
     timer.ResetTurn();
     while(true)
