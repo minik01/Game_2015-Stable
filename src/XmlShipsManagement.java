@@ -43,6 +43,9 @@ public class XmlShipsManagement {
 		try {
 			// open file, prepare document and normalize it
 			fXmlFile = new File(docName);
+			if(!fXmlFile.exists()) {
+				fXmlFile.createNewFile();
+			} 
 			docBuilderFactory = DocumentBuilderFactory.newInstance();
 			docBuilder = docBuilderFactory.newDocumentBuilder();
 			doc = docBuilder.parse(fXmlFile);
@@ -59,7 +62,7 @@ public class XmlShipsManagement {
 		dbm2 = db;
 		docName = fileName;
 		nodeName = nodesName;
-		openXML();
+		//openXML();
 	}
 	
 	// How many ships exist
