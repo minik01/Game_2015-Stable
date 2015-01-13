@@ -2,11 +2,7 @@ function getRadarCanvas() {
 	var canvas = document.getElementById('radar_canvas');
 	return canvas;
 }
-function getRadarContext() {
-	var canvas = getRadarCanvas();
-	var context = canvas.getContext('2d');
-	return context;
-}
+
 function redraw_background() {
 	
 	var canvas = getRadarCanvas();
@@ -53,7 +49,11 @@ function drawOtherShips(new_ships) {
 	//console.log("draw_radar -> shipObject[1].id= :"+ships[1].id);
 	
 	var shipOthers = ships;
-	var contex = getRadarContext();
+	var canvas = getRadarCanvas();
+	var context = canvas.getContext('2d');
+	var centerOfCanvasX = canvas.width / 2;
+	var centerOfCanvasY = canvas.height / 2;
+	var radius = canvas.width*0.4;
 	
 	var myX = findMyX(shipOthers); // get main players position x ( use it as reference point )
 	var myY = findMyY(shipOthers); // get main players position y ( use it as reference point )
@@ -62,21 +62,30 @@ function drawOtherShips(new_ships) {
 	console.log("ships OK, length: "+shipOthers.length);
 	else
 	console.log("ships are not ok, length: "+shipOthers.length);
-	for (i=0;i<shipOthers.length;i++) {
-		console.log("Ship["+i+"]");
-		// draw each player
-		var x = shipOthers[i].pos_x;
-		var y = shipOthers[i].pos_y; // world coords
-		console.log("x_world "+x);
-		console.log("y_world "+y);
-		var drawCoords =  new parseWorldX(x,y);
-		console.log("x_canv "+drawCoords.x);
-		console.log("y_canv "+drawCoords.y);
-		context.beginPath();
-		context.arc(drawCoords.x, drawCoords.y, radius*0.03, 0, 2 * Math.PI, false);
-		context.fillStyle = 'red';
-		context.fill();
 	
+	
+	// temporary my id
+	
+	var my_id = 69;
+	for (i=0;i<shipOthers.length;i++) {
+		if(shipOthers[i].owner_id != my_id) {
+			
+			// draw each player
+			var x = shipOthers[i].pos_x;
+			var y = shipOthers[i].pos_y; // world coords
+			console.log("Not my ship");
+			console.log("x"+i+"_world "+x);
+			console.log("y"+i+"_world "+y);
+			shipX = x*centerOfCanvasX/myX;
+			shipY = y*centerOfCanvasY/myY;
+			console.log("x"+i+"_canv "+shipX);
+			console.log("y"+i+"_canv "+shipY);
+			context.beginPath();
+			context.arc(shipX, shipY, radius*0.03, 0, 2 * Math.PI, false);
+			context.fillStyle = 'red';
+			context.fill();
+			console.log("Ship["+i+"] shown on radar");
+		}
 	}
 
 }

@@ -18,13 +18,18 @@ public class DBManager2 {
 	public void clear()
 	{
 		log.print('!', "All tables will be DELETED!");
-	 	dbm.update("drop table if exists players");
+		
+	 	//dbm.update("drop table if exists players");
+		// !!!!!!!!
+		// temporary cleaning only ships table 
+		
 	 	dbm.update("drop table if exists ship");
 		initTables();
 		
 		// temporary added for testing
-		
-		addShip(new VarShip(99,69,1,200,340,false));
+
+		addShip(new VarShip(98,69,1,201,349,false));
+		addShip(new VarShip(99,777,1,200,340,false));
 		addShip(new VarShip(100,99,1,250,320,false));
 
 	}
