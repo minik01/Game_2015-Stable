@@ -137,7 +137,10 @@ function loadXMLDoc(url)
 				}
 				// console.log("xml_management -> shipObject[1].id= :"+arrayOfShips[1].id);
 				// return arrayOfShips;
-				console.log("xml_management -> shipObject[1].id= :"+shipObject[1].id);
+				//console.log("xml_management -> shipObject[1].id= :"+shipObject[1].id);
+				window.onload() {
+					drawOtherShips(shipObject)
+				}
 				return shipObject;
 			}
 		}

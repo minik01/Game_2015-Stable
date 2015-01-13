@@ -35,10 +35,10 @@ var msecStartTimeFromServer=0;
 	var shipObject = [];
 	
 	function drawShips() {
-	
+		console.log("timer.js -> Load XML");
 		shipObject = loadXMLDoc("ships_data.xml"); // get and read xml with ships
-		console.log("shipObject.id = "+shipObject[1].id);
-		drawOtherShips(shipObject); // mark ships on the radar
+		//console.log("shipObject.id = "+shipObject[1].id);
+		//drawOtherShips(shipObject); // mark ships on the radar
 	}
 	///////////////////////// timer
 	

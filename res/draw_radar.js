@@ -49,8 +49,8 @@ function drawOtherShips(new_ships) {
 	var ships =[];
 	ships = new_ships;
 	console.log("drawOtherShips");
-	console.log("draw_radar -> ships= :"+ships);
-	console.log("draw_radar -> shipObject[1].id= :"+ships[1].id);
+	//console.log("draw_radar -> ships= :"+ships);
+	//console.log("draw_radar -> shipObject[1].id= :"+ships[1].id);
 	
 	var shipOthers = ships;
 	var contex = getRadarContext();
@@ -69,7 +69,7 @@ function drawOtherShips(new_ships) {
 		var y = shipOthers[i].pos_y; // world coords
 		console.log("x_world "+x);
 		console.log("y_world "+y);
-		var drawCoords = parseWorldX(x,y);
+		var drawCoords =  new parseWorldX(x,y);
 		console.log("x_canv "+drawCoords.x);
 		console.log("y_canv "+drawCoords.y);
 		context.beginPath();
