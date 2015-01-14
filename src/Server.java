@@ -35,6 +35,14 @@ public class Server {
 	{
 	
 	DBManager2 dbm2 = new DBManager2();
+<<<<<<< HEAD
+=======
+		// UWAGA TYMCZASOWE CZYSZCZENIE TABLICY STATKOW ( TYLKO STATKI ) ABY
+		// DODAWAC STATYCZNIE 3 STATKI
+	//dbm2.clear();
+	
+		//////////////////
+>>>>>>> 5fe8b5e29e03dd6e46f2d3ec05ae843d0ab10c67
 	PreServer pserver = new PreServer();
 	ArrayList<Runnable> runners2 =new ArrayList<Runnable>();
 	ArrayList<Thread> threads2 =new ArrayList<Thread>();
