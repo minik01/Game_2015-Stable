@@ -18,7 +18,7 @@ public class Server {
 	//Runnable timer2 = new Timers3(1);
     Thread threads = new Thread(timer);
     threads.start();
-    System.out.println("już");
+    //System.out.println("juz");
     //timer2.
     //timer.startNewTurn();
     

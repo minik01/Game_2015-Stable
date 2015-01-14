@@ -20,7 +20,7 @@
 	    public void run() {
 	        while(true) {
 	            try {
-	            	for(int i = 0; i < turnTime; i++)
+	            	for(int i = 0; i <= turnTime; i++)
 	            	{
 	            		Thread.sleep(1000);
 	            		clock.setTime(turnTime-i);

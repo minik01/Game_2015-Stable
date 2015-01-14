@@ -1,4 +1,4 @@
-var msecStartTimeFromServer=0;
+var turnStartTimeFromServer=0;
 	var r;
 	var xmlDoc;	
 	function getXMLHttpRequest()
@@ -26,8 +26,8 @@ var msecStartTimeFromServer=0;
 		xmlhttp=getXMLHttpRequest();
 		xmlhttp.open("GET","ajax_time_request",false);
 		xmlhttp.send();
-		msecStartTimeFromServer=parseInt(xmlhttp.responseText);
-		console.log("Received startTime from server: "+ msecStartTimeFromServer);
+		turnStartTimeFromServer=parseInt(xmlhttp.responseText);
+		
 	}
 	
 	
@@ -52,9 +52,8 @@ var msecStartTimeFromServer=0;
 	
 	function timeToStart(time2) {
 		// Timer between Turns
-		console.log("timeToStart: "+time2);
-		if(time2 % 1 != 0) count2=Math.round( time2 );
-		else count2 = time2;
+		console.log("timeToStart: "+time2+"s");
+		count2 = time2;
 		ToStartUpdate(count2);
 		console.log("count2.0: "+count2);
 		var timerId2 = setInterval(function() {
@@ -71,17 +70,18 @@ var msecStartTimeFromServer=0;
 			if(count2 == 0) {
 				// real end of turn
 				clearInterval(timerId2);
-				countdown();
+				countdown(turn_time);
 
 			}
 		}, 1000);
 	}
 	
 	
-	function countdown() {
+	function countdown(new_time) {
 		// Countdown while turn is active for player
 		timer_started= true;
-		count = turn_time;
+		count = new_time;
+		
 		UpdateTimer();
 		var timerId = setInterval(function() {
 			count--;
@@ -92,7 +92,7 @@ var msecStartTimeFromServer=0;
 				count = turn_time+1;
 				count = turn_time;
 				clearInterval(timerId);
-				timeToStart(10);
+				timeToStart(10+1);
 
 			}
 		}, 1000);
@@ -123,19 +123,19 @@ var msecStartTimeFromServer=0;
 		}
 		var msecTimeHere;
 		
-		if(msecStartTimeFromServer!=0 && timer_started==false) {
+		if(turnStartTimeFromServer!=0) {
 				// when server_start_time had been received and timer is off
-				msecTimeHere = new Date().getTime();
-				var msecDiff = msecTimeHere-msecStartTimeFromServer;
+				// msecTimeHere = new Date().getTime();
+				// var msecDiff = msecTimeHere-turnStartTimeFromServer;
 				//console.log("Time here: "+msecTimeHere+" ms");
-				console.log("Server Start Time: "+msecStartTimeFromServer+" ms");
+				// console.log("Server Start Time: "+turnStartTimeFromServer+" ms");
 				//console.log("Server started "+msecDiff+" ms ago ( difference )");
-				console.log("Server started "+(msecDiff/1000)+" s ago");
+				console.log("Turn started "+turnStartTimeFromServer+" s ago");
 				
-				var tmp = msecDiff%msec_turn_time;
-				tmp+=1;
-				console.log("tmp in seconds "+(tmp/1000));
-				if(msecDiff%msec_turn_time==0) {
+				// var tmp = msecDiff%msec_turn_time;
+				// tmp+=1;
+				// console.log("tmp in seconds "+(tmp/1000));
+				if(turnStartTimeFromServer==0) {
 					// if its the time for new turn start it now
 					drawShips();
 					countdown();
@@ -144,10 +144,11 @@ var msecStartTimeFromServer=0;
 				else {
 					drawShips();
 					// do countdown between turns
-					if((server_turn_time - tmp/1000)<30)
-						timeToStart(server_turn_time - tmp/1000);
+					if(turnStartTimeFromServer<30)
+						//timeToStart(turnStartTimeFromServer);
+						countdown(turnStartTimeFromServer);
 					else
-						timeToStart((server_turn_time - tmp/1000)-30);
+						countdown(turnStartTimeFromServer-30);
 				}
 		}
 		setInterval(function() { location.reload() }, msec_turn_time*6)
