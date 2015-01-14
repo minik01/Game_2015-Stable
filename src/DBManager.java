@@ -104,6 +104,7 @@ public class DBManager
 	    catch(SQLException e)
 	    {
 			System.out.println("DB error - DBM - select2()");
+			e.printStackTrace();
 	    }
     	return null;
     }

@@ -49,7 +49,7 @@ public class DBManager2 {
 	}
 	public VarShip getShipById(int id)
 	{
-		ResultSet rs = dbm.select3("ship", id);
+		ResultSet rs = dbm.select3("ship", id);  
 		try {
 			return new VarShip(id,rs.getInt("owner_id"),rs.getInt("lvl"), rs.getInt("current_x"), rs.getInt("current_y"), rs.getBoolean("busy"));
 		} catch (SQLException e) 
