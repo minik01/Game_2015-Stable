@@ -6,9 +6,9 @@ public class ParserAjax
 	public ArrayList<String> response;
 	public String request;
 	public DBManager2 dbm2;
-	private Timers timer;
+	private Timers3 timer;
 	int count;
-	public ParserAjax(DBManager2 dbm2,String request,Timers timer)
+	public ParserAjax(DBManager2 dbm2,String request,Timers3 timer2)
 	{
 		count = 0;
 		log = new Utilities();
@@ -16,7 +16,7 @@ public class ParserAjax
 		log.print('r', "ajax request: "+request);
 		this.request = request;
 		this.dbm2 = dbm2;
-		this.timer = timer;
+		this.timer = timer2;
 		//setResponse();
 		System.out.println("REQUEST AJAX: "+request);
 		if(request.startsWith("time_request"))
@@ -28,7 +28,7 @@ public class ParserAjax
 	{
 		System.out.println("ACK for time!!!");
 		response = new ArrayList<String>();
-		long time = timer.getStartTime();
+		long time = timer.getTime();
 		String stime = Long.toString(time);
 		System.out.println("startTime is : "+ time);
 		

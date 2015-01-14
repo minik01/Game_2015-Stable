@@ -4,7 +4,7 @@ public class Utilities {
 	private boolean logReader = true;
 	private boolean logForm = true;
 	private boolean logDB = true;
-	private boolean logTechTree = true;
+	private boolean logTimer = true;
 	private boolean logSend = true;
 	
 	public int start_x = 100;
@@ -45,11 +45,11 @@ public class Utilities {
 					System.out.println("log:DB> "+ text);break;
 			
 			case 'T':
-				if(logTechTree)
-					System.out.println("log:TechTree> "+ text);break;
+				if(logTimer)
+					System.out.println("log:Clock> "+ text);break;
 			case 't':
-				if(logTechTree)
-					System.out.println("log:TechTree> "+ text);break;
+				if(logTimer)
+					System.out.println("log:Clock> "+ text);break;
 					
 			case 'S':
 				if(logSend)

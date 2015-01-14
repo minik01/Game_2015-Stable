@@ -1,4 +1,4 @@
-import java.sql.ResultSet;
+/*import java.sql.ResultSet;
 
 public class TechTree //klasa powinna tylko odczytywać bazę danych - powinien być osobny program do generowania bazy danych.
 {
@@ -103,3 +103,4 @@ public class TechTree //klasa powinna tylko odczytywać bazę danych - powinien
 		}
 	}
 }
+*/

@@ -8,8 +8,8 @@ public class SerwerHTTP implements Runnable
 	private String special[] = null;
 	private int Id;
 	DBManager2 dbm2;
-	private Timers timer;
-	public SerwerHTTP(int Id, DBManager2 dbm2, Timers timer)                
+	private Timers3 timer;
+	public SerwerHTTP(int Id, DBManager2 dbm2, Timers3 timer)                
 	{    
 		log = new Utilities();
 		this.Id = Id;

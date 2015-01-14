@@ -24,16 +24,11 @@ public class Timers extends TimerTask {
 		
 		
 		try{
-			
-		
 			Runnable reset = new Runnable() {
-				
 			    public void run() {
 			    	
 			    	System.out.println("Turn reset now!");
-	                
-			    	
-			    	//startTime = TimeUnit.SECONDS.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS);
+	                //startTime = TimeUnit.SECONDS.convert(System.currentTimeMillis(), TimeUnit.MILLISECONDS);
 			    	startTime = System.currentTimeMillis();
 			    	
 	                xmlman = new XmlShipsManagement("ships_data.xml","ship",dbm2);

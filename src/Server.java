@@ -1,32 +1,3 @@
-/*public class Server {
-	private final static int MAXUSERS = 1;
-	public static void main(String[] args) 
-	{
-	
-	DBManager2 dbm2 = new DBManager2();
-	dbm2.clear();
-
-        Runnable[] runners = new Runnable[MAXUSERS];
-        Thread[] threads = new Thread[MAXUSERS];
- 
-        Timers timer = new Timers(dbm2);
-        timer.ResetTurn();
-        
-        for(int i=0; i<MAXUSERS; i++) 
-        {
-        	runners[i] = new SerwerHTTP(i, dbm2, timer);
-        }
-        
-        for(int i=0; i<MAXUSERS; i++) {
-            threads[i] = new Thread(runners[i]);
-        }
- 
-        for(int i=0; i<MAXUSERS; i++) {
-		threads[i].start();
-        }
-    }
-}
-*/
 import java.util.ArrayList;
 
 public class Server {
@@ -35,27 +6,28 @@ public class Server {
 	{
 	
 	DBManager2 dbm2 = new DBManager2();
-<<<<<<< HEAD
-=======
-		// UWAGA TYMCZASOWE CZYSZCZENIE TABLICY STATKOW ( TYLKO STATKI ) ABY
-		// DODAWAC STATYCZNIE 3 STATKI
-	//dbm2.clear();
-	
-		//////////////////
->>>>>>> 5fe8b5e29e03dd6e46f2d3ec05ae843d0ab10c67
+
 	PreServer pserver = new PreServer();
 	ArrayList<Runnable> runners2 =new ArrayList<Runnable>();
 	ArrayList<Thread> threads2 =new ArrayList<Thread>();
 	
 	dbm2.initTables();
-	Timers timer = new Timers(dbm2);
-    timer.ResetTurn();
+	Timers3 clock= new Timers3(0);
+	Timers2 timer = new Timers2(dbm2,clock);
+	//Timers3 timer2 = new Timers3(1);
+	//Runnable timer2 = new Timers3(1);
+    Thread threads = new Thread(timer);
+    threads.start();
+    System.out.println("już");
+    //timer2.
+    //timer.startNewTurn();
+    
     while(true)
     {
 	    for(int i=0; i<MAXUSERS; i++) 
 		    {//new 
 				pserver.server(i);
-				runners2.add(new SerwerHTTP(i,dbm2, timer));
+				runners2.add(new SerwerHTTP(i,dbm2, clock));
 				threads2.add(new Thread(runners2.get(i)));
 				threads2.get(i).start();
 			}

@@ -1,4 +1,4 @@
-public class PlayersTech 
+/*public class PlayersTech 
 {
 	private DBManager dbm;
 	private Utilities log;
@@ -54,3 +54,4 @@ public class PlayersTech
 		dbm.update(temp);
 	}
 }
+*/
