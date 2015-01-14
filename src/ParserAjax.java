@@ -21,6 +21,8 @@ public class ParserAjax
 		System.out.println("REQUEST AJAX: "+request);
 		if(request.startsWith("time_request"))
 			getTime();
+		else if(request.startsWith("new_coords"))
+			changeCoords();
 	}
 	private void getTime()
 	{
@@ -32,6 +34,18 @@ public class ParserAjax
 		
 		response = new ArrayList<String>();
 		response.add(stime);	
+	}
+	private void changeCoords() {
+		String id_mark = "_ship_id=";
+		String x_mark = "_pos_x=";
+		String y_mark = "_pos_y=";
+		
+		int ship_id = response.indexOf(id_mark)+id_mark.length();
+		int pos_x = response.indexOf(x_mark)+x_mark.length();
+		int pos_y = response.indexOf(y_mark)+y_mark.length();
+		
+		//dbm2.getShipById()
+		
 	}
 	private void setResponse()
 	{

@@ -73,18 +73,18 @@ function drawOtherShips(new_ships) {
 			// draw each player
 			var x = shipOthers[i].pos_x;
 			var y = shipOthers[i].pos_y; // world coords
-			console.log("Not my ship");
-			console.log("x"+i+"_world "+x);
-			console.log("y"+i+"_world "+y);
+			//console.log("Not my ship");
+			//console.log("x"+i+"_world "+x);
+			//console.log("y"+i+"_world "+y);
 			shipX = x*centerOfCanvasX/myX;
 			shipY = y*centerOfCanvasY/myY;
-			console.log("x"+i+"_canv "+shipX);
-			console.log("y"+i+"_canv "+shipY);
+			//console.log("x"+i+"_canv "+shipX);
+			//console.log("y"+i+"_canv "+shipY);
 			context.beginPath();
 			context.arc(shipX, shipY, radius*0.03, 0, 2 * Math.PI, false);
 			context.fillStyle = 'red';
 			context.fill();
-			console.log("Ship["+i+"] shown on radar");
+			//console.log("Ship["+i+"] shown on radar");
 		}
 	}
 
@@ -102,11 +102,59 @@ function draw_radar() {
 	init();
 	
 }
-
+function change_ship_pos(my_id,pos_x,pos_y){
+	
+	var xmlhttp;
+	
+	if (window.XMLHttpRequest)
+		{// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		}
+	else
+		{// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	xmlhttp.open("GET","ajax_new_coords_ship_id="+id+"_pos_x="+pos_x+"_pos_y="+pos_y,true);
+	xmlhttp.send();
+	
+	xmlhttp.onreadystatechange=function()
+		{
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				
+				console.log("new_target_accepted")
+			}
+		}
+}
 
 $( document ).ready( function() {
 
 	draw_radar();
+	
+	
+	// make click-able
+	var canvas = getRadarCanvas();
+	var context = canvas.getContext('2d');
+	var centerOfCanvasX = canvas.width / 2;
+	var centerOfCanvasY = canvas.height / 2;
+	var radius = canvas.width*0.4;
+	
+	var new_x,new_y;
+	
+	var my_id = 69;
+	
+	
+	$('#radar_canvas').click(function (e) {
+		
+		var clickedX = e.pageX - this.offsetLeft;
+		var clickedY = e.pageY - this.offsetTop;
+		//check if visible area is clicked
+		if((clickedX> centerOfCanvasX-radius && clickedX< centerOfCanvasX+radius) && (clickedY> centerOfCanvasY-radius && clickedY< centerOfCanvasY+radius)) {
+			
+			new_pos = new getRealPosition(clickedX,clickedY);
+			change_ship_pos(my_id,new_pos.world_x,new_pos.world_y);
+		}
+	});
 
 
 });
