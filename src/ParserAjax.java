@@ -13,7 +13,7 @@ public class ParserAjax
 		count = 0;
 		log = new Utilities();
 		request = request.substring(5,request.length());
-		log.print('a', "ajax request: "+request);
+		log.print('a', request);
 		this.request = request;
 		this.dbm2 = dbm2;
 		this.timer = timer2;
@@ -96,7 +96,7 @@ public class ParserAjax
 	}
 	public boolean existNextLine()
 	{
-		log.print('r', "count = "+ count );
+		//log.print('r', "count = "+ count );
 		count++;
 		return count<response.size();
 	}

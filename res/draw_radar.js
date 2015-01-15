@@ -58,10 +58,10 @@ function drawOtherShips(new_ships) {
 	var myX = findMyX(shipOthers); // get main players position x ( use it as reference point )
 	var myY = findMyY(shipOthers); // get main players position y ( use it as reference point )
 	
-	if(shipOthers!=0)
-	console.log("ships OK, length: "+shipOthers.length);
-	else
-	console.log("ships are not ok, length: "+shipOthers.length);
+	// if(shipOthers!=0)
+	// console.log("ships OK, length: "+shipOthers.length);
+	// else
+	// console.log("ships are not ok, length: "+shipOthers.length);
 	
 	
 	// temporary my id
@@ -114,7 +114,7 @@ function change_ship_pos(my_id,pos_x,pos_y){
 		{// code for IE6, IE5
 			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 		}
-	xmlhttp.open("GET","ajax_new_coords&ship_id="+id+"&pos_x="+pos_x+"&pos_y="+pos_y,true);
+	xmlhttp.open("GET","ajax_new_coords&ship_id="+my_id+"&pos_x="+pos_x+"&pos_y="+pos_y,true);
 	xmlhttp.send();
 	
 	xmlhttp.onreadystatechange=function()
@@ -143,19 +143,61 @@ $( document ).ready( function() {
 	
 	var my_id = 69;
 	
-	
+	function relMouseCoords(event){
+		var totalOffsetX = 0;
+		var totalOffsetY = 0;
+		var canvasX = 0;
+		var canvasY = 0;
+		var currentElement = this;
+
+		do{
+			totalOffsetX += currentElement.offsetLeft - currentElement.scrollLeft;
+			totalOffsetY += currentElement.offsetTop - currentElement.scrollTop;
+		}
+		while(currentElement = currentElement.offsetParent)
+
+		canvasX = event.pageX - totalOffsetX;
+		canvasY = event.pageY - totalOffsetY;
+
+		return {x:canvasX, y:canvasY}
+	}
+	HTMLCanvasElement.prototype.relMouseCoords = relMouseCoords;
+
 	$('#radar_canvas').click(function (e) {
 		console.log("canvas clicked");
-		var clickedX = e.pageX - this.offsetLeft;
-		var clickedY = e.pageY - this.offsetTop;
+		coords = canvas.relMouseCoords(event);
+		canvasX = coords.x;
+		canvasY = coords.y;
+		console.log("coorsX"+canvasX);
+		console.log("coorsY"+canvasY);
+		// var clickedX = e.pageX - this.offsetLeft;
+		// var clickedY = e.pageY - this.offsetTop;
+		
+		var clickedX = canvasX;
+		var clickedY = canvasY;
+		
+		var radarX0 = this.offsetLeft;
+		var radarY0 = this.offsetTop;
+		console.log("radar x0 = "+radarX0);
+		console.log("radar y0 = "+radarY0);
+		console.log("clicked x = "+clickedX);
+		console.log("clicked y = "+clickedY);
+		console.log("radar centerX = "+centerOfCanvasX);
+		console.log("radar centerY = "+centerOfCanvasY);
+		console.log("radar radius = "+radius);
+		console.log("min x = "+parseInt(centerOfCanvasX-radius));
+		console.log("min y = "+parseInt(centerOfCanvasY-radius));
+		var distanceFromCenterOfCanvas = Math.sqrt((Math.pow(parseInt(clickedX-centerOfCanvasX),2))+(Math.pow(parseInt(clickedY-centerOfCanvasY),2)));
+		console.log("distance from the middle = "+distanceFromCenterOfCanvas);
 		//check if visible area is clicked
-		if((clickedX> centerOfCanvasX-radius && clickedX< centerOfCanvasX+radius) && (clickedY> centerOfCanvasY-radius && clickedY< centerOfCanvasY+radius)) {
-			
+		if(distanceFromCenterOfCanvas < radius) {
+			console.log("fulfilled condition");
 			new_pos = new getRealPosition(clickedX,clickedY);
-			change_ship_pos(my_id,new_pos.world_x,new_pos.world_y);
+			$("#world_map_sector_p").html("Selected position: x="+new_pos.world_x+" y="+new_pos.world_y);
+			//change_ship_pos(my_id,new_pos.world_x,new_pos.world_y);
 		}
 	});
 
-
+	
 });
-   
+  
