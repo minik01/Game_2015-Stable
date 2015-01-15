@@ -138,7 +138,7 @@ var turnStartTimeFromServer=0;
 				if(turnStartTimeFromServer==0) {
 					// if its the time for new turn start it now
 					drawShips();
-					countdown();
+					countdown(turn_time);
 				}
 					
 				else {

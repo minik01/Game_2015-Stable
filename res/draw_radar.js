@@ -114,7 +114,7 @@ function change_ship_pos(my_id,pos_x,pos_y){
 		{// code for IE6, IE5
 			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 		}
-	xmlhttp.open("GET","ajax_new_coords_ship_id="+id+"_pos_x="+pos_x+"_pos_y="+pos_y,true);
+	xmlhttp.open("GET","ajax_new_coords&ship_id="+id+"&pos_x="+pos_x+"&pos_y="+pos_y,true);
 	xmlhttp.send();
 	
 	xmlhttp.onreadystatechange=function()
@@ -145,7 +145,7 @@ $( document ).ready( function() {
 	
 	
 	$('#radar_canvas').click(function (e) {
-		
+		console.log("canvas clicked");
 		var clickedX = e.pageX - this.offsetLeft;
 		var clickedY = e.pageY - this.offsetTop;
 		//check if visible area is clicked

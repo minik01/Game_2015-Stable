@@ -50,13 +50,25 @@ public class Utilities {
 			case 't':
 				if(logTimer)
 					System.out.println("log:Clock> "+ text);break;
-					
+			case 'X':
+				if(logTimer)
+					System.out.println("log:XML> "+ text);break;
+			case 'x':
+				if(logTimer)
+					System.out.println("log:XML> "+ text);break;
+						
 			case 'S':
 				if(logSend)
 					System.out.println("log:Send> "+ text);break;
 			case 's':
 				if(logSend)
 					System.out.println("log:Send> "+ text);break;
+			case 'A':
+				if(logSend)
+					System.out.println("log:Ajax> "+ text);break;
+			case 'a':
+				if(logSend)
+					System.out.println("log:Ajax> "+ text);break;
 
 			default: System.out.println("log> "+ text);
 		}

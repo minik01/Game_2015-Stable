@@ -13,12 +13,11 @@ public class ParserAjax
 		count = 0;
 		log = new Utilities();
 		request = request.substring(5,request.length());
-		log.print('r', "ajax request: "+request);
+		log.print('a', "ajax request: "+request);
 		this.request = request;
 		this.dbm2 = dbm2;
 		this.timer = timer2;
 		//setResponse();
-		System.out.println("REQUEST AJAX: "+request);
 		if(request.startsWith("time_request"))
 			getTime();
 		else if(request.startsWith("new_coords"))
@@ -26,23 +25,48 @@ public class ParserAjax
 	}
 	private void getTime()
 	{
-		System.out.println("ACK for time!!!");
+
 		response = new ArrayList<String>();
 		long time = timer.getTime();
 		String stime = Long.toString(time);
-		System.out.println("startTime is : "+ time);
+		//System.out.println("startTime is : "+ time);
 		
 		response = new ArrayList<String>();
 		response.add(stime);	
 	}
 	private void changeCoords() {
-		String id_mark = "_ship_id=";
-		String x_mark = "_pos_x=";
-		String y_mark = "_pos_y=";
 		
-		int ship_id = response.indexOf(id_mark)+id_mark.length();
-		int pos_x = response.indexOf(x_mark)+x_mark.length();
-		int pos_y = response.indexOf(y_mark)+y_mark.length();
+		//patterns 
+		String id_mark = "&ship_id=";
+		String x_mark = "&pos_x=";
+		String y_mark = "&pos_y=";
+		
+		// pattern lengths
+		int ship_id_index = request.indexOf(id_mark)+id_mark.length();
+		int pos_x_index = request.indexOf(x_mark)+x_mark.length();
+		int pos_y_index = request.indexOf(y_mark)+y_mark.length();
+		
+		//temp for new value
+		int new_val;
+		
+		VarShip ship = new VarShip(-1,-1,-1,-1,-1,false);
+		
+		for(int i=ship_id_index;i<request.length();i++) {
+			char temp=request.charAt(i);
+			int endCharPos = i;
+			if(temp=='&') {
+				endCharPos = i;
+				new_val = Integer.parseInt(request.substring(i,endCharPos));
+				ship = dbm2.getShipById(new_val);
+				if(i==pos_x_index)
+				ship.x = new_val;
+				else if(i==pos_y_index)
+				ship.y = new_val;
+
+			}
+		}
+		dbm2.setShip(ship);
+		
 		
 		//dbm2.getShipById()
 		

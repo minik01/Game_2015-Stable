@@ -37,6 +37,7 @@ public class XmlShipsManagement {
 	private static  NodeList nodeList;
 	private static String docName="ships_data.xml";
 	private static String nodeName="ship";
+	private static Utilities log;
 	
 	// always call it before using file
 	private static void openXML() {
@@ -62,6 +63,7 @@ public class XmlShipsManagement {
 		dbm2 = db;
 		docName = fileName;
 		nodeName = nodesName;
+		log = new Utilities();
 		//openXML();
 	}
 	
@@ -118,8 +120,9 @@ public class XmlShipsManagement {
 //			
 //			transformer.transform(source, result2); // execute to console
 			 
-			System.out.println("File "+docName+" saved!");
-		    
+			//System.out.println("File "+docName+" saved!");
+			log.print('x', "ships_data.xml updated");
+					
 		  }catch (ParserConfigurationException pce) {
 			pce.printStackTrace();
 		  }catch (TransformerException tfe) {

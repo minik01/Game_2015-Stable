@@ -14,7 +14,7 @@
 	    public void setTime(int time)
 	    {
 	        this.time = time;
-	        System.out.println(time+" left");
+	        //System.out.println(time+" left");
 	    }
 	}
 

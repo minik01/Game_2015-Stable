@@ -26,8 +26,11 @@
 	            		clock.setTime(turnTime-i);
 	            	}
 	                xmlman = new XmlShipsManagement("ships_data.xml","ship",dbm2);
-			    	if(xmlman.copyToXML())
-			    		log.print('t',"New turn !");					
+			    	if(xmlman.copyToXML()) {
+			    		log.print('t',"New turn !");
+			    		
+			    		
+			    	}
 			    	else System.out.println("Error in transfer from db to xml!!!!!!!");
 	            } catch (InterruptedException e) {
 	                e.printStackTrace();
