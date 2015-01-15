@@ -2,7 +2,7 @@
 public class VarShip {
 	private Utilities log; //log
 	private boolean busy;
-	private int x, y,lvl, id, owner_id;
+	public int x, y,lvl, id, owner_id;
 	public VarShip()
 	{
 		log = new Utilities();
