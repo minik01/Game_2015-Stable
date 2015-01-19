@@ -163,13 +163,25 @@ $( document ).ready( function() {
 	}
 	HTMLCanvasElement.prototype.relMouseCoords = relMouseCoords;
 
+	var change_pos = false;
+	$('#map_radar_selected_position_confirm').click(function (e) {
+	
+		if(change_pos) {
+			
+			
+			change_ship_pos(my_id,new_pos.world_x,new_pos.world_y);
+			change_pos = false;
+		
+		}
+	
+	});
 	$('#radar_canvas').click(function (e) {
 		console.log("canvas clicked");
 		coords = canvas.relMouseCoords(event);
 		canvasX = coords.x;
 		canvasY = coords.y;
-		console.log("coorsX"+canvasX);
-		console.log("coorsY"+canvasY);
+		// console.log("coorsX"+canvasX);
+		// console.log("coorsY"+canvasY);
 		// var clickedX = e.pageX - this.offsetLeft;
 		// var clickedY = e.pageY - this.offsetTop;
 		
@@ -178,23 +190,24 @@ $( document ).ready( function() {
 		
 		var radarX0 = this.offsetLeft;
 		var radarY0 = this.offsetTop;
-		console.log("radar x0 = "+radarX0);
-		console.log("radar y0 = "+radarY0);
-		console.log("clicked x = "+clickedX);
-		console.log("clicked y = "+clickedY);
-		console.log("radar centerX = "+centerOfCanvasX);
-		console.log("radar centerY = "+centerOfCanvasY);
-		console.log("radar radius = "+radius);
-		console.log("min x = "+parseInt(centerOfCanvasX-radius));
-		console.log("min y = "+parseInt(centerOfCanvasY-radius));
+		// console.log("radar x0 = "+radarX0);
+		// console.log("radar y0 = "+radarY0);
+		// console.log("clicked x = "+clickedX);
+		// console.log("clicked y = "+clickedY);
+		// console.log("radar centerX = "+centerOfCanvasX);
+		// console.log("radar centerY = "+centerOfCanvasY);
+		// console.log("radar radius = "+radius);
+		// console.log("min x = "+parseInt(centerOfCanvasX-radius));
+		// console.log("min y = "+parseInt(centerOfCanvasY-radius));
 		var distanceFromCenterOfCanvas = Math.sqrt((Math.pow(parseInt(clickedX-centerOfCanvasX),2))+(Math.pow(parseInt(clickedY-centerOfCanvasY),2)));
-		console.log("distance from the middle = "+distanceFromCenterOfCanvas);
+		//console.log("distance from the middle = "+distanceFromCenterOfCanvas);
 		//check if visible area is clicked
 		if(distanceFromCenterOfCanvas < radius) {
 			console.log("fulfilled condition");
 			new_pos = new getRealPosition(clickedX,clickedY);
-			$("#world_map_sector_p").html("Selected position: x="+new_pos.world_x+" y="+new_pos.world_y);
-			//change_ship_pos(my_id,new_pos.world_x,new_pos.world_y);
+			change_pos= true;
+			$("#map_radar_selected_position_p").html("Selected position: x="+new_pos.world_x+" y="+new_pos.world_y);
+			
 		}
 	});
 
