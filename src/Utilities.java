@@ -6,7 +6,6 @@ public class Utilities {
 	private boolean logDB = true;
 	private boolean logTimer = true;
 	private boolean logSend = true;
-	private boolean logQueue = true;
 	
 	public int start_x = 100;
 	public int start_y = 100;
@@ -57,13 +56,6 @@ public class Utilities {
 			case 'x':
 				if(logTimer)
 					System.out.println("log:XML> "+ text);break;
-					
-			case 'Q':
-				if(logQueue)
-					System.out.println("log:Queue> "+ text);break;
-			case 'q':
-				if(logQueue)
-					System.out.println("log:Queue> "+ text);break;
 						
 			case 'S':
 				if(logSend)

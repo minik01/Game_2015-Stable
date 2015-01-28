@@ -6,9 +6,9 @@ public class ParserAjax
 	public ArrayList<String> response;
 	public String request;
 	public DBManager2 dbm2;
-	private VarTurn timer;
+	private Timers3 timer;
 	int count;
-	public ParserAjax(DBManager2 dbm2,String request,VarTurn clock)
+	public ParserAjax(DBManager2 dbm2,String request,Timers3 clock)
 	{
 		count = 0;
 		log = new Utilities();

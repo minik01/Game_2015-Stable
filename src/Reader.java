@@ -65,7 +65,6 @@ public class Reader{
 			System.out.println("Reading file error - Reader - copy()");
 		}
 	}
-	/*
 	private String parser(String input)
 	{
 		if(input.contains("<!0Tresc>"))
@@ -87,7 +86,6 @@ public class Reader{
 			return input;
 		}
 	}
-	*/
 	public boolean existNextLine()
 	{
 		return in.hasNext();
