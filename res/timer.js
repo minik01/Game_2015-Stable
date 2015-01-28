@@ -111,6 +111,7 @@ var turnStartTimeFromServer=0;
 		
 	}
 	
+	
 	////////////////////////
 	window.onload = function() {
 		// when web-page loads 
@@ -121,6 +122,21 @@ var turnStartTimeFromServer=0;
 			//reload for new try
 			location.reload();
 		}
+		/*
+		var isClientActive= true;
+		$(window).blur(function(){
+		  //your code here
+		  isClientActive = false;
+		});
+		$(window).focus(function(){
+		  //your code
+		  if(!isClientActive) {
+			isClientActive = true;
+			countdown(turn_time);
+			
+		  }
+		}); 
+	*/
 		var msecTimeHere;
 		
 		if(turnStartTimeFromServer!=0) {
@@ -144,7 +160,7 @@ var turnStartTimeFromServer=0;
 				else {
 					drawShips();
 					// do countdown between turns
-					if(turnStartTimeFromServer<30)
+					if(turnStartTimeFromServer<=30)
 						//timeToStart(turnStartTimeFromServer);
 						countdown(turnStartTimeFromServer);
 					else

@@ -214,7 +214,7 @@ a:hover,.sub_btn:hover {
 	margin-top: 10px;
 	border:1px solid #c3c3c3;
 }
-#world_map_sector_div {
+#map_info_div {
 	position:relative;
 	margin-left: 10px;
 	margin-top: 10px; 
@@ -222,13 +222,20 @@ a:hover,.sub_btn:hover {
 
 }
 #world_map_sector_p {
-	position: fixed;
-	color: red;
-	margin-top: 30%;
-	margin-left: -900px;
-	font-size: 20;
-	font-family: monospace;
-	letter-spacing: 2px;
+position: relative;
+color: red;
+margin-top: auto;
+font-size: 20;
+font-family: monospace;
+letter-spacing: 2px;
+}
+#map_radar_selected_position_p {
+position: relative;
+color: red;
+margin-top: auto;
+font-size: 20;
+font-family: monospace;
+letter-spacing: 2px;
 }
 #radar_div {
 	position:relative;
