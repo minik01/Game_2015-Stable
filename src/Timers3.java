@@ -6,6 +6,7 @@
 	    {
 	        this.time = time;
 	    }
+	    
 	    public int getTime()
 	    {
 	    	return time;
@@ -14,6 +15,6 @@
 	    {
 	        this.time = time;
 	        //System.out.println(time+" left");
-	    }	    
+	    }
 	}
 

@@ -5,7 +5,7 @@ public class Reader{
 	private Utilities log; //log
 	private File file; 
 	private Scanner in;
-	private boolean bin,ajax,js;
+	private boolean bin,ajax;
 	private String[] special;
 	//private char type;
 
@@ -17,23 +17,14 @@ public class Reader{
   	}
 	public void openFile(String Filename) throws FileNotFoundException
 	{
-		if(ajax)
-		{
-			ajax = Filename.startsWith("ajax");
-		}
-		else
+		ajax = Filename.startsWith("ajax");
+		if(!ajax)
 		{
 			file = new File(Filename);
 			in = new Scanner(file);
 			log.print('r',"open file: "+Filename);
-			js = Filename.endsWith(".js");
 			bin = (Filename.endsWith(".ico") || Filename.endsWith(".png") || Filename.endsWith(".xml"));
-		}
-	}
-	public boolean js()
-	{
-		if(js)		log.print('r',"js request");
-		return js;
+		}	
 	}
 	public boolean bin()
 	{

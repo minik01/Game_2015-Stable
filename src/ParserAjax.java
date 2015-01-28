@@ -8,7 +8,7 @@ public class ParserAjax
 	public DBManager2 dbm2;
 	private Timers3 timer;
 	int count;
-	public ParserAjax(DBManager2 dbm2,String request,Timers3 clock)
+	public ParserAjax(DBManager2 dbm2,String request,Timers3 timer2)
 	{
 		count = 0;
 		log = new Utilities();
@@ -16,7 +16,7 @@ public class ParserAjax
 		log.print('a', request);
 		this.request = request;
 		this.dbm2 = dbm2;
-		this.timer = clock;
+		this.timer = timer2;
 		//setResponse();
 		if(request.startsWith("time_request"))
 			getTime();
@@ -59,9 +59,9 @@ public class ParserAjax
 				new_val = Integer.parseInt(request.substring(i,endCharPos));
 				ship = dbm2.getShipById(new_val);
 				if(i==pos_x_index)
-				ship.setX(new_val);
+				ship.x = new_val;
 				else if(i==pos_y_index)
-				ship.setY(new_val);
+				ship.y = new_val;
 
 			}
 		}
