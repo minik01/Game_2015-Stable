@@ -8,13 +8,13 @@ public class SerwerHTTP implements Runnable
 	private String special[] = null;
 	private int Id;
 	DBManager2 dbm2;
-	private Timers3 timer;
-	public SerwerHTTP(int Id, DBManager2 dbm2, Timers3 timer)                
+	private Timers3 clock;
+	public SerwerHTTP(int Id, DBManager2 dbm2, Timers3 clock)                
 	{    
 		log = new Utilities();
 		this.Id = Id;
 		this.dbm2 = dbm2;  
-		this.timer = timer;
+		this.clock = clock;
 		special = new String[10];
 	}
 	@Override
@@ -22,7 +22,6 @@ public class SerwerHTTP implements Runnable
 	{
 		try
 		{      
-			//for(int i=0;i<10;i++)special[i]=" ";
 			special[0]=" ";
 			ServerSocket serv=new ServerSocket(8000+Id); 
 			while(true)
@@ -65,13 +64,21 @@ public class SerwerHTTP implements Runnable
 							else                                           
 							{
 								outp.writeBytes("HTTP/1.0 200 OK\r\n");                        
-								outp.writeBytes("Content-Type: text/html\r\n");                
+								if(reader.js())
+								{
+									outp.writeBytes("Content-Type: application/javascript\r\n"); 
+								}
+								else
+								{
+									outp.writeBytes("Content-Type: text/html\r\n");                
+								}
 								outp.writeBytes("Content-Length: \r\n");                       
 								outp.writeBytes("\r\n");
+								
 								//response body                                                
 								if(reader.isAjax())
 								{
-									ParserAjax pAjax = new ParserAjax(dbm2,site,timer);
+									ParserAjax pAjax = new ParserAjax(dbm2,site,clock );
 									while(true)
 									{
 											outp.writeBytes(pAjax.nextLine()+"\n"); 
@@ -80,6 +87,7 @@ public class SerwerHTTP implements Runnable
 									}
 								}
 								else 
+								{
 									while(true)
 									{
 										if(!reader.existNextLine())
@@ -99,6 +107,7 @@ public class SerwerHTTP implements Runnable
 											break;
 										}
 									} 
+								}
 							}
 						}
 						else
@@ -114,14 +123,10 @@ public class SerwerHTTP implements Runnable
 					e.printStackTrace();
 					break;
 				}
-			
-				//TODO
-				//if(client konczy polaczenie) break;
-				
 				//zamykanie strumieni
 				inp.close();
 				outp.close();
-				sock.close();//?
+				sock.close();
 			}
 			//sock.close();
 			//serv.close();

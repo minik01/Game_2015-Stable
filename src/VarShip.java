@@ -2,7 +2,7 @@
 public class VarShip {
 	private Utilities log; //log
 	private boolean busy;
-	public int x, y,lvl, id, owner_id;
+	private int x, y,lvl, id, owner_id;
 	public VarShip()
 	{
 		log = new Utilities();
@@ -29,6 +29,10 @@ public class VarShip {
 	{
 		return id;
 	}
+	public void setX(int x)
+	{
+		this.x = x;
+	}
 	public int getX()
 	{
 		return x;
@@ -36,6 +40,10 @@ public class VarShip {
 	public int getY()
 	{
 		return y;
+	}
+	public void setY(int y)
+	{
+		this.y = y;
 	}
 	public int getLvl()
 	{

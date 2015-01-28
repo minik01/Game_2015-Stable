@@ -57,7 +57,6 @@ public class PreServer {
 				System.out.println("Demand error - PreServer - Server()");
 				e.printStackTrace();
 			}				
-			//zamykanie strumieni
 			inp.close();
 			outp.close();
 			sock.close();
