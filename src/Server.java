@@ -13,8 +13,8 @@ public class Server {
 	
 	dbm2.initTables();
 	
-	VarTurn clock= new VarTurn(0,dbm2);
-	Timers2 timer = new Timers2(dbm2,clock);
+	VarTurn turn= new VarTurn(0,dbm2);
+	Timer timer = new Timer(dbm2,turn);
     Thread threads = new Thread(timer);
     threads.start();
 	    while(true)
@@ -22,7 +22,7 @@ public class Server {
 		    for(int i=0; i<MAXUSERS; i++) 
 			{
 				pserver.server(i);
-				runners2.add(new SerwerHTTP(i,dbm2, clock));
+				runners2.add(new SerwerHTTP(i,dbm2, turn));
 				threads2.add(new Thread(runners2.get(i)));
 				threads2.get(i).start();
 			}
