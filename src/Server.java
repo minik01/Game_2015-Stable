@@ -12,7 +12,8 @@ public class Server {
 	ArrayList<Thread> threads2 =new ArrayList<Thread>();
 	
 	dbm2.initTables();
-	Timers3 clock= new Timers3(0);
+	
+	VarTurn clock= new VarTurn(0,dbm2);
 	Timers2 timer = new Timers2(dbm2,clock);
     Thread threads = new Thread(timer);
     threads.start();

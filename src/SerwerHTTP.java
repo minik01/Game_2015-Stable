@@ -8,8 +8,8 @@ public class SerwerHTTP implements Runnable
 	private String special[] = null;
 	private int Id;
 	DBManager2 dbm2;
-	private Timers3 clock;
-	public SerwerHTTP(int Id, DBManager2 dbm2, Timers3 clock)                
+	private VarTurn clock;
+	public SerwerHTTP(int Id, DBManager2 dbm2, VarTurn clock)                
 	{    
 		log = new Utilities();
 		this.Id = Id;
@@ -134,6 +134,8 @@ public class SerwerHTTP implements Runnable
 		catch(IOException e)
 		{
 			System.out.println("Server error ( may be connection) - SerwerHTTP - run()");
+			e.printStackTrace();
+
 		}
 	}
 }

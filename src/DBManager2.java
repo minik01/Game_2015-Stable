@@ -1,18 +1,18 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.sql.Connection;
+//import java.sql.Connection;
 
 public class DBManager2 {
 	private Utilities log; //log
-	private DBManager dbm;
+	private DBDriver dbm;
 	public DBManager2()
 	{
-		dbm = new DBManager();
+		dbm = new DBDriver();
 		log = new Utilities();
 	}
 	
-	public DBManager getDbm() {
+	public DBDriver getDbm() {
 		return dbm;
 	}
 	public void clear()
