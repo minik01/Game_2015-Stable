@@ -17,8 +17,11 @@ public class Reader{
   	}
 	public void openFile(String Filename) throws FileNotFoundException
 	{
-		ajax = Filename.startsWith("ajax");
-		if(!ajax)
+		if(ajax)
+		{
+			ajax = Filename.startsWith("ajax");
+		}
+		else
 		{
 			file = new File(Filename);
 			in = new Scanner(file);

@@ -63,10 +63,21 @@ public class SerwerHTTP implements Runnable
 							}
 							else                                           
 							{
+								outp.writeBytes("HTTP/1.0 200 OK\r\n");                        
+								if(reader.js())
+								{
+									outp.writeBytes("Content-Type: application/javascript\r\n"); 
+								}
+								else
+								{
+									outp.writeBytes("Content-Type: text/html\r\n");                
+								}
+								outp.writeBytes("Content-Length: \r\n");                       
+								outp.writeBytes("\r\n");
+								
+								//response body                                                
 								if(reader.isAjax())
 								{
-									outp.writeBytes("HTTP/1.0 200 OK\r\n");
-									outp.writeBytes("Content-Type: text/html\r\n");
 									ParserAjax pAjax = new ParserAjax(dbm2,site,turn );
 									while(true)
 									{
@@ -75,41 +86,27 @@ public class SerwerHTTP implements Runnable
 												break;
 									}
 								}
-								else
+								else 
 								{
-									outp.writeBytes("HTTP/1.0 200 OK\r\n");                        
-									if(reader.js())
+									while(true)
 									{
-										outp.writeBytes("Content-Type: application/javascript\r\n"); 
-									}
-									else
-									{
-										outp.writeBytes("Content-Type: text/html\r\n");                
-									}
-									outp.writeBytes("Content-Length: \r\n");                       
-									outp.writeBytes("\r\n");
-									
-									//response body                                                
-									
-										while(true)
+										if(!reader.existNextLine())
+											break;
+										try 
 										{
-											if(!reader.existNextLine())
-												break;
-											try 
-											{
-												outp.writeBytes(reader.nextLine()+"\n"); 
-											}
-											catch (IOException ex) 
-											{
-												System.out.println("Reading file error - SerwerHTTP - run()");
-												break;
-											}
-											catch (NoSuchElementException e) 
-											{
-												System.out.println("Unexpected end of file - SerwerHTTP - run()");
-												break;
-											}
-										} 
+											outp.writeBytes(reader.nextLine()+"\n"); 
+										}
+										catch (IOException ex) 
+										{
+											System.out.println("Reading file error - SerwerHTTP - run()");
+											break;
+										}
+										catch (NoSuchElementException e) 
+										{
+											System.out.println("Unexpected end of file - SerwerHTTP - run()");
+											break;
+										}
+									} 
 								}
 							}
 						}
