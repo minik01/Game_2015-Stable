@@ -8,7 +8,7 @@ public class ParserAjax
 	public DBManager2 dbm2;
 	private VarTurn timer;
 	int count;
-	public ParserAjax(DBManager2 dbm2,String request,VarTurn turn)
+	public ParserAjax(DBManager2 dbm2,String request,VarTurn clock)
 	{
 		count = 0;
 		log = new Utilities();
@@ -16,7 +16,7 @@ public class ParserAjax
 		log.print('a', request);
 		this.request = request;
 		this.dbm2 = dbm2;
-		this.timer = turn;
+		this.timer = clock;
 		//setResponse();
 		if(request.startsWith("time_request"))
 			getTime();

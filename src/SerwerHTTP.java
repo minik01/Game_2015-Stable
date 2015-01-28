@@ -8,13 +8,13 @@ public class SerwerHTTP implements Runnable
 	private String special[] = null;
 	private int Id;
 	DBManager2 dbm2;
-	private VarTurn turn;
-	public SerwerHTTP(int Id, DBManager2 dbm2, VarTurn turn)                
+	private VarTurn clock;
+	public SerwerHTTP(int Id, DBManager2 dbm2, VarTurn clock)                
 	{    
 		log = new Utilities();
 		this.Id = Id;
 		this.dbm2 = dbm2;  
-		this.turn = turn;
+		this.clock = clock;
 		special = new String[10];
 	}
 	@Override
@@ -78,7 +78,7 @@ public class SerwerHTTP implements Runnable
 								//response body                                                
 								if(reader.isAjax())
 								{
-									ParserAjax pAjax = new ParserAjax(dbm2,site,turn );
+									ParserAjax pAjax = new ParserAjax(dbm2,site,clock );
 									while(true)
 									{
 											outp.writeBytes(pAjax.nextLine()+"\n"); 
