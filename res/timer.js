@@ -21,13 +21,27 @@ var turnStartTimeFromServer=0;
 	  return request;
 	}
 	
+	function handler() {
+			if(this.status ==200 && this.responseText != null) {
+				turnStartTimeFromServer=parseInt(this.responseText);
+				
+			}
+			else {
+				location.reload();
+			}
+		
+	}
 	function ask_for_time() {
 		
-		xmlhttp=getXMLHttpRequest();
-		xmlhttp.open("GET","ajax_time_request",false);
-		xmlhttp.send();
-		turnStartTimeFromServer=parseInt(xmlhttp.responseText);
+		// xmlhttp=getXMLHttpRequest();
+		// xmlhttp.open("GET","ajax_time_request",false);
+		// xmlhttp.send();
+		// turnStartTimeFromServer=parseInt(xmlhttp.responseText);
 		
+		var client = new XMLHttpRequest();
+		client.onload = handler;
+		client.open("GET","ajax_time_request",false);
+		client.send();
 	}
 	
 	
