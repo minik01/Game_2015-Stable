@@ -1,3 +1,9 @@
+
+// temporary my ship id
+	
+	var my_id = 99;
+
+
 function getRadarCanvas() {
 	var canvas = document.getElementById('radar_canvas');
 	return canvas;
@@ -64,9 +70,7 @@ function drawOtherShips(new_ships) {
 	// console.log("ships are not ok, length: "+shipOthers.length);
 	
 	
-	// temporary my id
 	
-	var my_id = 69;
 	for (i=0;i<shipOthers.length;i++) {
 		if(shipOthers[i].owner_id != my_id) {
 			
@@ -114,7 +118,7 @@ function change_ship_pos(my_id,pos_x,pos_y){
 		{// code for IE6, IE5
 			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 		}
-	xmlhttp.open("GET","ajax_new_coords&ship_id="+my_id+"&pos_x="+pos_x+"&pos_y="+pos_y,true);
+	xmlhttp.open("GET","ajax_new_coords&ship_id="+my_id+"&pos_x="+pos_x+"&pos_y="+pos_y+"&over",true);
 	xmlhttp.send();
 	
 	xmlhttp.onreadystatechange=function()
@@ -141,7 +145,6 @@ $( document ).ready( function() {
 	
 	var new_x,new_y;
 	
-	var my_id = 69;
 	
 	function relMouseCoords(event){
 		var totalOffsetX = 0;

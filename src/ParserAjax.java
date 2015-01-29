@@ -40,33 +40,37 @@ public class ParserAjax
 		String id_mark = "&ship_id=";
 		String x_mark = "&pos_x=";
 		String y_mark = "&pos_y=";
+		String end_mark = "&over";
 		
 		// pattern lengths
-		int ship_id_index = request.indexOf(id_mark)+id_mark.length();
-		int pos_x_index = request.indexOf(x_mark)+x_mark.length();
-		int pos_y_index = request.indexOf(y_mark)+y_mark.length();
-		
+		int ship_id_index_start = request.indexOf(id_mark)+id_mark.length();
+		int pos_x_index_start = request.indexOf(x_mark)+x_mark.length();
+		int pos_y_index_start = request.indexOf(y_mark)+y_mark.length();
+		int last_index_start = request.indexOf(end_mark);
 		//temp for new value
-		int new_val;
+		int id_val,x_val,y_val;
 		
 		VarShip ship = new VarShip(-1,-1,-1,-1,-1,false);
 		
-		for(int i=ship_id_index;i<request.length();i++) {
-			char temp=request.charAt(i);
-			int endCharPos = i;
-			if(temp=='&') {
-				endCharPos = i;
-				new_val = Integer.parseInt(request.substring(i,endCharPos));
-				ship = dbm2.getShipById(new_val);
-				if(i==pos_x_index)
-				ship.x = new_val;
-				else if(i==pos_y_index)
-				ship.y = new_val;
+		
+		id_val = Integer.parseInt(request.substring(ship_id_index_start,request.indexOf(x_mark)));
+		ship = dbm2.getShipById(id_val);
+		System.out.println(id_val);
+		
+		x_val = Integer.parseInt(request.substring(pos_x_index_start,request.indexOf(y_mark)));
+		ship.x = x_val;
+		System.out.println(x_val);
+		
+		y_val = Integer.parseInt(request.substring(pos_y_index_start,last_index_start));
+		ship.y = y_val;
+		System.out.println(y_val);
 
-			}
-		}
+			
+		
 		dbm2.setShip(ship);
 		
+		response = new ArrayList<String>();
+		response.add("ok");	
 		
 		//dbm2.getShipById()
 		
