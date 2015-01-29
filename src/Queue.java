@@ -31,7 +31,7 @@ import java.util.ArrayList;
 		    }
 		    public void iAmAlive(int id)
 		    {
-		    	activeServers[id] = 5;
+		    	activeServers[id] = 5; 
 		    	log.print('t', "Server "+id+ " is Alive!");
 		    }
 		    public int getFirstFreeServer()
@@ -57,15 +57,18 @@ import java.util.ArrayList;
 			public void endTurn()
 		    {
 			    int i,i2;
+			    // server management
 		    	for(i = 0; i < constant.maxusers; i++)
 		    	{
-		    		log.print('t', "server: "+i+" - "+activeServers[i]);
-		    		if(activeServers[i] > -2)activeServers[i]--;
+		    		log.print('t', "server: "+i+" - TTL: "+activeServers[i]);
+		    		if(activeServers[i] > -1)activeServers[i]--;
 		    		if(activeServers[i]==0)
 		    		{
 		    			log.print('t', "DESTROY server "+i+"!");
+		    			activeServers[i] = -1;
 		    		}
 		    	}
+		    	//	task management
 			    finalQueue.clear();
 			    for(i=preQueue.size()-1; i>0 ;i--)
 			    {
