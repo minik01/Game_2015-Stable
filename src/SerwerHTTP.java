@@ -8,8 +8,8 @@ public class SerwerHTTP implements Runnable
 	private String special[] = null;
 	private int Id;
 	DBManager2 dbm2;
-	private Timers3 timer;
-	public SerwerHTTP(int Id, DBManager2 dbm2, Timers3 timer)                
+	private Queue timer;
+	public SerwerHTTP(int Id, DBManager2 dbm2, Queue timer)                
 	{    
 		log = new Utilities();
 		this.Id = Id;
@@ -31,7 +31,7 @@ public class SerwerHTTP implements Runnable
 				log.print('c',"Waiting for clients...");
 				Socket sock=serv.accept();
 				log.print('c',"Connected - server no "+Id);               
-	
+				timer.iAmAlive(Id);
 				//strumienie danych                                               
 				InputStream is=sock.getInputStream();                             
 				OutputStream os=sock.getOutputStream();                           
@@ -129,6 +129,7 @@ public class SerwerHTTP implements Runnable
 		catch(IOException e)
 		{
 			System.out.println("Server error ( may be connection) - SerwerHTTP - run()");
+			e.printStackTrace();
 		}
 	}
 }

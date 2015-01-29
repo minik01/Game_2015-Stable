@@ -40,9 +40,16 @@ public class PreServer {
 								outp.writeBytes("\r\n");
 								//response body       
 								outp.writeBytes("<html><head></head><body>");
-								outp.writeBytes("<script type='text/javascript'>");
-								outp.writeBytes("window.location = 'http://" + cnt.addres +":"+(8000+id)+"' ;");
-								outp.writeBytes("</script>");
+								if(id!=-1)
+								{
+									outp.writeBytes("<script type='text/javascript'>");
+									outp.writeBytes("window.location = 'http://" + cnt.addres +":"+(8000+id)+"' ;");
+									outp.writeBytes("</script>");
+								}
+								else
+								{
+									outp.writeBytes("I'm sorry, but all of our servers are in use");
+								}
 								outp.writeBytes("</body></html>");
 								
 						}

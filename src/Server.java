@@ -1,59 +1,34 @@
 import java.util.ArrayList;
 
 public class Server {
-	private final static int MAXUSERS = 3;
-	public static void main(String[] args) 
+public static void main(String[] args) 
 	{
 	
-	DBManager2 dbm2 = new DBManager2();
-	// dbm2.clear();
-	PreServer pserver = new PreServer();
-	ArrayList<Runnable> runners2 =new ArrayList<Runnable>();
-	ArrayList<Thread> threads2 =new ArrayList<Thread>();
+		DBManager2 dbm2 = new DBManager2();
 	
-	dbm2.initTables();
-	Timers3 clock= new Timers3(0);
-	Timers2 timer = new Timers2(dbm2,clock);
-	//Timers3 timer2 = new Timers3(1);
-	//Runnable timer2 = new Timers3(1);
-    Thread threads = new Thread(timer);
-    threads.start();
-    //System.out.println("juz");
-    //timer2.
-    //timer.startNewTurn();
+		PreServer pserver = new PreServer();
+		ArrayList<Runnable> runners2 =new ArrayList<Runnable>();
+		ArrayList<Thread> threads2 =new ArrayList<Thread>();
+		Constant constant = new Constant();
+		
+		dbm2.initTables();
+		Queue queue= new Queue(0,dbm2);
+		Timer timer = new Timer(dbm2,queue);
+	    Thread threads = new Thread(timer);
+	    threads.start();
     
-    while(true)
-    {
-	    for(int i=0; i<MAXUSERS; i++) 
-		    {//new 
-				pserver.server(i);
-				runners2.add(new SerwerHTTP(i,dbm2, clock));
+	    while(true)
+	    {
+	    	//threads.start();
+	    	int i = queue.getFirstFreeServer();
+			pserver.server(i);
+			if(i!=-1)
+			{
+				runners2.add(new SerwerHTTP(i,dbm2, queue));
 				threads2.add(new Thread(runners2.get(i)));
 				threads2.get(i).start();
 			}
-	    runners2.clear();
-	    threads2.clear();
-    }
 
-	/* 
-	   	Runnable[] runners = new Runnable[MAXUSERS];
-        Thread[] threads = new Thread[MAXUSERS];
- 
-       // Timers timer = new Timers(dbm2);
-        //timer.ResetTurn();
-        
-        for(int i=0; i<MAXUSERS; i++) 
-        {
-        	runners[i] = new SerwerHTTP(dbm2, i);
-        }
-        
-        for(int i=0; i<MAXUSERS; i++) {
-            threads[i] = new Thread(runners[i]);
-        }
- 
-        for(int i=0; i<MAXUSERS; i++) {
-		threads[i].start();
-        }
-    */
+	    }
     }
 }

@@ -1,15 +1,15 @@
 
-	public class Timers2 implements Runnable {
+	public class Timer implements Runnable {
 		 
 	    private int id;
 	    private Utilities log;
 	    private XmlShipsManagement xmlman;
 		private DBManager2 dbm2;
-		private Timers3 clock;
+		private Queue clock;
 		public long startTime;
 		public static int turnTime = 40;
 	 
-	    public Timers2(DBManager2 dbm2, Timers3 clock){
+	    public Timer(DBManager2 dbm2, Queue clock){
 	    
 	    	this.clock = clock;
 			log = new Utilities();
@@ -25,6 +25,7 @@
 	            		Thread.sleep(1000);
 	            		clock.setTime(turnTime-i);
 	            	}
+	            	clock.endTurn();
 	                xmlman = new XmlShipsManagement("ships_data.xml","ship",dbm2);
 			    	if(xmlman.copyToXML()) {
 			    		log.print('t',"New turn !");
