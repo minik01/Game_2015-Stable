@@ -6,7 +6,7 @@ public class Server {
 	{
 	
 	DBManager2 dbm2 = new DBManager2();
-
+	// dbm2.clear();
 	PreServer pserver = new PreServer();
 	ArrayList<Runnable> runners2 =new ArrayList<Runnable>();
 	ArrayList<Thread> threads2 =new ArrayList<Thread>();
